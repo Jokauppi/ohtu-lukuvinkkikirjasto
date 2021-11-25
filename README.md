@@ -13,4 +13,6 @@ Product backlog sekä sprinttien backlogit löytyvät google sheetistä: https:/
 
 ...
 
+### Lisenssi
+
 
