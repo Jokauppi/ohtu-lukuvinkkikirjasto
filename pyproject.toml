@@ -6,6 +6,7 @@ authors = ["tommijuslin <tommi.juslin@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+pysqlite3 = "^0.4.6"
 
 [tool.poetry.dev-dependencies]
 

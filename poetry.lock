@@ -1,0 +1,17 @@
+[[package]]
+name = "pysqlite3"
+version = "0.4.6"
+description = "DB-API 2.0 interface for Sqlite 3.x"
+category = "main"
+optional = false
+python-versions = "*"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.8"
+content-hash = "d33af45d55a3c58e9499f9f232e47a7196c500c19fad4d79e9e5a7a83141a04d"
+
+[metadata.files]
+pysqlite3 = [
+    {file = "pysqlite3-0.4.6.tar.gz", hash = "sha256:7ec4d4c477fa96609c1517afbc33bf02747588e528e79c695de95907cea7bf30"},
+]
