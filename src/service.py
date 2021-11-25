@@ -1,5 +1,6 @@
 from entities.book_tip import BookTip
 
+
 class Service:
     def __init__(self, repository):
         self._repository = repository

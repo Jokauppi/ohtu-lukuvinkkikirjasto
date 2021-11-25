@@ -10,6 +10,7 @@ def drop_tables(connection):
 
     connection.commit()
 
+
 def create_tables(connection):
     c = connection.cursor()
 
@@ -24,11 +25,13 @@ def create_tables(connection):
 
     connection.commit()
 
+
 def initialise_database():
     connection = get_connection()
 
     drop_tables(connection)
     create_tables(connection)
+
 
 if __name__ == "__main__":
     initialise_database()

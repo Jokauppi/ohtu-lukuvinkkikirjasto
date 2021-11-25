@@ -8,4 +8,3 @@ class TestHello(unittest.TestCase):
 
     def test_konstruktori_luo_hello_stringin(self):
         self.assertAlmostEqual(self.hello.hello, "Hello")
-
