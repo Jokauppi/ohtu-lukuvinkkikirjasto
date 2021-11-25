@@ -12,8 +12,7 @@ Product backlog sekä sprinttien backlogit löytyvät google sheetistä: https:/
 ## Ohjelman käyttöohje
 
 ...
-testit ajetaan komentoriviltä komennolla 
-coverage run --branch -m pytest; coverage html
+
 
 ### Lisenssi
 ....
