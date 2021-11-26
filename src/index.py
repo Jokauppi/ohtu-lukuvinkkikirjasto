@@ -5,7 +5,7 @@ from service import Service
 from repositories.book_tip_repository import BookTipRepository
 from database_connection import get_connection
 
-class main():
+def main():
     args = sys.argv[1:]
     if len(args) > 0:
         print("args:", args)

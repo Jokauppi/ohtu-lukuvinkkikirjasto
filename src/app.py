@@ -1,9 +1,11 @@
 from loopbreak import LoopBreak
+
+
 class App():
     def __init__(self, io, service):
         self.io = io
         self.service = service
-    
+
     def run(self):
         self.io.output("Tervettuloa vinkkisovellukseen! Kirjoita \"q\" poistuaksesi sovelluksesta")
         command_dict = {"q": self.quit_program,
@@ -26,7 +28,7 @@ class App():
     def add_book(self):
         name = self.io.input("Syötä kirjan nimi:\n")
         author = self.io.input("Syötä kirjailijan nimi:\n")
-        ISBN = self.io.input("Syötä kirjan ISBN -koodi:\n")
+        isbn = self.io.input("Syötä kirjan ISBN-koodi:\n")
         publication_year = self.io.input("Syötä kirjan julkaisuvuosi:\n")
-        
+
         print("Kirja lisätty")

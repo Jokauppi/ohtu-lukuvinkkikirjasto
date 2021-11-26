@@ -39,7 +39,7 @@ class BookTip:
     @publication_year.setter
     def publication_year(self, value):
         year = int(value)
-        if year >= 0 and year < 3000:
+        if 0 < year < 3000:
             self.__publication_year = value
 
     def __str__(self):
