@@ -34,7 +34,7 @@ pyrkimyksenä on mahdollisimman hyvä ylläpidettävyys pitämällä koodi selke
 * Sprintin toteutettu toiminallisuus käyty läpi Product Ownerin kanssa
 * Sprinttiin liittyvät "to do" asiat valmiita
 
-3.Tarkistuslista Releaselle
+3.Tarkistuslista viimeiselle Releaselle
 * Koodi on valmista
 * Kaikki testit läpäisevät
 * Kaikki hyväksymiskriteerit täyttyvät
