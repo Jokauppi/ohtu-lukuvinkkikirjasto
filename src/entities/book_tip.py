@@ -11,8 +11,11 @@ class BookTip:
 
     @name.setter
     def name(self, value):
-        if len(value) > 0 and len(value) < 100:
-            self.__name = value
+        if not isinstance(value, str):
+            raise TypeError("Name should be string type")
+        if len(value) <= 0 or len(value) > 100:
+            raise ValueError("Name length should be between 1 and 100 characters")
+        self.__name = value
 
     @property
     def author(self):
@@ -20,8 +23,11 @@ class BookTip:
 
     @author.setter
     def author(self, value):
-        if len(value) > 0 and len(value) < 100:
-            self.__author = value
+        if not isinstance(value, str):
+            raise TypeError("Name should be string type")
+        if len(value) <= 0 or len(value) > 100:
+            raise ValueError("Name length should be between 1 and 100 characters")
+        self.__author = value
 
     @property
     def isbn(self):
@@ -29,8 +35,11 @@ class BookTip:
 
     @isbn.setter
     def isbn(self, value):
-        if len(value) > 0 and len(value) < 20:
-            self.__isbn = value
+        if not isinstance(value, str):
+            raise TypeError("ISBN should be string type")
+        if len(value) <= 0 and len(value) > 20:
+            raise ValueError("ISBN length should be between 1 and 20 characters long")
+        self.__isbn = value
 
     @property
     def publication_year(self):
@@ -38,9 +47,12 @@ class BookTip:
 
     @publication_year.setter
     def publication_year(self, value):
+        if not isinstance(value, str):
+            raise TypeError("Year should be string type")
         year = int(value)
-        if 0 < year < 3000:
-            self.__publication_year = value
+        if year < 0 or  year > 3000:
+            raise ValueError("Year should be between 0 and 3000")
+        self.__publication_year = value
 
     def __str__(self):
         return f"Book name: {self.name}\n" \
