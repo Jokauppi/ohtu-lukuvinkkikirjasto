@@ -5,7 +5,7 @@ def drop_tables(connection):
     c = connection.cursor()
 
     c.execute("""
-        DROP TABLE IF EXISTS books;
+        DROP TABLE IF EXISTS BookTips;
     """)
 
     connection.commit()
@@ -15,8 +15,8 @@ def create_tables(connection):
     c = connection.cursor()
 
     c.execute("""
-        CREATE TABLE books (
-            title TEXT,
+        CREATE TABLE BookTips (
+            name TEXT,
             author TEXT,
             isbn TEXT,
             publication_year INTEGER
