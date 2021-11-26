@@ -1,8 +1,8 @@
 class BookTip:
-    def __init__(self, name: str, author: str, ISBN: str, publication_year: str):
+    def __init__(self, name: str, author: str, isbn: str, publication_year: str):
         self.name = name
         self.author = author
-        self.ISBN = ISBN
+        self.isbn = isbn
         self.publication_year = publication_year
 
     @property
@@ -24,13 +24,13 @@ class BookTip:
             self.__author = value
 
     @property
-    def ISBN(self):
-        return self.__ISBN
+    def isbn(self):
+        return self.__isbn
 
-    @ISBN.setter
-    def ISBN(self, value):
+    @isbn.setter
+    def isbn(self, value):
         if len(value) > 0 and len(value) < 20:
-            self.__ISBN = value
+            self.__isbn = value
 
     @property
     def publication_year(self):
@@ -45,5 +45,5 @@ class BookTip:
     def __str__(self):
         return f"Book name: {self.name}\n" \
                 f"Author: {self.author}\n" \
-                f"ISBN: {self.ISBN}\n" \
+                f"isbn: {self.isbn}\n" \
                 f"Publication year: {self.publication_year}"
