@@ -2,9 +2,9 @@ from database_connection import get_connection
 
 
 def drop_tables(connection):
-    c = connection.cursor()
+    cursor = connection.cursor()
 
-    c.execute("""
+    cursor.execute("""
         DROP TABLE IF EXISTS BookTips;
     """)
 
@@ -12,9 +12,9 @@ def drop_tables(connection):
 
 
 def create_tables(connection):
-    c = connection.cursor()
+    cursor = connection.cursor()
 
-    c.execute("""
+    cursor.execute("""
         CREATE TABLE BookTips (
             name TEXT,
             author TEXT,
