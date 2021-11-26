@@ -21,9 +21,13 @@ pyrkimyksenä on mahdollisimman hyvä ylläpidettävyys pitämällä koodi selke
 
 Projektin product- ja sprint-backlogit löytyvät tästä sheetistä: [backlogit](https://docs.google.com/spreadsheets/d/17mexdx3A8TU8_awobyIz68YoxxH1emHQaHv5W4zPq1w/edit#gid=124771927)
 
-## Ohjelman käyttöohje
+## Ohjelman viimeisin versio
 
-...
+Ohjelma löytyy osoitteesta ....
+
+### Ohjelman käyttöohje
+
+Ohjelmaa käytetään ....
 
 
 ### Lisenssi
