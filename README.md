@@ -16,6 +16,32 @@ Asiakas voi seurata koodin ja testien tilannnetta CI-palvelusta: [codecov](https
 Koodin arkkitehtuuri on suunniteltua ja perusteltua,
 pyrkimyksenä on mahdollisimman hyvä ylläpidettävyys pitämällä koodi selkeänä.
 
+1.Tarkistuslista User Storylle
+* Tuotettu koodia suunnitelluille toiminnallisuuksille
+* User storyn vaatimuksiin vastattu
+* Projekti käynnistyy ilman virheitä
+* Unit testit kirjoitettu ja läpäisty
+* Toiminnallisuus on testattu hyväksymistesteillä
+* Refraktorointi on valmis
+* Product ownerin mielestä toiminnallisuus on valmis
+
+2.Tarkistuslista Sprintille
+* Definition of done sprintin user storyille täytetty
+* Kaikki unit testit läpäisty
+* Linttaus läpäisty
+* Backlog on päivitetty
+* Kaikki bugit on korjattu
+* Sprintin toteutettu toiminallisuus käyty läpi Product Ownerin kanssa
+* Sprinttiin liittyvät "to do" asiat valmiita
+
+3.Tarkistuslista Releaselle
+* Koodi on valmista
+* Kaikki testit läpäisevät
+* Kaikki hyväksymiskriteerit täyttyvät
+* Ryhmä on hyväksynyt releasen
+* Ei keskeneräistä työtä releasen mukana
+* Kaikki DoD asetetut vaatimukset täyttyvät
+
 ## Ohjelman viimeisin versio
 
 Ohjelma löytyy osoitteesta ....
