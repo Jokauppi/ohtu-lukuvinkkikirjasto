@@ -1,28 +1,49 @@
 class BookTip:
     def __init__(self, name: str, author: str, ISBN: str, publication_year: str):
-        self._name = name
-        self._author = author
-        self._ISBN = ISBN
-        self._publication_year = publication_year
+        self.name = name
+        self.author = author
+        self.ISBN = ISBN
+        self.publication_year = publication_year
 
     @property
     def name(self):
-        return self._name
+        return self.__name
+
+    @name.setter
+    def name(self, value):
+        if len(value) > 0 and len(value) < 100:
+            self.__name = value
 
     @property
     def author(self):
-        return self._author
+        return self.__author
+
+    @author.setter
+    def author(self, value):
+        if len(value) > 0 and len(value) < 100:
+            self.__author = value
 
     @property
     def ISBN(self):
-        return self._ISBN
+        return self.__ISBN
+
+    @ISBN.setter
+    def ISBN(self, value):
+        if len(value) > 0 and len(value) < 20:
+            self.__ISBN = value
 
     @property
     def publication_year(self):
-        return self._publication_year
+        return self.__publication_year
+
+    @publication_year.setter
+    def publication_year(self, value):
+        year = int(value)
+        if year >= 0 and year < 3000:
+            self.__publication_year = value
 
     def __str__(self):
-        return f"Book name: {self._name}\n" \
-                f"Author: {self._author}\n" \
-                f"ISBN: {self._ISBN}\n" \
-                f"Publication year: {self._publication_year}"
+        return f"Book name: {self.name}\n" \
+                f"Author: {self.author}\n" \
+                f"ISBN: {self.ISBN}\n" \
+                f"Publication year: {self.publication_year}"
