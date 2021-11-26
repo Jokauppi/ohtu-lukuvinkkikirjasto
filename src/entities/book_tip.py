@@ -6,13 +6,13 @@ class BookTip:
         self._publication_year = publication_year
 
     def getName(self):
-        return self.name
+        return self._name
 
     def getAuthor(self):
-        return self.author
+        return self._author
 
     def getISBN(self):
-        return self.ISBN
+        return self._ISBN
 
     def getPublicationYear(self):
-        return self.publication_year()
+        return self._publication_year
