@@ -1,5 +1,5 @@
 import unittest
-from book_tip import BookTip
+from entities.book_tip import BookTip
 
 
 class TestBookTip(unittest.TestCase):
