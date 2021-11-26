@@ -5,15 +5,17 @@
 ## Definition of done
 Scrumin mukaisesti projektissa toteutetaan backlogista löytyvät user storyt, 
 joille on jokaiselle määritelty hyväksymiskriteerit.
-Hyväksymiskriteerit testataan käyttäen Robot-frameworkia.
 Backlogeihin ja siten myös hyväksymiskriteereihin löytyy linkki tästä Readmesta.
 
-Koodia testataan kattavasti unit testeillä.
+Hyväksymiskriteerit testataan käyttäen Robot-frameworkia.
+Koodia testataan kattavasti myös unit testeillä.
 Koodityyli noudattaa pylintin avulla määriteltyjä sääntöjä.
-Asiakas voi seurata koodin ja testien tilannnetta CI-palvelusta.
+
+Asiakas voi seurata koodin ja testien tilannnetta CI-palvelusta: [codecov](https://app.codecov.io/gh/Jokauppi/ohtu-lukuvinkkikirjasto)
 
 Koodin arkkitehtuuri on suunniteltua ja perusteltua,
 pyrkimyksenä on mahdollisimman hyvä ylläpidettävyys pitämällä koodi selkeänä.
+
 
 ## Backlogit
 
