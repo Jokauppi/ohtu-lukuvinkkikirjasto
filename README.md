@@ -5,7 +5,7 @@
 ## Definition of done
 Scrumin mukaisesti projektissa toteutetaan backlogista löytyvät user storyt, 
 joille on jokaiselle määritelty hyväksymiskriteerit.
-Backlogeihin ja siten myös hyväksymiskriteereihin löytyy linkki tästä Readmesta.
+Projektin product- ja sprint-backlogit ja siten myös hyväksymiskriteerit löytyvät tästä sheetistä: [backlogit](https://docs.google.com/spreadsheets/d/17mexdx3A8TU8_awobyIz68YoxxH1emHQaHv5W4zPq1w/edit#gid=124771927)
 
 Hyväksymiskriteerit testataan käyttäen Robot-frameworkia.
 Koodia testataan kattavasti myös unit testeillä.
@@ -15,11 +15,6 @@ Asiakas voi seurata koodin ja testien tilannnetta CI-palvelusta: [codecov](https
 
 Koodin arkkitehtuuri on suunniteltua ja perusteltua,
 pyrkimyksenä on mahdollisimman hyvä ylläpidettävyys pitämällä koodi selkeänä.
-
-
-## Backlogit
-
-Projektin product- ja sprint-backlogit löytyvät tästä sheetistä: [backlogit](https://docs.google.com/spreadsheets/d/17mexdx3A8TU8_awobyIz68YoxxH1emHQaHv5W4zPq1w/edit#gid=124771927)
 
 ## Ohjelman viimeisin versio
 
