@@ -1,4 +1,4 @@
-class Textio():
+class TextIO():
     def __init__(self):
         pass
 

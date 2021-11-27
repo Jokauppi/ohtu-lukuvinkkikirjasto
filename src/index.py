@@ -1,6 +1,6 @@
 import sys
 from app import App
-from textio import Textio
+from text_io import TextIO
 from service import Service
 from repositories.book_tip_repository import BookTipRepository
 from database_connection import get_connection
@@ -11,7 +11,7 @@ def main():
         print("args:", args)
 
     service = Service(BookTipRepository(get_connection()))
-    io = Textio()
+    io = TextIO()
     app = App(io, service)
     app.run()
 

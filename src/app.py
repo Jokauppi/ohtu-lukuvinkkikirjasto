@@ -7,7 +7,7 @@ class App():
         self.service = service
 
     def run(self):
-        self.io.output("Tervettuloa vinkkisovellukseen! Kirjoita \"q\" poistuaksesi sovelluksesta")
+        self.io.output("Tervetuloa vinkkisovellukseen! Kirjoita \"q\" poistuaksesi sovelluksesta")
         command_dict = {"q": self.quit_program,
                         "l": self.add_book}
         while True:
