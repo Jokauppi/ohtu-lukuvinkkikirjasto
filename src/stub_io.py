@@ -1,16 +1,15 @@
 class StubIO():
-    def __init__(self, inputs=[]):
-        self.inputs = inputs
+    def __init__(self, inputs=None):
+        self.inputs = inputs or []
         self.outputs = []
 
     def add_input(self, value:str):
-            self.inputs.append(value)
+        self.inputs.append(value)
 
     def input(self, query:str):
         if len(self.inputs) > 0:
             return self.inputs.pop(0)
-        else:
-            return ""
+        return ""
 
     def output(self, message):
         self.outputs.append(message)

@@ -1,6 +1,4 @@
-from database_connection import get_connection
 from entities.book_tip import BookTip
-
 
 class BookTipRepository:
     def __init__(self, connection):
