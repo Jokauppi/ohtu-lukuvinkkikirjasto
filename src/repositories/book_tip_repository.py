@@ -34,6 +34,3 @@ class BookTipRepository:
             row["isbn"],
             row["publication_year"])
             for row in rows]
-
-
-book_tip_repository = BookTipRepository(get_connection())
