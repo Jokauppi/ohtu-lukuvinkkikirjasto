@@ -1,5 +1,5 @@
 *** Settings ***
-Library  ../../app_library.py
+Library  ../../AppLibrary.py
 
 *** Keywords ***
 Input Command
@@ -7,7 +7,8 @@ Input Command
     Input  ${command}
 
 Input Book Tip
-    [Arguments]  ${name}  ${author} ${isbn} ${author}
-    Input  ${username}
-    Input  ${password}
-    Run Application
+    [Arguments]  ${name}  ${author}  ${isbn}  ${pub_year}
+    Input  ${name}
+    Input  ${author}
+    Input  ${isbn}
+    Input  ${pub_year}

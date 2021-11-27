@@ -6,14 +6,10 @@ from database_test_connection import get_connection
 
 class AppLibrary:
     def __init__(self):
-        self._io = StubIO()
-        self._repository = BookTipRepository(get_connection("acceptance.db"))
-        self._service = Service(self._repository)
-
-        self._app = App(
-            self._service,
-            self._io
-        )
+        self._db = "acceptance.db"
+        self._io = None
+        self._app = None
+        self.setup_service()
 
     def input(self, value):
         self._io.add_input(value)
@@ -25,6 +21,16 @@ class AppLibrary:
             raise AssertionError(
                 f"Output \"{value}\" is not in {str(outputs)}"
             )
+
+    def setup_service(self):
+        self._io = StubIO()
+        repository = BookTipRepository(get_connection(self._db))
+        service = Service(repository)
+
+        self._app = App(
+            self._io,
+            service
+        )
 
     def run_application(self):
         self._app.run()

@@ -31,4 +31,4 @@ class App():
         isbn = self.io.input("Syötä kirjan ISBN-koodi:\n")
         publication_year = self.io.input("Syötä kirjan julkaisuvuosi:\n")
 
-        print("Kirja lisätty")
+        self.io.output("Kirja lisätty")
