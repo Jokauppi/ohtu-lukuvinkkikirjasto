@@ -1,3 +1,5 @@
+import re
+
 class BookTip:
     def __init__(self, name: str, author: str, isbn: str, publication_year: str):
         self.name = name
@@ -39,6 +41,9 @@ class BookTip:
             raise TypeError("ISBN should be string type")
         if len(value) <= 0 and len(value) > 20:
             raise ValueError("ISBN length should be between 1 and 20 characters long")
+        pattern = re.compile('^[1234567890-]+$')
+        if not re.search(pattern, value):
+            raise ValueError("ISBN should include only numbers 0-9 and -")
         self.__isbn = value
 
     @property
@@ -49,6 +54,9 @@ class BookTip:
     def publication_year(self, value):
         if not isinstance(value, str):
             raise TypeError("Year should be string type")
+        pattern = re.compile('^[1234567890]+$')
+        if not re.search(pattern, value):
+            raise ValueError("Year should include only numbers 0-9")
         year = int(value)
         if year < 0 or  year > 3000:
             raise ValueError("Year should be between 0 and 3000")
@@ -57,5 +65,5 @@ class BookTip:
     def __str__(self):
         return f"Book name: {self.name}\n" \
                 f"Author: {self.author}\n" \
-                f"isbn: {self.isbn}\n" \
+                f"ISBN: {self.isbn}\n" \
                 f"Publication year: {self.publication_year}"
