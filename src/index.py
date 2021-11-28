@@ -12,7 +12,7 @@ def main():
         print("args:", args)
 
     connection = get_connection()    
-    initialise_database()
+    create_tables(connection)
     service = Service(BookTipRepository(connection))
     io = TextIO()
     app = App(io, service)

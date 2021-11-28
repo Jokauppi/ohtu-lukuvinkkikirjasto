@@ -15,7 +15,7 @@ def create_tables(connection):
     cursor = connection.cursor()
 
     cursor.execute("""
-        CREATE TABLE BookTips (
+        CREATE TABLE IF NOT EXISTS BookTips (
             name TEXT,
             author TEXT,
             isbn TEXT,
