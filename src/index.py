@@ -3,7 +3,6 @@ from app import App
 from text_io import TextIO
 from service import Service
 from repositories.book_tip_repository import BookTipRepository
-from database_connection import get_connection
 
 def main():
     args = sys.argv[1:]

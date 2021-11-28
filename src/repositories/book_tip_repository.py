@@ -1,5 +1,5 @@
 from entities.book_tip import BookTip
-from database_connection import get_connection
+from repositories.database_connection import get_connection
 
 class BookTipRepository:
     def __init__(self, connection=get_connection()):
