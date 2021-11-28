@@ -14,9 +14,9 @@ class BookTip:
     @name.setter
     def name(self, value):
         if not isinstance(value, str):
-            raise TypeError("Name should be string type")
+            raise TypeError("Nimen pitää olla merkkijono")
         if len(value) <= 0 or len(value) > 100:
-            raise ValueError("Name length should be between 1 and 100 characters")
+            raise ValueError("Nimen pituus pitää olla 1-100 merkkiä")
         self.__name = value
 
     @property
@@ -26,9 +26,9 @@ class BookTip:
     @author.setter
     def author(self, value):
         if not isinstance(value, str):
-            raise TypeError("Name should be string type")
+            raise TypeError("Nimen pitää olla merkkijono")
         if len(value) <= 0 or len(value) > 100:
-            raise ValueError("Name length should be between 1 and 100 characters")
+            raise ValueError("Nimen pituus pitää olla 1-100 merkkiä")
         self.__author = value
 
     @property
@@ -38,12 +38,12 @@ class BookTip:
     @isbn.setter
     def isbn(self, value):
         if not isinstance(value, str):
-            raise TypeError("ISBN should be string type")
+            raise TypeError("ISBN pitää olla merkkijono")
         if len(value) <= 0 and len(value) > 20:
-            raise ValueError("ISBN length should be between 1 and 20 characters long")
+            raise ValueError("ISBN pituus pitää olla 1-20 merkkiä")
         pattern = re.compile('^[1234567890-]+$')
         if not re.search(pattern, value):
-            raise ValueError("ISBN should include only numbers 0-9 and -")
+            raise ValueError("ISBN pitää sisältää vain merkkejä 0-9 ja -")
         self.__isbn = value
 
     @property
@@ -53,13 +53,13 @@ class BookTip:
     @publication_year.setter
     def publication_year(self, value):
         if not isinstance(value, str):
-            raise TypeError("Year should be string type")
+            raise TypeError("Vuosi pitää olla merkkijono")
         pattern = re.compile('^[1234567890]+$')
         if not re.search(pattern, value):
-            raise ValueError("Year should include only numbers 0-9")
+            raise ValueError("Vuosi pitää sisältää vain merkkejä 0-9")
         year = int(value)
         if year < 0 or  year > 3000:
-            raise ValueError("Year should be between 0 and 3000")
+            raise ValueError("Vuosi pitää olla välillä 0-300")
         self.__publication_year = value
 
     def __str__(self):
