@@ -31,7 +31,7 @@ class BookTipRepository:
             row["name"],
             row["author"],
             row["isbn"],
-            row["publication_year"])
+            str(row["publication_year"])) #Hakkeroit ratkaisu siihen, että olio vaatii stringiä mmutta tietokannassa on integer
             for row in rows]
     
     def delete_all(self):

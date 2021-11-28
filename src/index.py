@@ -4,13 +4,16 @@ from text_io import TextIO
 from service import Service
 from repositories.book_tip_repository import BookTipRepository
 from database_connection import get_connection
+from initialise_database import *
 
 def main():
     args = sys.argv[1:]
     if len(args) > 0:
         print("args:", args)
 
-    service = Service(BookTipRepository(get_connection()))
+    connection = get_connection()    
+    initialise_database()
+    service = Service(BookTipRepository(connection))
     io = TextIO()
     app = App(io, service)
     app.run()
