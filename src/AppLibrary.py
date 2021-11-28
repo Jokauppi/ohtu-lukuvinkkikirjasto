@@ -2,7 +2,7 @@ from app import App
 from stub_io import StubIO
 from service import Service
 from repositories.book_tip_repository import BookTipRepository
-from database_connection import get_connection
+from repositories.database_connection import get_connection
 import os
 
 class AppLibrary:
