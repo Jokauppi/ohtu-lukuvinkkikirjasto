@@ -1,28 +1,29 @@
 import unittest
-from repositories.book_tip_repository import book_tip_repository
+from repositories.book_tip_repository import BookTipRepository
 from entities.book_tip import BookTip
 
 
 
 class TestBookTipRepository(unittest.TestCase):
     def setUp(self):
-        #book_tip_repository.delete_all()
+        #repository.delete_all()
 
+        self.repository = BookTipRepository()
 
         self.booktip_a = BookTip('Book1', 'Firstname1, lastname1', 'ISBN1', '2001')
         self.booktip_b = BookTip('Book2', 'Firstname2, lastname2', 'ISBN2', '2002')
 
     def test_add(self):
-        book_tip_repository.add(self.booktip_a)
-        booktips = book_tip_repository.get_all()
+        self.repository.add(self.booktip_a)
+        booktips = self.repository.get_all()
 
         self.assertEqual(len(booktips), 1)
         self.assertEqual(booktips[0].__str__(), self.booktip_a.__str__())
 
     def test_get_all(self):
-        book_tip_repository.add(self.booktip_a)
-        book_tip_repository.add(self.booktip_b)
-        booktips = book_tip_repository.get_all()
+        self.repository.add(self.booktip_a)
+        self.repository.add(self.booktip_b)
+        booktips = self.repository.get_all()
 
         self.assertEqual(len(booktips), 2)
         self.assertEqual(booktips[0].__str__(), self.booktip_a.__str__())

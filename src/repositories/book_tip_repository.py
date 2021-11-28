@@ -2,8 +2,20 @@ from entities.book_tip import BookTip
 from database_connection import get_connection
 
 class BookTipRepository:
-    def __init__(self, connection):
+    def __init__(self, connection=get_connection()):
         self._connection = connection
+        cursor = self._connection.cursor()
+
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS BookTips (
+                name TEXT,
+                author TEXT,
+                isbn TEXT,
+                publication_year INTEGER
+            );
+        """)
+
+        connection.commit()
 
     def add(self, book_tip):
         cursor = self._connection.cursor()
@@ -41,6 +53,11 @@ class BookTipRepository:
 
         self._connection.commit()
 
+    def drop_tables(connection):
+        cursor = connection.cursor()
 
+        cursor.execute("""
+            DROP TABLE IF EXISTS BookTips;
+        """)
 
-book_tip_repository = BookTipRepository(get_connection())
+        connection.commit()
