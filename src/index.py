@@ -14,8 +14,8 @@ def main():
     connection = get_connection()    
     create_tables(connection)
     service = Service(BookTipRepository(connection))
-    io = TextIO()
-    app = App(io, service)
+    textio = TextIO()
+    app = App(textio, service)
     app.run()
 
 if __name__ == "__main__":
