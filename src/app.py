@@ -24,9 +24,15 @@ class App():
         author = self.textio.input("Syötä kirjailijan nimi:\n")
         isbn = self.textio.input("Syötä kirjan ISBN-koodi:\n")
         publication_year = self.textio.input("Syötä kirjan julkaisuvuosi:\n")
-        
-        self.service.create_book_tip(name, author, isbn, publication_year)
-        self.textio.output("Kirja lisätty")
+        try:
+            self.service.create_book_tip(name, author, isbn, publication_year)
+            self.textio.output("Kirja lisätty")
+        except ValueError as v:
+            self.textio.output(v)
+            self.textio.output("Kirjan lisäys ei onnistunut")
+        except TypeError as t:
+            self.textio.output(t)
+            self.textio.output("Kirjan lisäys ei onnistunut")
 
     def print_books(self):
         if len(self.service.get_all_book_tips()) == 0:

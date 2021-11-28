@@ -10,8 +10,8 @@ class TestBookTipRepository(unittest.TestCase):
 
         self.repository = BookTipRepository()
 
-        self.booktip_a = BookTip('Book1', 'Firstname1, lastname1', 'ISBN1', '2001')
-        self.booktip_b = BookTip('Book2', 'Firstname2, lastname2', 'ISBN2', '2002')
+        self.booktip_a = BookTip('Book1', 'Firstname1, lastname1', '1234', '2001')
+        self.booktip_b = BookTip('Book2', 'Firstname2, lastname2', '1234', '2002')
 
     def test_add(self):
         self.repository.add(self.booktip_a)

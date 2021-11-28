@@ -20,12 +20,12 @@ class TestService(unittest.TestCase):
     def setUp(self):
         self.service = Service(MockBookTipRepository())
 
-        self.booktip_a = BookTip('Book1', 'Firstname1, lastname1', 'ISBN1', '2001')
-        self.booktip_b = BookTip('Book2', 'Firstname2, lastname2', 'ISBN2', '2002')
+        self.booktip_a = BookTip('Book1', 'Firstname1, lastname1', '1234', '2001')
+        self.booktip_b = BookTip('Book2', 'Firstname2, lastname2', '1234', '2002')
     
     def test_add_book_tip(self):
 
-        self.service.create_book_tip('Book1', 'Firstname1, lastname1', 'ISBN1', '2001')
+        self.service.create_book_tip('Book1', 'Firstname1, lastname1', '1234', '2001')
         booktips = self.service.get_all_book_tips()
 
         self.assertEqual(len(booktips), 1)
