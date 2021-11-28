@@ -1,4 +1,5 @@
 from entities.book_tip import BookTip
+from database_connection import get_connection
 
 class BookTipRepository:
     def __init__(self, connection):
@@ -32,3 +33,14 @@ class BookTipRepository:
             row["isbn"],
             row["publication_year"])
             for row in rows]
+    
+    def delete_all(self):
+        cursor = self._connection.cursor()
+
+        cursor.execute('delete from BookTips')
+
+        self._connection.commit()
+
+
+
+book_tip_repository = BookTipRepository(get_connection())
