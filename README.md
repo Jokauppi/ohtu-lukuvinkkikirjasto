@@ -16,7 +16,7 @@ Asiakas voi seurata koodin ja testien tilannnetta CI-palvelusta: [codecov](https
 Koodin arkkitehtuuri on suunniteltua ja perusteltua,
 pyrkimyksenä on mahdollisimman hyvä ylläpidettävyys pitämällä koodi selkeänä.
 
-1.Tarkistuslista User Storylle
+### Tarkistuslista User Storylle
 * Tuotettu koodia suunnitelluille toiminnallisuuksille
 * User storyn vaatimuksiin vastattu
 * Projekti käynnistyy ilman virheitä
@@ -25,7 +25,7 @@ pyrkimyksenä on mahdollisimman hyvä ylläpidettävyys pitämällä koodi selke
 * Refraktorointi on valmis
 * Product ownerin mielestä toiminnallisuus on valmis
 
-2.Tarkistuslista Sprintille
+### Tarkistuslista Sprintille
 * Definition of done sprintin user storyille täytetty
 * Kaikki unit testit läpäisty
 * Linttaus läpäisty
@@ -34,7 +34,7 @@ pyrkimyksenä on mahdollisimman hyvä ylläpidettävyys pitämällä koodi selke
 * Sprintin toteutettu toiminallisuus käyty läpi Product Ownerin kanssa
 * Sprinttiin liittyvät "to do" asiat valmiita
 
-3.Tarkistuslista viimeiselle Releaselle
+### Tarkistuslista viimeiselle Releaselle
 * Koodi on valmista
 * Kaikki testit läpäisevät
 * Kaikki hyväksymiskriteerit täyttyvät
@@ -46,12 +46,18 @@ pyrkimyksenä on mahdollisimman hyvä ylläpidettävyys pitämällä koodi selke
 
 Ohjelma löytyy osoitteesta ....
 
-### Ohjelman käyttöohje
+## Ohjelman käyttöohje
 
-Ohjelmaa käytetään ....
+### Asennus ja käynnistys
+
+Käynnistä ohjelma komennolla....
+
+### Käyttöliittymä
+
+Ohjelmaa käytetään komennoilla ....
 
 
-### Lisenssi
+## Lisenssi
 
 This project is licensed under the terms of the MIT license.
 
