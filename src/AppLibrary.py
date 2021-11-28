@@ -2,13 +2,15 @@ from app import App
 from stub_io import StubIO
 from service import Service
 from repositories.book_tip_repository import BookTipRepository
-from database_test_connection import get_connection
+from database_connection import get_connection
+import os
 
 class AppLibrary:
     def __init__(self):
-        self._db = "acceptance.db"
+        self._db = os.getenv('ACCEPTANCE_DATABASE')
         self._io = None
         self._app = None
+        self.clear_database()
         self.setup_service()
 
     def input(self, value):
@@ -31,6 +33,10 @@ class AppLibrary:
             self._io,
             service
         )
+
+    def clear_database(self):
+        if os.path.exists(self._db):
+            os.remove(self._db)
 
     def run_application(self):
         self._app.run()

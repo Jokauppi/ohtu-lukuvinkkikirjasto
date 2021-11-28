@@ -12,3 +12,7 @@ Input Book Tip
     Input  ${author}
     Input  ${isbn}
     Input  ${pub_year}
+
+Run And Quit Application
+    Input  q
+    Run Application
