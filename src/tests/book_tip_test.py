@@ -33,3 +33,6 @@ class TestBookTip(unittest.TestCase):
     def test_changePublicationYear(self):
         self.booktip.publication_year = "2022"
         self.assertEqual(self.booktip.publication_year, "2022")
+    
+    def test_str(self):
+        self.assertEqual(self.booktip.__str__(), 'Book name: name\nAuthor: author\nISBN: 9781107009462\nPublication year: 2021')
