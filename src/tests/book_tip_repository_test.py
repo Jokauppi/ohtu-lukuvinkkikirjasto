@@ -29,3 +29,10 @@ class TestBookTipRepository(unittest.TestCase):
         self.assertEqual(len(booktips), 2)
         self.assertEqual(booktips[0].__str__(), self.booktip_a.__str__())
         self.assertEqual(booktips[1].__str__(), self.booktip_b.__str__())
+
+    def test_cannot_add_same_book_twice(self):
+        self.book_tip_repository.add(self.booktip_a)
+        self.book_tip_repository.add(self.booktip_a)
+        booktips = self.book_tip_repository.get_all()
+
+        self.assertEqual(len(booktips), 1)
