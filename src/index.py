@@ -1,6 +1,6 @@
 import sys
-from app import App
-from text_io import TextIO
+from ui.app import App
+from ui.text_io import TextIO
 from service import Service
 from repositories.book_tip_repository import BookTipRepository
 
