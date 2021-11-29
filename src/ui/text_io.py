@@ -1,4 +1,4 @@
-from loopbreak import LoopBreak
+from ui.loopbreak import LoopBreak
 
 class TextIO():
     def __init__(self):

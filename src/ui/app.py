@@ -1,5 +1,5 @@
-from loopbreak import LoopBreak
-from book_browser import BookBrowser
+from ui.loopbreak import LoopBreak
+from ui.book_browser import BookBrowser
 
 class App():
     def __init__(self, textio, service):
