@@ -67,3 +67,13 @@ class BookTip:
                 f"Author: {self.author}\n" \
                 f"ISBN: {self.isbn}\n" \
                 f"Publication year: {self.publication_year}"
+
+    def __eq__(self, other: object) -> bool:
+
+        if (isinstance(other, BookTip)):
+            return self.name == other.name\
+                and self.author == other.author\
+                and self.isbn == other.isbn\
+                and self.publication_year == other.publication_year
+                
+        return False

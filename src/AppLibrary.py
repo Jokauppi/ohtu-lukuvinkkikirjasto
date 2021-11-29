@@ -1,4 +1,5 @@
 from app import App
+from entities.book_tip import BookTip
 from stub_io import StubIO
 from service import Service
 from repositories.book_tip_repository import BookTipRepository
@@ -9,9 +10,10 @@ class AppLibrary:
     def __init__(self):
         self._db = os.getenv('ACCEPTANCE_DATABASE')
         self._io = None
+        self._service = None
         self._app = None
         self.clear_database()
-        self.setup_service()
+        self.setup_app()
 
     def input(self, value):
         self._io.add_input(value)
@@ -24,14 +26,24 @@ class AppLibrary:
                 f"Output \"{value}\" is not in {str(outputs)}"
             )
 
-    def setup_service(self):
+    def database_should_contain_book(self, name, author, isbn, publication):
+        desired_book = BookTip(name, author, isbn, publication)
+        all_books = self._service.get_all_book_tips()
+
+        for book in all_books:
+            if book == desired_book:
+                break
+        else:
+            raise AssertionError("Desired book is not in database")
+
+    def setup_app(self):
         self._io = StubIO()
         repository = BookTipRepository(get_connection(self._db))
-        service = Service(repository)
+        self._service = Service(repository)
 
         self._app = App(
             self._io,
-            service
+            self._service
         )
 
     def clear_database(self):
