@@ -11,7 +11,7 @@ Hyväksymiskriteerit testataan käyttäen Robot-frameworkia.
 Koodia testataan kattavasti myös unit testeillä.
 Koodityyli noudattaa pylintin avulla määriteltyjä sääntöjä.
 
-Asiakas voi seurata koodin ja testien tilannnetta CI-palvelusta: [codecov](https://app.codecov.io/gh/Jokauppi/ohtu-lukuvinkkikirjasto)
+Asiakas voi seurata koodin ja testien tilannetta CI-palvelusta: [codecov](https://app.codecov.io/gh/Jokauppi/ohtu-lukuvinkkikirjasto)
 
 Koodin arkkitehtuuri on suunniteltua ja perusteltua,
 pyrkimyksenä on mahdollisimman hyvä ylläpidettävyys pitämällä koodi selkeänä.
@@ -46,6 +46,8 @@ pyrkimyksenä on mahdollisimman hyvä ylläpidettävyys pitämällä koodi selke
 
 Ohjelma toimii toistaiseksi vain paikallisesti,
 tähän mennessä työstetyt ominaisuudet on listattu projektin backlogeissa sprintin 1 alle.
+* Käyttäjä voi lisätä kirjavinkin
+* Käyttäjä voi tulostaa kaikki vinkit
 
 ## Ohjelman käyttöohje
 
