@@ -28,4 +28,6 @@ jobs:
         run: bash <(curl -s https://codecov.io/bash)
       - name: Run lint
         run: poetry run pylint src --rcfile=.pylintrc
+      - name: Run acceptance tests
+        run: poetry run robot src/tests/acceptance_tests/
 
