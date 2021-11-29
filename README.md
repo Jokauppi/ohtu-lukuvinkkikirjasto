@@ -46,6 +46,8 @@ pyrkimyksenä on mahdollisimman hyvä ylläpidettävyys pitämällä koodi selke
 
 Ohjelma toimii toistaiseksi vain paikallisesti,
 tähän mennessä työstetyt ominaisuudet on listattu projektin backlogeissa sprintin 1 alle.
+* Käyttäjä voi lisätä kirjavinkin
+* Käyttäjä voi tulostaa kaikki vinkit
 
 ## Ohjelman käyttöohje
 
