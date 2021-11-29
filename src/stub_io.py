@@ -6,7 +6,8 @@ class StubIO():
     def add_input(self, value:str):
         self.inputs.append(value)
 
-    def input(self, query:str):
+    #def input(self, query:str):
+    def input(self):
         if len(self.inputs) > 0:
             return self.inputs.pop(0)
         return ""

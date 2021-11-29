@@ -1,10 +1,10 @@
+import os
 from app import App
 from entities.book_tip import BookTip
 from stub_io import StubIO
 from service import Service
 from repositories.book_tip_repository import BookTipRepository
 from repositories.database_connection import get_connection
-import os
 
 class AppLibrary:
     def __init__(self):

@@ -9,10 +9,10 @@ class BookBrowser():
             print("Ei vinkkejä")
         self.textio.output("Kirjoita \"<\" katsoaksesi edellistä kirjaa, \">\" katsoaksesi" +
               "toista kirjaa, tai \"b\" palataksesi päävalikkoon")
-        command_dict = {"<" : prev_book,
-                        ">" : next_book,
-                        "m" : modify}
-        self.textio.loop(command_dict)
+        # command_dict = {"<" : prev_book,
+        #                 ">" : next_book,
+        #                 "m" : modify}
+        # self.textio.loop(command_dict)
 
     def prev_book(self):
         pass

@@ -25,8 +25,21 @@ class TestService(unittest.TestCase):
     
     def test_add_book_tip(self):
 
-        self.service.create_book_tip('Book1', 'Firstname1, lastname1', '1234', '2001')
+        self.service.create_book_tip(self.booktip_a.name, self.booktip_a.author, self.booktip_a.isbn, self.booktip_a.publication_year)
         booktips = self.service.get_all_book_tips()
 
         self.assertEqual(len(booktips), 1)
         self.assertEqual(booktips[0].__str__(), self.booktip_a.__str__())
+    
+    
+    def test_get_all_book_tips(self):
+
+        self.service.create_book_tip(self.booktip_a.name, self.booktip_a.author, self.booktip_a.isbn, self.booktip_a.publication_year)
+        self.service.create_book_tip(self.booktip_b.name, self.booktip_b.author, self.booktip_b.isbn, self.booktip_b.publication_year)
+
+        booktips = self.service.get_all_book_tips()
+
+        self.assertEqual(len(booktips), 2)
+        self.assertEqual(booktips[0].__str__(), self.booktip_a.__str__())
+        self.assertEqual(booktips[1].__str__(), self.booktip_b.__str__())
+        

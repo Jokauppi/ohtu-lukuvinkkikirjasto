@@ -43,9 +43,9 @@ class BookTipRepository:
             row["name"],
             row["author"],
             row["isbn"],
-            str(row["publication_year"])) #Hakkeroit ratkaisu siihen, että olio vaatii stringiä mmutta tietokannassa on integer
+            str(row["publication_year"])) # olio vaatii stringia, tietokannassa integer
             for row in rows]
-    
+
     def delete_all(self):
         cursor = self._connection.cursor()
 
@@ -53,7 +53,7 @@ class BookTipRepository:
 
         self._connection.commit()
 
-    def drop_tables(connection):
+    def drop_tables(self, connection):
         cursor = connection.cursor()
 
         cursor.execute("""
