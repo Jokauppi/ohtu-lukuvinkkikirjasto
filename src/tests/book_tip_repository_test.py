@@ -36,3 +36,20 @@ class TestBookTipRepository(unittest.TestCase):
         booktips = self.book_tip_repository.get_all()
 
         self.assertEqual(len(booktips), 1)
+    
+    def test_delete_all(self):
+        self.book_tip_repository.add(self.booktip_a)
+        self.book_tip_repository.add(self.booktip_b)
+        self.book_tip_repository.delete_all()
+        
+        booktips = self.book_tip_repository.get_all()
+        self.assertEqual(len(booktips), 0)
+    
+    def test_drop_tables(self):
+        self.book_tip_repository.add(self.booktip_a)
+        self.book_tip_repository.add(self.booktip_b)
+        self.book_tip_repository.drop_tables(self.connection)
+        self.assertRaises(
+            Exception,
+            lambda: self.book_tip_repository.get_all()
+        )

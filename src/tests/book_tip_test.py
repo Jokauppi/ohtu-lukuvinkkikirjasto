@@ -96,3 +96,15 @@ class TestBookTip(unittest.TestCase):
             ValueError,
             lambda: BookTip("name", "author", "1111", "1000000")
         )
+    
+    def test_book_tip_not_equals_other_booktip(self):
+         self.assertFalse(self.booktip == BookTip('name3', 'author3', '888', '1999'))
+    
+    def test_book_tip_equals_other_booktip(self):
+         self.assertTrue(self.booktip == BookTip("name", "author", "9781107009462", "2021"))
+    
+    def test_book_tip_isInstance(self):
+         self.assertTrue(self.booktip.__eq__(self.booktip))
+    
+    def test_book_tip_isNotInstance(self):
+         self.assertFalse(self.booktip == int(111))
