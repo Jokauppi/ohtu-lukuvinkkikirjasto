@@ -28,6 +28,8 @@ jobs:
         run: bash <(curl -s https://codecov.io/bash)
       - name: Run lint
         run: poetry run pylint src --rcfile=.pylintrc
-      - name: Run acceptance tests
-        run: poetry run robot src/tests/acceptance_tests/
-
+      - name: Robot Framework
+        uses: joonvena/robotframework-docker-action@v1.0
+        with:
+          robot_tests_dir: 'src/tests/acceptance_tests'
+          robot_reports_dir: 'src/tests/acceptance_tests'
