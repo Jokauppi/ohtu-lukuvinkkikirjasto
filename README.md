@@ -44,7 +44,8 @@ pyrkimyksenä on mahdollisimman hyvä ylläpidettävyys pitämällä koodi selke
 
 ## Ohjelman viimeisin versio
 
-Ohjelma toimii toistaiseksi vain paikallisesti.
+Ohjelma toimii toistaiseksi vain paikallisesti,
+tähän mennessä työstetyt ominaisuudet on listattu projektin backlogeissa sprintin 1 alle.
 
 ## Ohjelman käyttöohje
 
