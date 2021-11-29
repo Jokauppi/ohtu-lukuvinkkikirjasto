@@ -78,9 +78,6 @@ class TestBookTip(unittest.TestCase):
             ValueError,
             lambda: BookTip("name", "author", "11A1", "2021")
         )
-    
-
-
 
     def test_publication_year_non_numeric(self):
          self.assertRaises(
