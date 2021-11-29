@@ -14,7 +14,17 @@ class App():
                         "a": self.add_book,
                         "p": self.print_books}
 
-        self.textio.loop(command_dict)
+        while True:
+            answer = self.textio.input("Mikä on komentosi?\n")
+            action = command_dict.get(answer)
+            if action is None:
+                print("Virheellinen komento")
+                continue
+            try:
+                action()
+            except LoopBreak:
+                break
+
 
     def print_instructions(self):
         self.textio.output("Tervetuloa vinkkisovellukseen!")
