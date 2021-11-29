@@ -36,3 +36,66 @@ class TestBookTip(unittest.TestCase):
     
     def test_str(self):
         self.assertEqual(self.booktip.__str__(), 'Book name: name\nAuthor: author\nISBN: 9781107009462\nPublication year: 2021')
+    
+    def test_name_is_null(self):
+         self.assertRaises(
+            ValueError,
+            lambda: BookTip("", "author", "9781107009462", "2021")
+        )
+    
+    def test_name_is_not_string(self):
+        self.assertRaises(
+            TypeError,
+            lambda: BookTip(int(111), "author", "9781107009462", "2021")
+        )
+    
+    def test_author_is_null(self):
+         self.assertRaises(
+            ValueError,
+            lambda: BookTip("name", "", "9781107009462", "2021")
+        )
+    
+    def test_author_is_not_string(self):
+        self.assertRaises(
+            TypeError,
+            lambda: BookTip("name", int(111), "9781107009462", "2021")
+        )
+    
+    def test_isbn_is_null(self):
+         self.assertRaises(
+            ValueError,
+            lambda: BookTip("name", "author", "", "2021")
+        )
+    
+    def test_isbn_is_not_string(self):
+        self.assertRaises(
+            TypeError,
+            lambda: BookTip("name", "author", int(111), "2021")
+        )
+    
+    def test_isbn_contains_wrong_characters(self):
+         self.assertRaises(
+            ValueError,
+            lambda: BookTip("name", "author", "11A1", "2021")
+        )
+    
+
+
+
+    def test_publication_year_non_numeric(self):
+         self.assertRaises(
+            ValueError,
+            lambda: BookTip("name", "author", "2000", "20A2")
+        )
+    
+    def test_publication_year_is_not_string(self):
+        self.assertRaises(
+            TypeError,
+            lambda: BookTip("name", "author", "2000" , int(111))
+        )
+    
+    def test_publication_year_not_in_range(self):
+         self.assertRaises(
+            ValueError,
+            lambda: BookTip("name", "author", "1111", "1000000")
+        )
