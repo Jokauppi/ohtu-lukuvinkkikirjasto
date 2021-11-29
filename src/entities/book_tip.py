@@ -39,7 +39,7 @@ class BookTip:
     def isbn(self, value):
         if not isinstance(value, str):
             raise TypeError("ISBN pitää olla merkkijono")
-        if len(value) <= 0 and len(value) > 20:
+        if len(value) <= 0 or len(value) > 20:
             raise ValueError("ISBN pituus pitää olla 1-20 merkkiä")
         pattern = re.compile('^[1234567890-]+$')
         if not re.search(pattern, value):
