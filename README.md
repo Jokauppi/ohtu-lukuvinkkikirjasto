@@ -68,6 +68,7 @@ ja tämän jälkeen suorittaa komennon python3 src/index.py.
 ### Käyttöliittymä
 
 Ohjelman käynnistyttyä voit antaa komentoja ohjelmalle. 
+Seuraavat ohjeet tulostuvat kun käynnistät ohjelman:
 Kirjoita "q" poistuaksesi sovelluksesta, 
 "a" lisätäksesi kirjavinkin, 
 tai "p" tulostaaksesi lisätyt kirjavinkit.
