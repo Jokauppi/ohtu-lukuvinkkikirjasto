@@ -70,10 +70,10 @@ class BookTip:
 
     def __eq__(self, other: object) -> bool:
 
-        if (isinstance(other, BookTip)):
+        if isinstance(other, BookTip):
             return self.name == other.name\
                 and self.author == other.author\
                 and self.isbn == other.isbn\
                 and self.publication_year == other.publication_year
-                
+
         return False
