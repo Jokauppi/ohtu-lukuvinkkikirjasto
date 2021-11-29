@@ -8,13 +8,19 @@ class App():
         self.browser = BookBrowser(textio, service)
 
     def run(self):
-        self.textio.output("Tervetuloa vinkkisovellukseen! Kirjoita \"q\" poistuaksesi sovelluksesta, " +
-                       "\"a\" lisätäksesi kirjavinkin, tai \"p\" tulostaaksesi kirjavinkit.")
+        self.print_instructions()
+
         command_dict = {"q": self.quit_program,
                         "a": self.add_book,
                         "p": self.print_books}
 
         self.textio.loop(command_dict)
+
+    def print_instructions(self):
+        self.textio.output("Tervetuloa vinkkisovellukseen!")
+        self.textio.output("q: poistu sovelluksesta")
+        self.textio.output("a: lisää kirjavinkki")
+        self.textio.output("p: tulosta kirjavinkit")
 
     def quit_program(self):
         raise LoopBreak
@@ -27,11 +33,11 @@ class App():
         try:
             self.service.create_book_tip(name, author, isbn, publication_year)
             self.textio.output("Kirja lisätty")
-        except ValueError as v:
-            self.textio.output(v)
+        except ValueError as value_error:
+            self.textio.output(value_error)
             self.textio.output("Kirjan lisäys ei onnistunut")
-        except TypeError as t:
-            self.textio.output(t)
+        except TypeError as type_error:
+            self.textio.output(type_error)
             self.textio.output("Kirjan lisäys ei onnistunut")
 
     def print_books(self):

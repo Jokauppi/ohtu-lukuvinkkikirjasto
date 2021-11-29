@@ -1,6 +1,6 @@
 import os
 import sqlite3
-import config
+import config # pylint: disable=unused-import
 
 def get_connection(db_file=os.getenv('DATABASE')):
 
