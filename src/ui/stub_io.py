@@ -6,11 +6,11 @@ class StubIO():
     def add_input(self, value:str):
         self.inputs.append(value)
 
-    #def input(self, query:str):
-    def input(self):
+    def input(self, query:str):
         if len(self.inputs) > 0:
+            self.output(query)
             return self.inputs.pop(0)
         return ""
 
     def output(self, message):
-        self.outputs.append(message)
+        self.outputs.append(str(message))

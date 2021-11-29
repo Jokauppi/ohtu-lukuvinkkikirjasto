@@ -52,9 +52,9 @@ class App():
 
     def print_books(self):
         if len(self.service.get_all_book_tips()) == 0:
-            print("Ei vinkkejä")
+            self.textio.output("Ei vinkkejä")
         for book in self.service.get_all_book_tips():
-            print(book, "\n")
+            self.textio.output(book)
 
     def browse_books(self):
         self.browser.run()

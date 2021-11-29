@@ -18,13 +18,14 @@ class AppLibrary:
     def input(self, value):
         self._io.add_input(value)
 
-    def output_should_contain(self, value):
+    def output_should_contain(self, desired):
         outputs = self._io.outputs
 
-        if not value in outputs:
-            raise AssertionError(
-                f"Output \"{value}\" is not in {str(outputs)}"
-            )
+        for value in outputs:
+            if str(desired) == str(value):
+                break
+        else:
+            raise AssertionError(f"Output \"{desired}\" is not in {str(outputs)}")
 
     def database_should_contain_book(self, name, author, isbn, publication):
         desired_book = BookTip(name, author, isbn, publication)
