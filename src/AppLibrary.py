@@ -50,5 +50,8 @@ class AppLibrary:
         if os.path.exists(self._db):
             os.remove(self._db)
 
+    def add_book_tip_to_service(self, name, author, isbn, publication):
+        self._service.create_book_tip(name, author, isbn, publication)
+
     def run_application(self):
         self._app.run()

@@ -59,7 +59,7 @@ class BookTip:
             raise ValueError("Vuosi pitää sisältää vain merkkejä 0-9")
         year = int(value)
         if year < 0 or  year > 3000:
-            raise ValueError("Vuosi pitää olla välillä 0-300")
+            raise ValueError("Vuosi pitää olla välillä 0-3000")
         self.__publication_year = value
 
     def __str__(self):

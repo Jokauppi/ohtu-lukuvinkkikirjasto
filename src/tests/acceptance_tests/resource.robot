@@ -13,6 +13,13 @@ Input Book Tip
     Input  ${isbn}
     Input  ${pub_year}
 
+Output Should Contain Book
+    [Arguments]  ${name}  ${author}  ${isbn}  ${pub_year}
+    Output Should Contain  ${name}
+    Output Should Contain  ${author}
+    Output Should Contain  ${isbn}
+    Output Should Contain  ${pub_year}
+
 Run And Quit Application
     Input  q
     Run Application
