@@ -48,7 +48,7 @@ class TestBookTipRepository(unittest.TestCase):
     def test_drop_tables(self):
         self.book_tip_repository.add(self.booktip_a)
         self.book_tip_repository.add(self.booktip_b)
-        self.book_tip_repository.drop_tables(self.connection)
+        self.book_tip_repository.drop_tables()
         self.assertRaises(
             Exception,
             lambda: self.book_tip_repository.get_all()

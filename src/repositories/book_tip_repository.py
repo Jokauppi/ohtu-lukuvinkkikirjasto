@@ -53,11 +53,11 @@ class BookTipRepository:
 
         self._connection.commit()
 
-    def drop_tables(self, connection):
-        cursor = connection.cursor()
+    def drop_tables(self):
+        cursor = self._connection.cursor()
 
         cursor.execute("""
             DROP TABLE IF EXISTS BookTips;
         """)
 
-        connection.commit()
+        self._connection.commit()
