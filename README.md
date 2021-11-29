@@ -44,18 +44,35 @@ pyrkimyksenä on mahdollisimman hyvä ylläpidettävyys pitämällä koodi selke
 
 ## Ohjelman viimeisin versio
 
-Ohjelma löytyy osoitteesta ....
+Ohjelma toimii toistaiseksi vain paikallisesti.
 
 ## Ohjelman käyttöohje
 
+Ohjelma toimii komentoriviltä tekstikättöliittymällä.
+Kloonaa koneellesi tämä repositorio ja siirry sen juurihakemistoon.
+
 ### Asennus ja käynnistys
 
-Käynnistä ohjelma komennolla....
+Asenna projektin riippuvuudet suorittamalla sen juurihakemistossa komento poetry install.
+Sovellus käynnistyy komennolla poetry run python3 src/index.py.
+Vaihtoehtoisesti voit siirtyä ensin virtuaaliympäristöön komennolla poetry shell 
+ja tämän jälkeen suorittaa komennon python3 src/index.py.
 
 ### Käyttöliittymä
 
-Ohjelmaa käytetään komennoilla ....
+Ohjelman käynnistyttyä voit antaa komentoja ohjelmalle. 
+Kirjoita "q" poistuaksesi sovelluksesta, 
+"a" lisätäksesi kirjavinkin, 
+tai "p" tulostaaksesi lisätyt kirjavinkit.
 
+#### Kirjavinkin lisäys
+
+Anna ohjelmalle komennoksi "a" ja paina enteriä.
+Ohjelma kysyy järjestyksessä 
+kirjan nimen, kirjailijan nimen, ISBN-koodin, sekä julkaisuvuoden.
+Syötä pyydetyt tiedot.
+Tämän jälkeen näet lisätyn kirjavinkin komennolla "p", 
+joka listaa kaikki lisätyt kirjavinkit tietoineen.
 
 ## Lisenssi
 
