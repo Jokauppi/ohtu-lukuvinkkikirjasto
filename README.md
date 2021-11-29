@@ -54,8 +54,14 @@ Kloonaa koneellesi tämä repositorio ja siirry sen juurihakemistoon.
 
 ### Asennus ja käynnistys
 
-Asenna projektin riippuvuudet suorittamalla sen juurihakemistossa komento poetry install.
-Sovellus käynnistyy komennolla poetry run python3 src/index.py.
+Asenna projektin riippuvuudet suorittamalla sen juurihakemistossa komento
+```
+poetry install
+```
+Sovellus käynnistyy komennolla
+```
+poetry run python3 src/index.py
+```
 Vaihtoehtoisesti voit siirtyä ensin virtuaaliympäristöön komennolla poetry shell 
 ja tämän jälkeen suorittaa komennon python3 src/index.py.
 
