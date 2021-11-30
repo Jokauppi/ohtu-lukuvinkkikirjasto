@@ -51,7 +51,7 @@ class AppLibrary:
         if os.path.exists(self._db):
             try:
                 os.remove(self._db)
-            except:
+            except OSError:
                 pass
 
     def add_book_tip_to_service(self, name, author, isbn, publication):
