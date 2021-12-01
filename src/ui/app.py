@@ -8,6 +8,7 @@ class App():
         self.browser = BookBrowser(textio, service)
 
     def run(self):
+        self.textio.output("Tervetuloa vinkkisovellukseen!")
         self.print_instructions()
 
         command_dict = {"q": self.quit_program,
@@ -19,6 +20,7 @@ class App():
             action = command_dict.get(answer)
             if action is None:
                 print("Virheellinen komento")
+                self.print_instructions()
                 continue
             try:
                 action()
@@ -27,7 +29,6 @@ class App():
 
 
     def print_instructions(self):
-        self.textio.output("Tervetuloa vinkkisovellukseen!")
         self.textio.output("q: poistu sovelluksesta")
         self.textio.output("a: lisää kirjavinkki")
         self.textio.output("p: tulosta kirjavinkit")

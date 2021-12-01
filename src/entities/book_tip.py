@@ -63,10 +63,12 @@ class BookTip:
         self.__publication_year = value
 
     def __str__(self):
-        return f"Book name: {self.name}\n" \
-                f"Author: {self.author}\n" \
-                f"ISBN: {self.isbn}\n" \
-                f"Publication year: {self.publication_year}"
+        pad = 7
+
+        return f"{'Title:':{pad}} {self.name}\n" \
+               f"{'Author:':{pad}} {self.author}\n" \
+               f"{'ISBN:':{pad}} {self.isbn}\n" \
+               f"{'Year:':{pad}} {self.publication_year}\n"
 
     def __eq__(self, other: object) -> bool:
 
