@@ -1,11 +1,13 @@
 import re
 
 class BookTip:
-    def __init__(self, name: str, author: str, isbn: str, publication_year: str):
+    def __init__(self, name: str, author: str, isbn: str, publication_year: str, id_number: int = None, read: bool = False):
         self.name = name
         self.author = author
         self.isbn = isbn
         self.publication_year = publication_year
+        self.id_number = id_number
+        self.read = read
 
     @property
     def name(self):
@@ -65,10 +67,12 @@ class BookTip:
     def __str__(self):
         pad = 7
 
-        return f"{'Title:':{pad}} {self.name}\n" \
-               f"{'Author:':{pad}} {self.author}\n" \
-               f"{'ISBN:':{pad}} {self.isbn}\n" \
-               f"{'Year:':{pad}} {self.publication_year}\n"
+        return f"{'Index:':{pad}} {self.id_number}\n" \
+                f"{'Read:':{pad}} {self.read}\n" \
+                f"{'Title:':{pad}} {self.name}\n" \
+                f"{'Author:':{pad}} {self.author}\n" \
+                f"{'ISBN:':{pad}} {self.isbn}\n" \
+                f"{'Year:':{pad}} {self.publication_year}\n"
 
     def __eq__(self, other: object) -> bool:
 

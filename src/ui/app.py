@@ -61,9 +61,7 @@ class App():
         if len(self.service.get_all_book_tips()) == 0:
             self.textio.output("Ei vinkkejä")
         for book in self.service.get_all_book_tips():
-            self.textio.output(f"Index: {book['id']}")           #Väliaikainen tulostus
-            self.textio.output(f"Read status: {book['read']}")   #Väliaikainen tulostus
-            self.textio.output(book['item'])
+            self.textio.output(book)
 
     def browse_books(self):
         self.browser.run()

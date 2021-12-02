@@ -41,9 +41,8 @@ class BookTipRepository:
 
         rows = cursor.fetchall()
 
-        return [{"item": BookTip(row["name"], row["author"], row["isbn"], str(row["publication_year"])),
-                "id": row["id"],
-                "read": row["read"]} # olio vaatii stringia, tietokannassa integer
+        return [BookTip(row["name"], row["author"], row["isbn"], str(row["publication_year"]), row["id"], bool(row["read"]))
+                 # olio vaatii stringia, tietokannassa integer
                 for row in rows]
 
     def delete_all(self):
