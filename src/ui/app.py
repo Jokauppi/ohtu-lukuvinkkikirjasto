@@ -13,7 +13,8 @@ class App():
 
         command_dict = {"q": self.quit_program,
                         "a": self.add_book,
-                        "p": self.print_books}
+                        "p": self.print_books,
+                        "r": self.mark_as_read}
 
         while True:
             answer = self.textio.input("Mikä on komentosi?\n")
@@ -32,6 +33,7 @@ class App():
         self.textio.output("q: poistu sovelluksesta")
         self.textio.output("a: lisää kirjavinkki")
         self.textio.output("p: tulosta kirjavinkit")
+        self.textio.output("r: merkitse vinkki luetuksi") 
 
     def quit_program(self):
         raise LoopBreak
@@ -51,11 +53,17 @@ class App():
             self.textio.output(type_error)
             self.textio.output("Kirjan lisäys ei onnistunut")
 
+    def mark_as_read(self):
+        id_number = self.textio.input("Syötä luetuksi merkattavan vinkin id numero\n")
+        self.service.mark_book_tip_as_read(id_number)
+
     def print_books(self):
         if len(self.service.get_all_book_tips()) == 0:
             self.textio.output("Ei vinkkejä")
         for book in self.service.get_all_book_tips():
-            self.textio.output(book)
+            self.textio.output(f"Index: {book['id']}")           #Väliaikainen tulostus
+            self.textio.output(f"Read status: {book['read']}")   #Väliaikainen tulostus
+            self.textio.output(book['item'])
 
     def browse_books(self):
         self.browser.run()

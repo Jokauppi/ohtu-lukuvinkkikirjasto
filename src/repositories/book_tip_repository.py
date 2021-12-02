@@ -8,10 +8,12 @@ class BookTipRepository:
 
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS BookTips (
+                id INTEGER PRIMARY KEY,
                 name TEXT,
                 author TEXT,
                 isbn TEXT,
-                publication_year INTEGER
+                publication_year INTEGER,
+                read INTEGER
             );
         """)
 
@@ -27,8 +29,8 @@ class BookTipRepository:
         if result:
             return
 
-        cursor.execute("INSERT INTO BookTips VALUES (?, ?, ?, ?)",
-            (book_tip.name, book_tip.author, book_tip.isbn, book_tip.publication_year))
+        cursor.execute("INSERT INTO BookTips (name, author, isbn, publication_year, read) VALUES (?, ?, ?, ?, ?)",
+            (book_tip.name, book_tip.author, book_tip.isbn, book_tip.publication_year, 0))
 
         self._connection.commit()
 
@@ -39,12 +41,10 @@ class BookTipRepository:
 
         rows = cursor.fetchall()
 
-        return [BookTip(
-            row["name"],
-            row["author"],
-            row["isbn"],
-            str(row["publication_year"])) # olio vaatii stringia, tietokannassa integer
-            for row in rows]
+        return [{"item": BookTip(row["name"], row["author"], row["isbn"], str(row["publication_year"])),
+                "id": row["id"],
+                "read": row["read"]} # olio vaatii stringia, tietokannassa integer
+                for row in rows]
 
     def delete_all(self):
         cursor = self._connection.cursor()
@@ -61,3 +61,14 @@ class BookTipRepository:
         """)
 
         self._connection.commit()
+
+    def mark_as_read(self, id_number):
+        cursor = self._connection.cursor()
+        try:
+            cursor.execute("UPDATE BookTips SET read = 1 WHERE id = ?", (id_number))
+            self._connection.commit()
+            return True
+        except:
+            return False
+
+

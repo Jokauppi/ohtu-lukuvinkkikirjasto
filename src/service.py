@@ -11,3 +11,7 @@ class Service:
 
     def get_all_book_tips(self):
         return self._repository.get_all()
+
+    def mark_book_tip_as_read(self, id_number):
+        return self._repository.mark_as_read(id_number)
+
