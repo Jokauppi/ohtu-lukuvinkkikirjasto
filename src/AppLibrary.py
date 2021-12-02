@@ -32,7 +32,7 @@ class AppLibrary:
         all_books = self._service.get_all_book_tips()
 
         for book in all_books:
-            if book == desired_book:
+            if book["item"] == desired_book:
                 break
         else:
             raise AssertionError("Desired book is not in database")
