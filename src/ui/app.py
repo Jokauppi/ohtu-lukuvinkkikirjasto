@@ -124,9 +124,9 @@ class App():
         comparators = []
         name = self.textio.input("Teoksen nimi (tai tyhjä): ")
         author = self.textio.input("Tekijän nimi (tai tyhjä): ")
-        self.add_field_and_value(fields, values, comparators, 'name', name, '=')
+        self.add_field_and_value(fields, values, comparators, 'name', name, ' LIKE ')
         self.add_sortBys(sortByValues, sortbyOrders, 'name', 'ASC')
-        self.add_field_and_value(fields, values, comparators, 'author', author, '=')
+        self.add_field_and_value(fields, values, comparators, 'author', author, ' LIKE ')
         self.add_sortBys(sortByValues, sortbyOrders, 'author', 'ASC')
         tips = self.service.search_tips(fields, values, comparators, sortByValues, sortbyOrders)
         return tips
@@ -139,9 +139,9 @@ class App():
         comparators = []
         author = self.textio.input("Tekijän nimi (tai tyhjä): ")
         name = self.textio.input("Teoksen nimi (tai tyhjä): ")
-        self.add_field_and_value(fields, values, comparators, 'author', author, '=')
+        self.add_field_and_value(fields, values, comparators, 'author', author, ' LIKE ')
         self.add_sortBys(sortByValues, sortbyOrders, 'author', 'ASC')
-        self.add_field_and_value(fields, values, comparators, 'name', name, '=')
+        self.add_field_and_value(fields, values, comparators, 'name', name, ' LIKE ')
         self.add_sortBys(sortByValues, sortbyOrders, 'name', 'ASC')
         tips = self.service.search_tips(fields, values, comparators, sortByValues, sortbyOrders)
         return tips
