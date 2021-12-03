@@ -1,5 +1,6 @@
 import unittest
 from entities.book_tip import BookTip
+from entities.blog_tip import BlogTip
 from service import Service
 
 class MockBookTipRepository:
@@ -16,12 +17,28 @@ class MockBookTipRepository:
 
         return booktip
 
+class MockBlogTipRepository:
+    def __init__(self, blogips=None):
+        self.blogtips = blogips or []
+
+    def get_all(self):
+        return self.blogtips
+
+    
+
+    def add(self, blogtip):
+        self.blogtips.append(blogtip)
+
+        return blogtip
+
 class TestService(unittest.TestCase):
     def setUp(self):
-        self.service = Service(MockBookTipRepository())
+        self.service = Service(MockBookTipRepository(), MockBlogTipRepository())
 
         self.booktip_a = BookTip('Book1', 'Firstname1, lastname1', '1234', '2001')
         self.booktip_b = BookTip('Book2', 'Firstname2, lastname2', '1234', '2002')
+        self.blogtip_a = BlogTip('Blog1', 'Firstname1, lastname1', 'www.1.com')
+        self.blogtip_b = BlogTip('Blog2', 'Firstname2, lastname2', 'www.2.com')
     
     def test_add_book_tip(self):
 
