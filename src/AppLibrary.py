@@ -27,7 +27,7 @@ class AppLibrary:
             if str(desired) == str(value):
                 break
         else:
-            raise AssertionError(f"Output \"{desired}\" is not in {chr(10).join(outputs)}")
+            raise AssertionError(f"Output \"{desired}\" is not in\n{chr(10).join(outputs)}")
 
     def database_should_contain_book(self, name, author, isbn, publication):
         desired_book = BookTip(name, author, isbn, publication)
