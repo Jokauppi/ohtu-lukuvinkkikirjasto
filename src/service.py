@@ -14,4 +14,6 @@ class Service:
 
     def mark_book_tip_as_read(self, id_number):
         return self._repository.mark_as_read(id_number)
-
+    
+    def search_tips(self, fields, values, comparators, sortByValues, sortbyOrders):
+        return self._repository.search_tips(fields, values, comparators, sortByValues, sortbyOrders)

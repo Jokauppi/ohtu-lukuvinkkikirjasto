@@ -69,5 +69,41 @@ class BookTipRepository:
             return True
         except:
             return False
+    
+    def search_tips(self, fields, values, comparators, sortByValues, sortbyOrders=['ASC']):
+        if not fields: return []
+        values = [x.lower() for x in values]
+        if not sortByValues: sortByValues.append(fields[0])
+        if not comparators: comparators.append('=')
+
+        search_string = "SELECT * FROM BookTips WHERE lower(" + fields[0].lower() + ")" + comparators[0]+"?"
+        
+        i=1
+        while i < len(fields):
+            comparator = comparators[0]
+            if i < len(comparators): comparator = comparators[i]
+            search_string += " AND lower(" + fields[i].lower() + ")" + comparator+ "?"
+            i += 1
+        
+        search_string += " ORDER BY " + sortByValues[0].lower() + " " + sortbyOrders[0].upper()
+
+        j=1
+        while j < len(sortByValues):
+            search_string += ", " + sortByValues[j].lower() + " " + sortbyOrders[j].upper()
+            j += 1
+        search_string += ";"
+
+        cursor = self._connection.cursor()
+
+        rows = cursor.execute(search_string, values)
+
+        rows = cursor.fetchall()
+
+        return [BookTip(
+            row["name"],
+            row["author"],
+            row["isbn"],
+            str(row["publication_year"])) # olio vaatii stringia, tietokannassa integer
+            for row in rows]
 
 

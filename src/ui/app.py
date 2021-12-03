@@ -14,7 +14,8 @@ class App():
         command_dict = {"q": self.quit_program,
                         "a": self.add_book,
                         "p": self.print_books,
-                        "r": self.mark_as_read}
+                        "r": self.mark_as_read,
+                        "s": self.search_start}
 
         while True:
             answer = self.textio.input("Mikä on komentosi?\n")
@@ -33,7 +34,8 @@ class App():
         self.textio.output("q: poistu sovelluksesta")
         self.textio.output("a: lisää kirjavinkki")
         self.textio.output("p: tulosta kirjavinkit")
-        self.textio.output("r: merkitse vinkki luetuksi") 
+        self.textio.output("r: merkitse vinkki luetuksi")
+        self.textio.output("s: etsi vinkkejä") 
 
     def quit_program(self):
         raise LoopBreak
@@ -65,3 +67,78 @@ class App():
 
     def browse_books(self):
         self.browser.run()
+    
+    def search_start(self):
+        command_dict = {"n": self.search_name,
+                        "t": self.search_creator,
+                        "k": self.search_books,
+                        "v": self.search_videos,
+                        "b": self.search_blogs}
+        
+        action = None
+        while action is None:        
+                choice = self.textio.input("Etsi mitä? (N=nimi (teoksen), T=Tekijä, K=Kirja, V=Video, B=Blogi, L=Lopeta): ").lower()
+                if (choice == 'l'): return
+                action = command_dict.get(choice)
+
+                if action is None:
+                    print("Virheellinen komento\n")
+                else:
+                    results = action()
+                    print("-------------\n")
+                    print("Haku: " + str(len(results)) + " tulosta\n")
+                    for result in results:
+                        self.textio.output(result)
+
+
+
+    def search_name(self):
+        fields = []
+        values = []
+        sortByValues = []
+        sortbyOrders = []
+        comparators = []
+        name = self.textio.input("Teoksen nimi (tai tyhjä): ")
+        author = self.textio.input("Tekijän nimi (tai tyhjä): ")
+        self.add_field_and_value(fields, values, comparators, 'name', name, '=')
+        self.add_sortBys(sortByValues, sortbyOrders, 'name', 'ASC')
+        self.add_field_and_value(fields, values, comparators, 'author', author, '=')
+        self.add_sortBys(sortByValues, sortbyOrders, 'author', 'ASC')
+        tips = self.service.search_tips(fields, values, comparators, sortByValues, sortbyOrders)
+        return tips
+
+    def search_creator(self):
+        fields = []
+        values = []
+        sortByValues = []
+        sortbyOrders = []
+        comparators = []
+        author = self.textio.input("Tekijän nimi (tai tyhjä): ")
+        name = self.textio.input("Teoksen nimi (tai tyhjä): ")
+        self.add_field_and_value(fields, values, comparators, 'author', author, '=')
+        self.add_sortBys(sortByValues, sortbyOrders, 'author', 'ASC')
+        self.add_field_and_value(fields, values, comparators, 'name', name, '=')
+        self.add_sortBys(sortByValues, sortbyOrders, 'name', 'ASC')
+        tips = self.service.search_tips(fields, values, comparators, sortByValues, sortbyOrders)
+        return tips
+
+    
+    def search_books(self):
+        return
+    
+    def search_videos(self):
+        return
+    
+    def search_blogs(self):
+        return
+        
+    def add_field_and_value(self, fields, values, comparators, field, value, comparator='='):
+        if value:
+            fields.append(field)
+            values.append(value)
+            comparators.append(comparator)
+    
+    def add_sortBys(self, sortByValues, sortbyOrders, value, order='ASC'):
+        if value:
+            sortByValues.append(value)
+            sortbyOrders.append(order)
