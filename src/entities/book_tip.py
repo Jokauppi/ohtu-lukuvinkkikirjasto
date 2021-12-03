@@ -67,9 +67,7 @@ class BookTip:
     def __str__(self):
         pad = 7
 
-        return f"{'Index:':{pad}} {self.id_number}\n" \
-                f"{'Read:':{pad}} {self.read}\n" \
-                f"{'Title:':{pad}} {self.name}\n" \
+        return  f"{'Title:':{pad}} {self.name}\n" \
                 f"{'Author:':{pad}} {self.author}\n" \
                 f"{'ISBN:':{pad}} {self.isbn}\n" \
                 f"{'Year:':{pad}} {self.publication_year}\n"

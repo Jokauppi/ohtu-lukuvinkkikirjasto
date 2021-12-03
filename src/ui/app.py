@@ -74,6 +74,10 @@ class App():
             self.textio.output("Blogin lisäys ei onnistunut")
 
     def mark_as_read(self):
+        for book in self.service.get_all_book_tips():
+            self.textio.output(f"ID number: {book.id_number}")
+            self.textio.output(f"Read: {book.read}")
+            self.textio.output(book)
         id_number = self.textio.input("Syötä luetuksi merkattavan vinkin id numero\n")
         self.service.mark_book_tip_as_read(id_number)
 
