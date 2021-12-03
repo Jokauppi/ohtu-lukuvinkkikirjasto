@@ -1,9 +1,11 @@
 import os
 from entities.book_tip import BookTip
+from entities.video_tip import VideoTip
 from ui.app import App
 from ui.stub_io import StubIO
 from service import Service
 from repositories.book_tip_repository import BookTipRepository
+from repositories.blog_tip_repository import BlogTipRepository
 from repositories.database_connection import get_connection
 
 class AppLibrary:
@@ -25,7 +27,7 @@ class AppLibrary:
             if str(desired) == str(value):
                 break
         else:
-            raise AssertionError(f"Output \"{desired}\" is not in {str(outputs)}")
+            raise AssertionError(f"Output \"{desired}\" is not in {chr(10).join(outputs)}")
 
     def database_should_contain_book(self, name, author, isbn, publication):
         desired_book = BookTip(name, author, isbn, publication)
@@ -37,10 +39,21 @@ class AppLibrary:
         else:
             raise AssertionError("Desired book is not in database")
 
+    def database_should_contain_video(self, title, url):
+        desired_video = VideoTip(title, url)
+        all_videos = self._service.get_all_video_tips()
+
+        for video in all_videos:
+            if video == desired_video:
+                break
+        else:
+            raise AssertionError("Desired book is not in database")
+
     def setup_app(self):
         self._io = StubIO()
-        repository = BookTipRepository(get_connection(self._db))
-        self._service = Service(repository)
+        book_repository = BookTipRepository(get_connection(self._db))
+        blog_repository = BlogTipRepository(get_connection(self._db))
+        self._service = Service(book_repository, blog_repository)
 
         self._app = App(
             self._io,

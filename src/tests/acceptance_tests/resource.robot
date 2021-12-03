@@ -13,6 +13,11 @@ Input Book Tip
     Input  ${isbn}
     Input  ${pub_year}
 
+Input Video Tip
+    [Arguments]  ${title}  ${url}
+    Input  ${title}
+    Input  ${url}
+
 Output Should Contain Book
     [Arguments]  ${name}  ${author}  ${isbn}  ${pub_year}
     Output Should Contain  Title:${SPACE*2}${name}\nAuthor: ${author}\nISBN:${SPACE*3}${isbn}\nYear:${SPACE*3}${pub_year}\n

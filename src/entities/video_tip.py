@@ -13,9 +13,9 @@ class VideoTip:
     @title.setter
     def title(self, value):
         if not isinstance(value, str):
-            raise TypeError("Nimen pitää olla merkkijono")
+            raise TypeError("Otsikon pitää olla merkkijono")
         if len(value) <= 0 or len(value) > 100:
-            raise ValueError("Nimen pituus pitää olla 1-100 merkkiä")
+            raise ValueError("Otsikon pituus pitää olla 1-100 merkkiä")
         self.__name = value
 
     @property
@@ -41,8 +41,7 @@ class VideoTip:
     def __eq__(self, other: object) -> bool:
 
         if isinstance(other, VideoTip):
-            return self.title == other.name\
-                and self.author == other.author\
+            return self.title == other.title\
                 and self.url == other.url\
 
 
