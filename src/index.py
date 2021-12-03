@@ -10,8 +10,7 @@ def main():
     if len(args) > 0:
         print("args:", args)
 
-    service = Service(BookTipRepository())
-    service = Service(BlogTipRepository())
+    service = Service(BookTipRepository(), BlogTipRepository())
     textio = TextIO()
     app = App(textio, service)
     app.run()

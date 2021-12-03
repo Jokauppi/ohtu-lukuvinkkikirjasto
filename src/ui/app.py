@@ -13,7 +13,9 @@ class App():
 
         command_dict = {"q": self.quit_program,
                         "a": self.add_book,
+                        "b": self.add_blog,
                         "p": self.print_books,
+                        "pp": self.print_blogs,
                         "r": self.mark_as_read,
                         "s": self.search_start}
 
@@ -33,7 +35,9 @@ class App():
     def print_instructions(self):
         self.textio.output("q: poistu sovelluksesta")
         self.textio.output("a: lisää kirjavinkki")
+        self.textio.output("b: lisää blogivinkki")
         self.textio.output("p: tulosta kirjavinkit")
+        self.textio.output("pp: tulosta blogivinkit")
         self.textio.output("r: merkitse vinkki luetuksi")
         self.textio.output("s: etsi vinkkejä") 
 
@@ -55,6 +59,20 @@ class App():
             self.textio.output(type_error)
             self.textio.output("Kirjan lisäys ei onnistunut")
 
+    def add_blog(self):
+        name = self.textio.input("Syötä blogin nimi:\n")
+        author = self.textio.input("Syötä blogin tekijän nimi:\n")
+        url = self.textio.input("Syötä blogin url:\n")
+        try:
+            self.service.create_blog_tip(name, author, url)
+            self.textio.output("Blogi lisätty")
+        except ValueError as value_error:
+            self.textio.output(value_error)
+            self.textio.output("Blogin lisäys ei onnistunut")
+        except TypeError as type_error:
+            self.textio.output(type_error)
+            self.textio.output("Blogin lisäys ei onnistunut")
+
     def mark_as_read(self):
         id_number = self.textio.input("Syötä luetuksi merkattavan vinkin id numero\n")
         self.service.mark_book_tip_as_read(id_number)
@@ -64,6 +82,12 @@ class App():
             self.textio.output("Ei vinkkejä")
         for book in self.service.get_all_book_tips():
             self.textio.output(book)
+
+    def print_blogs(self):
+        if len(self.service.get_all_blog_tips()) == 0:
+            self.textio.output("Ei vinkkejä")
+        for blog in self.service.get_all_blog_tips():
+            self.textio.output(blog)
 
     def browse_books(self):
         self.browser.run()
