@@ -148,13 +148,63 @@ class App():
 
     
     def search_books(self):
-        return
+        fields = []
+        values = []
+        sortByValues = []
+        sortbyOrders = []
+        comparators = []
+
+        name = self.textio.input("Teoksen nimi (tai tyhjä): ")
+        author = self.textio.input("Tekijän nimi (tai tyhjä): ")
+        isbn = self.textio.input("ISBN (tai tyhjä): ")
+        publication_year = self.textio.input("Julkaisuvuosi (tai tyhjä): ")
+        isread = self.textio.input("Merkitty luetuksi (K = Kyllä, E = Ei, Tyhjä = Ei väliä): ")
+
+        self.add_field_and_value(fields, values, comparators, 'name', name, ' LIKE ')
+        self.add_sortBys(sortByValues, sortbyOrders, 'name', 'ASC')
+        self.add_field_and_value(fields, values, comparators, 'author', author, ' LIKE ')
+        self.add_sortBys(sortByValues, sortbyOrders, 'author', 'ASC')
+        self.add_field_and_value(fields, values, comparators, 'publication_year', publication_year, '=')
+        self.add_sortBys(sortByValues, sortbyOrders, 'publication_year', 'DESC')
+        self.add_field_and_value(fields, values, comparators, 'isbn', isbn, '=')
+        if isread.lower() == 'k': self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
+        if isread.lower() == 'e': self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
+
+
+        tips = self.service.search_book_tips(fields, values, comparators, sortByValues, sortbyOrders)
+        return tips
+
+
+
     
     def search_videos(self):
         return
     
     def search_blogs(self):
-        return
+        fields = []
+        values = []
+        sortByValues = []
+        sortbyOrders = []
+        comparators = []
+
+        name = self.textio.input("Teoksen nimi (tai tyhjä): ")
+        author = self.textio.input("Tekijän nimi (tai tyhjä): ")
+        url = self.textio.input("url (tai tyhjä): ")
+        isread = self.textio.input("Merkitty luetuksi (K = Kyllä, E = Ei, Tyhjä = Ei väliä): ")
+
+        self.add_field_and_value(fields, values, comparators, 'name', name, ' LIKE ')
+        self.add_sortBys(sortByValues, sortbyOrders, 'name', 'ASC')
+        self.add_field_and_value(fields, values, comparators, 'author', author, ' LIKE ')
+        self.add_sortBys(sortByValues, sortbyOrders, 'author', 'ASC')
+        self.add_field_and_value(fields, values, comparators, 'url', url, ' LIKE ')
+        self.add_sortBys(sortByValues, sortbyOrders, 'url', 'ASC')
+        if isread.lower() == 'k': self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
+        if isread.lower() == 'e': self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
+
+        tips = self.service.search_blog_tips(fields, values, comparators, sortByValues, sortbyOrders)
+        return tips
+
+
         
     def add_field_and_value(self, fields, values, comparators, field, value, comparator='='):
         if value:

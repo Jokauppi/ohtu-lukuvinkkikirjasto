@@ -76,7 +76,6 @@ class BlogTipRepository:
         if not comparators: comparators.append('=')
 
         search_string = "SELECT * FROM Blogtips " + self.where_string(fields, comparators) + self.order_string(sortByValues, sortbyOrders)+";"
-        print(search_string)
 
         k=0
         while k < len(comparators):
@@ -103,7 +102,7 @@ class BlogTipRepository:
         i=1
         while i < len(fields):
             comparator = comparators[0].upper()
-            if i < len(comparators): comparator = comparators[i].uppper()
+            if i < len(comparators): comparator = comparators[i].upper()
             where_string +=  " AND lower("+ fields[i].lower() + ")" + comparator.upper() + "?"
             i += 1
         return where_string
