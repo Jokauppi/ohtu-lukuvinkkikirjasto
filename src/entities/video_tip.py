@@ -1,6 +1,6 @@
 
 class VideoTip:
-    def __init__(self, title: str, author: str, url: str, id_number: int = None, read: bool = False):
+    def __init__(self, title: str, url: str, id_number: int = None, read: bool = False):
         self.title = title
         self.url = url
         self.id_number = id_number

@@ -6,6 +6,7 @@ from ui.stub_io import StubIO
 from service import Service
 from repositories.book_tip_repository import BookTipRepository
 from repositories.blog_tip_repository import BlogTipRepository
+from repositories.video_tip_repository import VideoTipRepository
 from repositories.database_connection import get_connection
 
 class AppLibrary:
@@ -53,7 +54,9 @@ class AppLibrary:
         self._io = StubIO()
         book_repository = BookTipRepository(get_connection(self._db))
         blog_repository = BlogTipRepository(get_connection(self._db))
-        self._service = Service(book_repository, blog_repository)
+        video_repository = VideoTipRepository(get_connection(self._db))
+
+        self._service = Service(book_repository, blog_repository, video_repository)
 
         self._app = App(
             self._io,

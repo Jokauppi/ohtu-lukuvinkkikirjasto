@@ -1,11 +1,16 @@
 from entities.book_tip import BookTip
 from entities.blog_tip import BlogTip
+from entities.video_tip import VideoTip
 
 
 class Service:
-    def __init__(self, repository, blogrepository):
+    def __init__(self, repository, blogrepository, videorepository):
         self._repository = repository
         self._blogrepository = blogrepository
+        self._videorepository = videorepository
+
+
+# Create
 
     def create_book_tip(self, name, author, isbn, publication_year):
         book_tip = BookTip(name, author, isbn, publication_year)
@@ -15,11 +20,20 @@ class Service:
         blog_tip = BlogTip(name, author, url)
         return self._blogrepository.add(blog_tip)
 
+    def create_video_tip(self, title, url):
+        video_tip = VideoTip(title, url)
+        return self._videorepository.add(video_tip)
+
+# Get All
+
     def get_all_book_tips(self):
         return self._repository.get_all()
 
     def get_all_blog_tips(self):
         return self._blogrepository.get_all()
+
+    def get_all_video_tips(self):
+        return self._videorepository.get_all()
 
     def mark_book_tip_as_read(self, id_number):
         return self._repository.mark_as_read(id_number)
