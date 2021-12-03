@@ -1,4 +1,5 @@
 from entities.book_tip import BookTip
+from entities.blog_tip import BlogTip
 
 
 class Service:
@@ -8,6 +9,10 @@ class Service:
     def create_book_tip(self, name, author, isbn, publication_year):
         book_tip = BookTip(name, author, isbn, publication_year)
         return self._repository.add(book_tip)
+
+    def create_blog_tip(self, name, author, url):
+        blog_tip = BlogTip(name, author, url)
+        return self._repository.add(blog_tip)
 
     def get_all_book_tips(self):
         return self._repository.get_all()
