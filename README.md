@@ -72,18 +72,53 @@ ja tämän jälkeen suorittaa komennon python3 src/index.py.
 Ohjelman käynnistyttyä voit antaa komentoja ohjelmalle. 
 Ohjeet komentojen käytöstä tulostuvat kun käynnistät ohjelman.
 Komennot:
-* "q" poistuaksesi sovelluksesta, 
-* "a" lisätäksesi kirjavinkin, 
-* "p" tulostaaksesi lisätyt kirjavinkit.
+* "a" lisää vinkki, 
+* "p" tulosta vinkkejä, 
+* "r" merkitse vinkki luetuksi,
+* "s" etsi vinkkejä,
+* "q" poistu sovelluksesta.
 
-#### Kirjavinkin lisäys
+#### Vinkin lisäys
 
 Anna ohjelmalle komennoksi "a" ja paina enteriä.
-Ohjelma kysyy järjestyksessä 
-kirjan nimen, kirjailijan nimen, ISBN-koodin, sekä julkaisuvuoden.
+Valitse seuraavaksi valikosta haluamasi vinkin tyyppi:
+* "k" kirjavinkki,
+* "b" blogivinkki,
+* "v" videolinkki,
+* "q" palaa päävalikkoon.
+
+Ohjelma kysyy vinkin tyypistä riippuen erilaisia tietoja.
 Syötä pyydetyt tiedot.
-Tämän jälkeen näet lisätyn kirjavinkin komennolla "p", 
-joka listaa kaikki lisätyt kirjavinkit tietoineen.
+Vinkki on nyt lisätty tietokantaan.
+
+#### Vinkkien tulostaminen
+
+Anna ohjelmalle komennoksi "p" ja paina enteriä.
+Valitse seuraavaksi valikosta minkä tyyppisiä vinkkejä haluat tulostaa:
+* "k" kirjavinkit,
+* "b" blogivinkit,
+* "v" videovinkit,
+* "r" luetut vinkit,
+* "u" lukemattomat vinkit,
+* "q" palaa päävalikkoon.
+
+Ohjelma tulostaa vinkit ja niihin liittyvät tiedot.
+
+#### Vinkin merkkaaminen luetuksi
+
+Anna ohjelmalle komennoksi "r" ja paina enteriä.
+Ohjelma listaa vinkit ja niiden tiedot mukaan lukien vinkkien id-numerot.
+
+Syötä ohjelmalle luetuksi merkittävän vinkin id-numero.
+
+#### Vinkkien etsiminen
+
+Anna ohjelmalle komennoksi "s" ja paina enteriä.
+Valitse seuraavaksi kriteeri, jonka perusteella haluat etsiä vinkkejä.
+Ohjelma kysyy tarkempia tietoja valitun vinkkityypin perusteella.
+
+Syötä pyydetyt tiedot.
+Ohjelma listaa kaikki hakukriteerejä vastaavat tiedot.
 
 ## Lisenssi
 
