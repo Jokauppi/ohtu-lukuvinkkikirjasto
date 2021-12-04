@@ -30,12 +30,12 @@ def show_menu(commands, text_io, title=None, cancel=True):
 
     while True:
         chosen = text_io.input("> ")
-        
-        if actions[chosen]:
+        try:
+            action = actions[chosen]
             text_io.output("")
-            return(actions[chosen])
-
-        text_io.output("Virheellinen komento")
+            return(action)
+        except:
+            text_io.output("Virheellinen komento")
 
 def no_op():
     pass
