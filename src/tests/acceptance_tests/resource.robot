@@ -24,7 +24,7 @@ Output Should Contain Book
 
 Output Should Contain Video
     [Arguments]  ${title}  ${url}
-    Output Should Contain  Title:${SPACE*2}${title}\nUrl: ${url}\n
+    Output Should Contain  Title:${SPACE*2}${title}\nUrl:${SPACE*4}${url}\n
 
 Run And Quit Application
     Input  q

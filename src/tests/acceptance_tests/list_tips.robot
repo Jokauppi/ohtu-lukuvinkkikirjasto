@@ -15,7 +15,7 @@ List All Book Tips
 List All Video Tips
     Add Video Tip To Service  Video1  video.example.com/1
     Add Video Tip To Service  Video2  video.example.com/1
-    Input Command  p
+    Input Command  ppp
     Run And Quit Application
 
     Output Should Contain Video  Video1  video.example.com/1

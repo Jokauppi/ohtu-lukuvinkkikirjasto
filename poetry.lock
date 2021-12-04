@@ -242,6 +242,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "simple-term-menu"
+version = "1.4.1"
+description = "A Python package which creates simple interactive menus on the command line."
+category = "main"
+optional = false
+python-versions = "~=3.5"
+
+[[package]]
 name = "toml"
 version = "0.10.2"
 description = "Python Library for Tom's Obvious, Minimal Language"
@@ -268,7 +276,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "3a7a0ac546ff2f77e0ba6165d08e4e6c0e37f1ac2b49329359ba7f949a4f70e4"
+content-hash = "32341532f7e8ef50f1cc088d1885c964115e8f7d123a4eb91049792815c69a03"
 
 [metadata.files]
 astroid = [
@@ -423,13 +431,16 @@ robotframework = [
     {file = "robotframework-4.1.2-py2.py3-none-any.whl", hash = "sha256:6441c774f274ae022a184165287d967a7c1bb0c5f96ff0005f0468f4c979fb2b"},
     {file = "robotframework-4.1.2.zip", hash = "sha256:7ea2454b847cfcb211e2906743c5c4a868ab096ab4ce1547ab102d91fb224443"},
 ]
+simple-term-menu = [
+    {file = "simple-term-menu-1.4.1.tar.gz", hash = "sha256:401e7efc6726e195b8e62bfcede51298dc0daf8c5f043a521c8828191b0b012e"},
+    {file = "simple_term_menu-1.4.1-py3-none-any.whl", hash = "sha256:35cfbf6e855c347938c2da27a619cf0e212bc72a48bb86e43fa462ec7d7bccec"},
+]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
     {file = "toml-0.10.2.tar.gz", hash = "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"},
 ]
 typing-extensions = [
     {file = "typing_extensions-4.0.0-py3-none-any.whl", hash = "sha256:829704698b22e13ec9eaf959122315eabb370b0884400e9818334d8b677023d9"},
-    {file = "typing_extensions-4.0.0.tar.gz", hash = "sha256:2cdf80e4e04866a9b3689a51869016d36db0814d84b8d8a568d22781d45d27ed"},
 ]
 wrapt = [
     {file = "wrapt-1.13.3-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:e05e60ff3b2b0342153be4d1b597bbcfd8330890056b9619f4ad6b8d5c96a81a"},

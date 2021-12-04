@@ -33,10 +33,8 @@ class VideoTip:
     def __str__(self):
         pad = 7
 
-        return f"{'Index:':{pad}} {self.id_number}\n" \
-                f"{'Read:':{pad}} {self.read}\n" \
-                f"{'Title:':{pad}} {self.title}\n" \
-                f"{'url:':{pad}} {self.url}\n"
+        return  f"{'Title:':{pad}} {self.title}\n" \
+                f"{'Url:':{pad}} {self.url}\n"
 
     def __eq__(self, other: object) -> bool:
 

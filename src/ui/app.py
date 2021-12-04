@@ -14,8 +14,10 @@ class App():
         command_dict = {"q": self.quit_program,
                         "a": self.add_book,
                         "b": self.add_blog,
+                        "c": self.add_video,
                         "p": self.print_books,
                         "pp": self.print_blogs,
+                        "ppp": self.print_videos,
                         "r": self.mark_as_read,
                         "s": self.search_start}
 
@@ -36,8 +38,10 @@ class App():
         self.textio.output("q: poistu sovelluksesta")
         self.textio.output("a: lisää kirjavinkki")
         self.textio.output("b: lisää blogivinkki")
+        self.textio.output("c: lisää videovinkki")
         self.textio.output("p: tulosta kirjavinkit")
         self.textio.output("pp: tulosta blogivinkit")
+        self.textio.output("ppp: tulosta videovinkit")
         self.textio.output("r: merkitse vinkki luetuksi")
         self.textio.output("s: etsi vinkkejä") 
 
@@ -73,6 +77,19 @@ class App():
             self.textio.output(type_error)
             self.textio.output("Blogin lisäys ei onnistunut")
 
+    def add_video(self):
+        title = self.textio.input("Syötä videon otsikko:\n")
+        url = self.textio.input("Syötä videon url:\n")
+        try:
+            self.service.create_video_tip(title, url)
+            self.textio.output("Video lisätty")
+        except ValueError as value_error:
+            self.textio.output(value_error)
+            self.textio.output("Videon lisäys ei onnistunut")
+        except TypeError as type_error:
+            self.textio.output(type_error)
+            self.textio.output("Videon lisäys ei onnistunut")
+
     def mark_as_read(self):
         for book in self.service.get_all_book_tips():
             self.textio.output(f"ID number: {book.id_number}")
@@ -92,6 +109,12 @@ class App():
             self.textio.output("Ei vinkkejä")
         for blog in self.service.get_all_blog_tips():
             self.textio.output(blog)
+
+    def print_videos(self):
+        if len(self.service.get_all_video_tips()) == 0:
+            self.textio.output("Ei vinkkejä")
+        for video in self.service.get_all_video_tips():
+            self.textio.output(video)
 
     def browse_books(self):
         self.browser.run()
