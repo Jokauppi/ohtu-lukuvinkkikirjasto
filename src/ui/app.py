@@ -1,94 +1,57 @@
 from ui.loopbreak import LoopBreak
 from ui.book_browser import BookBrowser
+from ui.print_ui import PrintUI
+from ui.add_ui import AddUI
+from ui.console_menu import show_menu
+
 
 class App():
     def __init__(self, textio, service):
         self.textio = textio
         self.service = service
+        
         self.browser = BookBrowser(textio, service)
+        self.print_ui = PrintUI(textio, service)
+        self.add_ui = AddUI(textio, service)
 
     def run(self):
-        self.textio.output("Tervetuloa vinkkisovellukseen!")
-        self.print_instructions()
 
-        command_dict = {"q": self.quit_program,
-                        "a": self.add_book,
-                        "b": self.add_blog,
-                        "c": self.add_video,
-                        "p": self.print_books,
-                        "pp": self.print_blogs,
-                        "ppp": self.print_videos,
-                        "r": self.mark_as_read,
-                        "s": self.search_start}
+        commands = [
+            {
+                "action": self.add_ui.add_tip,
+                "message": "Lisää vinkki",
+                "shortcut": "a"
+            },
+            {
+                "action": self.print_ui.print_tips,
+                "message": "Tulosta vinkkejä",
+                "shortcut": "p"
+            },
+            {
+                "action": self.mark_as_read,
+                "message": "Merkitse vinkki luetuksi",
+                "shortcut": "r"
+            },
+            {
+                "action": self.search_start,
+                "message": "Etsi vinkkejä",
+                "shortcut": "s"
+            },
+            {
+                "action": self.quit_program,
+                "message": "Poistu sovelluksesta",
+                "shortcut": "q"
+            },
+        ]
 
         while True:
-            answer = self.textio.input("Mikä on komentosi?\n")
-            action = command_dict.get(answer)
-            if action is None:
-                print("Virheellinen komento")
-                self.print_instructions()
-                continue
             try:
-                action()
+                show_menu(commands, "Lukuvinkkikirjasto", cancel=False)["action"]()
             except LoopBreak:
                 break
 
-
-    def print_instructions(self):
-        self.textio.output("q: poistu sovelluksesta")
-        self.textio.output("a: lisää kirjavinkki")
-        self.textio.output("b: lisää blogivinkki")
-        self.textio.output("c: lisää videovinkki")
-        self.textio.output("p: tulosta kirjavinkit")
-        self.textio.output("pp: tulosta blogivinkit")
-        self.textio.output("ppp: tulosta videovinkit")
-        self.textio.output("r: merkitse vinkki luetuksi")
-        self.textio.output("s: etsi vinkkejä") 
-
     def quit_program(self):
         raise LoopBreak
-
-    def add_book(self):
-        name = self.textio.input("Syötä kirjan nimi:\n")
-        author = self.textio.input("Syötä kirjailijan nimi:\n")
-        isbn = self.textio.input("Syötä kirjan ISBN-koodi:\n")
-        publication_year = self.textio.input("Syötä kirjan julkaisuvuosi:\n")
-        try:
-            self.service.create_book_tip(name, author, isbn, publication_year)
-            self.textio.output("Kirja lisätty")
-        except ValueError as value_error:
-            self.textio.output(value_error)
-            self.textio.output("Kirjan lisäys ei onnistunut")
-        except TypeError as type_error:
-            self.textio.output(type_error)
-            self.textio.output("Kirjan lisäys ei onnistunut")
-
-    def add_blog(self):
-        name = self.textio.input("Syötä blogin nimi:\n")
-        author = self.textio.input("Syötä blogin tekijän nimi:\n")
-        url = self.textio.input("Syötä blogin url:\n")
-        try:
-            self.service.create_blog_tip(name, author, url)
-            self.textio.output("Blogi lisätty")
-        except ValueError as value_error:
-            self.textio.output(value_error)
-            self.textio.output("Blogin lisäys ei onnistunut")
-        except TypeError as type_error:
-            self.textio.output(type_error)
-            self.textio.output("Blogin lisäys ei onnistunut")
-
-    def add_video(self):
-        title = self.textio.input("Syötä videon otsikko:\n")
-        url = self.textio.input("Syötä videon url:\n")
-        try:
-            self.service.create_video_tip(title, url)
-            self.textio.output("Video lisätty")
-        except ValueError as value_error:
-            self.textio.output(value_error)
-            self.textio.output("Videon lisäys ei onnistunut")
-        except TypeError as type_error:
-            self.textio.output(type_error)
-            self.textio.output("Videon lisäys ei onnistunut")
 
     def mark_as_read(self):
         for book in self.service.get_all_book_tips():
@@ -97,24 +60,6 @@ class App():
             self.textio.output(book)
         id_number = self.textio.input("Syötä luetuksi merkattavan vinkin id numero\n")
         self.service.mark_book_tip_as_read(id_number)
-
-    def print_books(self):
-        if len(self.service.get_all_book_tips()) == 0:
-            self.textio.output("Ei vinkkejä")
-        for book in self.service.get_all_book_tips():
-            self.textio.output(book)
-
-    def print_blogs(self):
-        if len(self.service.get_all_blog_tips()) == 0:
-            self.textio.output("Ei vinkkejä")
-        for blog in self.service.get_all_blog_tips():
-            self.textio.output(blog)
-
-    def print_videos(self):
-        if len(self.service.get_all_video_tips()) == 0:
-            self.textio.output("Ei vinkkejä")
-        for video in self.service.get_all_video_tips():
-            self.textio.output(video)
 
     def browse_books(self):
         self.browser.run()
