@@ -41,9 +41,16 @@ class BookTipRepository:
 
         rows = cursor.fetchall()
 
-        return [BookTip(row["name"], row["author"], row["isbn"], str(row["publication_year"]), row["id"], bool(row["read"]))
-                 # olio vaatii stringia, tietokannassa integer
-                for row in rows]
+        return self.to_list(rows)
+
+    def get_read(self, read):
+        cursor = self._connection.cursor()
+
+        cursor.execute("SELECT * FROM BookTips WHERE read=?", (read,))
+
+        rows = cursor.fetchall()
+
+        return self.to_list(rows)
 
     def delete_all(self):
         cursor = self._connection.cursor()
@@ -70,7 +77,6 @@ class BookTipRepository:
         except:
             return False
     
-
     def search_tips(self, fields, values, comparators, sortByValues, sortbyOrders=['ASC']):
         if not fields: return []
         values = [x.lower() for x in values]
@@ -86,16 +92,11 @@ class BookTipRepository:
 
         cursor = self._connection.cursor()
         
-        rows = cursor.execute(search_string, values)
+        cursor.execute(search_string, values)
 
         rows = cursor.fetchall()
 
-        return [BookTip(
-            row["name"],
-            row["author"],
-            row["isbn"],
-            str(row["publication_year"])) # olio vaatii stringia, tietokannassa integer
-            for row in rows]
+        return self.to_list(rows)
 
 
     def where_string(self, fields, comparators):
@@ -122,3 +123,7 @@ class BookTipRepository:
         return order_string
 
 
+    def to_list(self, rows):
+        return [BookTip(row["name"], row["author"], row["isbn"], str(row["publication_year"]), row["id"], bool(row["read"]))
+                 # olio vaatii stringia, tietokannassa integer
+                for row in rows]
