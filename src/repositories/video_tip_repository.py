@@ -77,7 +77,7 @@ class VideoTipRepository:
     
 
     def search_tips(self, fields, values, comparators, sortByValues, sortbyOrders=['ASC']):
-        if not fields: return []
+        if not fields: return self.get_all()
         values = [x.lower() for x in values]
         if not sortByValues: sortByValues.append(fields[0])
         if not comparators: comparators.append('=')
