@@ -22,7 +22,8 @@ Add Video Tip With Invalid Url
 Setup App And Input Add Video Command
     Clear Database
     Setup App
-    Input Command  c
+    Input Command  a
+    Input Command  v
 
 Add Video Tip
     [Arguments]  ${title}  ${url}

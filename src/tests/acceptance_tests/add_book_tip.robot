@@ -43,6 +43,7 @@ Setup App And Input Add Command
     Clear Database
     Setup App
     Input Command  a
+    Input Command  k
 
 Add Book Tip
     [Arguments]  ${name}  ${author}  ${isbn}  ${pub_year}
