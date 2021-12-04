@@ -20,7 +20,17 @@ class PrintUI():
                 "action": self.print_videos,
                 "message": "Videovinkit",
                 "shortcut": "v"
-            }
+            },
+            {
+                "action": self.print_read,
+                "message": "Luetut",
+                "shortcut": "r"
+            },
+            {
+                "action": self.print_unread,
+                "message": "Lukemattomat",
+                "shortcut": "u"
+            },
         ]
 
     def print_tips(self):
@@ -43,3 +53,18 @@ class PrintUI():
             self.textio.output("Ei vinkkejä")
         for video in self.service.get_all_video_tips():
             self.textio.output(video)
+
+    def print_read(self, read=True):
+        self.read = read
+
+        for book in self.service.get_read_book_tips(read):
+            self.textio.output(book)
+        
+        for blog in self.service.get_read_blog_tips(read):
+            self.textio.output(blog)
+
+        for video in self.service.get_read_video_tips(read):
+            self.textio.output(video)
+
+    def print_unread(self):
+        self.print_read(False)

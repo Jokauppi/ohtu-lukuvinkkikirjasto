@@ -39,8 +39,16 @@ class VideoTipRepository:
 
         rows = cursor.fetchall()
 
-        return [VideoTip(row["title"], row["url"], row["id"], bool(row["read"]))
-                for row in rows]
+        return self.to_list(rows)
+    
+    def get_read(self, read):
+        cursor = self._connection.cursor()
+
+        cursor.execute("SELECT * FROM Videotips WHERE read=?", (read,))
+
+        rows = cursor.fetchall()
+
+        return self.to_list(rows)
 
     def delete_all(self):
         cursor = self._connection.cursor()
@@ -83,14 +91,11 @@ class VideoTipRepository:
 
         cursor = self._connection.cursor()
         
-        rows = cursor.execute(search_string, values)
+        cursor.execute(search_string, values)
 
         rows = cursor.fetchall()
 
-        return [VideoTip(
-            row["title"],
-            row["url"])
-            for row in rows]
+        return self.to_list(rows)
 
 
     def where_string(self, fields, comparators):
@@ -115,3 +120,8 @@ class VideoTipRepository:
             order_string += ", " + sortByValues[j].lower() + " " + sortbyOrders[j].upper()
             j += 1
         return order_string
+
+
+    def to_list(self, rows):
+        return [VideoTip(row["title"], row["url"], row["id"], bool(row["read"]))
+                for row in rows]

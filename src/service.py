@@ -35,8 +35,23 @@ class Service:
     def get_all_video_tips(self):
         return self._videorepository.get_all()
 
+# Get Read/Unread
+
+    def get_read_book_tips(self, read):
+        return self._repository.get_read(read)
+    
+    def get_read_blog_tips(self, read):
+        return self._blogrepository.get_read(read)
+
+    def get_read_video_tips(self, read):
+        return self._videorepository.get_read(read)
+
+# Mark as read
+
     def mark_book_tip_as_read(self, id_number):
         return self._repository.mark_as_read(id_number)
+
+# Search
     
     def search_tips(self, fields, values, comparators, sortByValues, sortbyOrders):
         search_result = self._repository.search_tips(fields, values, comparators, sortByValues, sortbyOrders)
