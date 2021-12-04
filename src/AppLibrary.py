@@ -73,5 +73,8 @@ class AppLibrary:
     def add_book_tip_to_service(self, name, author, isbn, publication):
         self._service.create_book_tip(name, author, isbn, publication)
 
+    def add_video_tip_to_service(self, title, url):
+        self._service.create_video_tip(title, url)
+
     def run_application(self):
         self._app.run()
