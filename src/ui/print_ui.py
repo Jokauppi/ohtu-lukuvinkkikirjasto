@@ -57,14 +57,14 @@ class PrintUI():
     def print_read(self, read=True):
         self.read = read
 
-        for book in self.service.get_read_book_tips(read):
-            self.textio.output(book)
-        
-        for blog in self.service.get_read_blog_tips(read):
-            self.textio.output(blog)
+        result = self.service.get_read_book_tips(read) \
+            + self.service.get_read_blog_tips(read) \
+            + self.service.get_read_video_tips(read)
 
-        for video in self.service.get_read_video_tips(read):
-            self.textio.output(video)
+        if len(result) == 0:
+            self.textio.output("Ei vinkkejä")
+        for item in result:
+            self.textio.output(item)
 
     def print_unread(self):
         self.print_read(False)
