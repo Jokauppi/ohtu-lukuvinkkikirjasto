@@ -1,4 +1,4 @@
-from ui.console_menu import show_menu
+from ui.text_menu import show_menu
 
 class PrintUI():
     def __init__(self, textio, service):
@@ -24,7 +24,7 @@ class PrintUI():
         ]
 
     def print_tips(self):
-        show_menu(self.commands, "Valitse tulostettavat vinkit")["action"]()
+        show_menu(self.commands, self.textio, "Valitse tulostettavat vinkit")()
 
     def print_books(self):
         if len(self.service.get_all_book_tips()) == 0:

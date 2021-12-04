@@ -2,7 +2,7 @@ from ui.loopbreak import LoopBreak
 from ui.book_browser import BookBrowser
 from ui.print_ui import PrintUI
 from ui.add_ui import AddUI
-from ui.console_menu import show_menu
+from ui.text_menu import show_menu
 
 
 class App():
@@ -46,7 +46,7 @@ class App():
 
         while True:
             try:
-                show_menu(commands, "Lukuvinkkikirjasto", cancel=False)["action"]()
+                show_menu(commands, self.textio, "Lukuvinkkikirjasto", cancel=False)()
             except LoopBreak:
                 break
 

@@ -17,7 +17,7 @@ def show_menu(commands, title=None, cancel=True):
 
     menu_entry_index = terminal_menu.show()
 
-    return(options[menu_entry_index])
+    return(options[menu_entry_index]["action"])
 
 def no_op():
     pass
