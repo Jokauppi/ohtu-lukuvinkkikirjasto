@@ -1,5 +1,6 @@
 import os
 from entities.book_tip import BookTip
+from entities.blog_tip import BlogTip
 from entities.video_tip import VideoTip
 from ui.app import App
 from ui.stub_io import StubIO
@@ -40,6 +41,16 @@ class AppLibrary:
         else:
             raise AssertionError("Desired book is not in database")
 
+    def database_should_contain_blog(self, name, author, url):
+        desired_blog = BlogTip(name, author, url)
+        all_blogs = self._service.get_all_blog_tips()
+
+        for blog in all_blogs:
+            if blog == desired_blog:
+                break
+        else:
+            raise AssertionError("Desired blog is not in database")
+
     def database_should_contain_video(self, title, url):
         desired_video = VideoTip(title, url)
         all_videos = self._service.get_all_video_tips()
@@ -48,7 +59,7 @@ class AppLibrary:
             if video == desired_video:
                 break
         else:
-            raise AssertionError("Desired book is not in database")
+            raise AssertionError("Desired video is not in database")
 
     def setup_app(self):
         self._io = StubIO()
@@ -72,6 +83,9 @@ class AppLibrary:
 
     def add_book_tip_to_service(self, name, author, isbn, publication):
         self._service.create_book_tip(name, author, isbn, publication)
+
+    def add_blog_tip_to_service(self, name, author, url):
+        self._service.create_blog_tip(name, author, url)
 
     def add_video_tip_to_service(self, title, url):
         self._service.create_video_tip(title, url)
