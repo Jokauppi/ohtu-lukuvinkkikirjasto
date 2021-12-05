@@ -55,8 +55,6 @@ class PrintUI():
             self.textio.output(video)
 
     def print_read(self, read=True):
-        self.read = read
-
         result = self.service.get_read_book_tips(read) \
             + self.service.get_read_blog_tips(read) \
             + self.service.get_read_video_tips(read)

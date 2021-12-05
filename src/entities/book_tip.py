@@ -1,7 +1,8 @@
 import re
 
 class BookTip:
-    def __init__(self, name: str, author: str, isbn: str, publication_year: str, id_number: int = None, read: bool = False):
+    def __init__(self, name: str, author: str, isbn: str, publication_year: str, \
+                 id_number: int = None, read: bool = False):
         self.name = name
         self.author = author
         self.isbn = isbn

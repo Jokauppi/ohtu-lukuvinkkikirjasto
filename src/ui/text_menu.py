@@ -1,7 +1,7 @@
 from ui.text_io import TextIO
 
 def show_menu(commands, text_io, title=None, cancel=True):
-    
+
     options = commands.copy()
 
     if cancel:
@@ -24,7 +24,7 @@ def show_menu(commands, text_io, title=None, cancel=True):
     text_io.output(max_option_length * "=")
 
     for opt_str in options_strings:
-        text_io.output(opt_str)    
+        text_io.output(opt_str)
 
     text_io.output(max_option_length * "=")
 
@@ -33,7 +33,7 @@ def show_menu(commands, text_io, title=None, cancel=True):
         try:
             action = actions[chosen]
             text_io.output("")
-            return(action)
+            return action
         except:
             text_io.output("Virheellinen komento")
 

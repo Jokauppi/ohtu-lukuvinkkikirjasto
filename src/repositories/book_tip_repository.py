@@ -29,8 +29,10 @@ class BookTipRepository:
         if result:
             return
 
-        cursor.execute("INSERT INTO BookTips (name, author, isbn, publication_year, read) VALUES (?, ?, ?, ?, ?)",
-            (book_tip.name, book_tip.author, book_tip.isbn, book_tip.publication_year, book_tip.read))
+        cursor.execute("""
+            INSERT INTO BookTips (name, author, isbn, publication_year, read) VALUES (?, ?, ?, ?, ?)
+        """, (book_tip.name, book_tip.author, book_tip.isbn,
+              book_tip.publication_year, book_tip.read))
 
         self._connection.commit()
 
@@ -78,11 +80,19 @@ class BookTipRepository:
             return False
 
     def search_tips(self, fields, values, comparators, sort_by_values, sort_by_orders):
-        if not fields: return self.get_all()
+        if not fields:
+            return self.get_all()
+
         values = [x.lower() for x in values]
-        if not sort_by_values: sort_by_values.append(fields[0])
-        if not comparators: comparators.append('=')
-        if not sort_by_orders: sort_by_orders.append('ASC')
+
+        if not sort_by_values:
+            sort_by_values.append(fields[0])
+
+        if not comparators:
+            comparators.append('=')
+
+        if not sort_by_orders:
+            sort_by_orders.append('ASC')
 
         search_string = "SELECT * FROM BookTips "
         search_string += self.where_string(fields, comparators)
@@ -90,7 +100,8 @@ class BookTipRepository:
 
         k=0
         while k < len(comparators):
-            if comparators[k].upper().strip()=='LIKE': values[k] = "%" + values[k] + "%"
+            if comparators[k].upper().strip()=='LIKE':
+                values[k] = "%" + values[k] + "%"
             k += 1
 
         cursor = self._connection.cursor()
@@ -101,30 +112,36 @@ class BookTipRepository:
 
         return self.to_list(rows)
 
-
     def where_string(self, fields, comparators):
-        if not fields: return ""
+        if not fields:
+            return ""
+
         where_string = "WHERE lower(" + fields[0].lower() + ")" + comparators[0].upper() + "?"
 
         i=1
         while i < len(fields):
             comparator = comparators[0].upper()
-            if i < len(comparators): comparator = comparators[i].upper()
+
+            if i < len(comparators):
+                comparator = comparators[i].upper()
+
             where_string +=  " AND lower("+ fields[i].lower() + ")" + comparator.upper() + "?"
             i += 1
+
         return where_string
 
-
     def order_string(self, sort_by_values, sort_by_orders):
-        if not sort_by_values: return ""
+        if not sort_by_values:
+            return ""
+
         order_string = " ORDER BY " + sort_by_values[0].lower() + " " + sort_by_orders[0].upper()
 
         j=1
         while j < len(sort_by_values):
             order_string += ", " + sort_by_values[j].lower() + " " + sort_by_orders[j].upper()
             j += 1
-        return order_string
 
+        return order_string
 
     def to_list(self, rows):
         return [BookTip(row["name"], row["author"], row["isbn"], str(row["publication_year"]), row["id"], bool(row["read"]))
