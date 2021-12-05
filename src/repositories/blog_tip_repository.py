@@ -29,7 +29,7 @@ class BlogTipRepository:
             return
 
         cursor.execute("INSERT INTO Blogtips (name, author, url, read) VALUES (?, ?, ?, ?)",
-            (blog_tip.name, blog_tip.author, blog_tip.url, 0))
+            (blog_tip.name, blog_tip.author, blog_tip.url, blog_tip.read))
 
         self._connection.commit()
 

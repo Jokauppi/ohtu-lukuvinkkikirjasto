@@ -7,50 +7,87 @@ from entities.video_tip import VideoTip
 
 class TestVideoTipRepository(unittest.TestCase):
     def setUp(self):
-        #video_tip_repository.delete_all()
+        #repository.delete_all()
         self.connection = sqlite3.connect(":memory:")
         self.connection.row_factory = sqlite3.Row
-        self.video_tip_repository = VideoTipRepository(self.connection)
+        self.repository = VideoTipRepository(self.connection)
 
-        self.videotip_a = VideoTip('Video1', 'video.example.com/1', 1, False) 
-        self.videotip_b = VideoTip('Video2', 'video.example.com/2', 2, False)
-
+        self.tip_a = VideoTip('Video1', 'video.example.com/1', 1, False) 
+        self.tip_b = VideoTip('Video2', 'video.example.com/2', 2, False)
+        self.tip_c = VideoTip('Video3', 'video.example.com/3', 3, True)
+        self.tip_d = VideoTip('Video4', 'video.example.com/4', 4, True)
+        
     def test_add(self):
-        self.video_tip_repository.add(self.videotip_a)
-        videotips = self.video_tip_repository.get_all()
+        self.repository.add(self.tip_a)
+        tips = self.repository.get_all()
 
-        self.assertEqual(len(videotips), 1)
-        self.assertEqual(videotips[0].__str__(), self.videotip_a.__str__())
+        self.assertEqual(len(tips), 1)
+        self.assertEqual(tips[0].__str__(), self.tip_a.__str__())
 
     def test_get_all(self):
-        self.video_tip_repository.add(self.videotip_a)
-        self.video_tip_repository.add(self.videotip_b)
-        videotips = self.video_tip_repository.get_all()
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_b)
+        tips = self.repository.get_all()
 
-        self.assertEqual(len(videotips), 2)
-        self.assertEqual(videotips[0].__str__(), self.videotip_a.__str__())
-        self.assertEqual(videotips[1].__str__(), self.videotip_b.__str__())
+        self.assertEqual(len(tips), 2)
+        self.assertEqual(tips[0].__str__(), self.tip_a.__str__())
+        self.assertEqual(tips[1].__str__(), self.tip_b.__str__())
+    
+    def test_get_read(self):
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_b)
+        self.repository.add(self.tip_c)
+        self.repository.add(self.tip_d)
+        tips = self.repository.get_read(True)
+
+        self.assertEqual(len(tips), 2)
+        self.assertEqual(tips[0].__str__(), self.tip_c.__str__())
+        self.assertEqual(tips[1].__str__(), self.tip_d.__str__())
+    
+    def test_get_unread(self):
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_b)
+        self.repository.add(self.tip_c)
+        self.repository.add(self.tip_d)
+        tips = self.repository.get_read(False)
+
+        self.assertEqual(len(tips), 2)
+        self.assertEqual(tips[0].__str__(), self.tip_a.__str__())
+        self.assertEqual(tips[1].__str__(), self.tip_b.__str__())
+    
+    def test_marking_as_read_works_correctly(self):
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_b)
+        tips = self.repository.get_read(True)
+
+        self.assertEqual(len(tips), 0)
+
+        self.repository.mark_as_read("1")
+        tips = self.repository.get_read(True)
+
+        self.assertEqual(len(tips), 1)
+        self.assertEqual(tips[0].__str__(), "Title:  Video1\nUrl:    video.example.com/1\n")
 
     def test_cannot_add_same_video_twice(self):
-        self.video_tip_repository.add(self.videotip_a)
-        self.video_tip_repository.add(self.videotip_a)
-        videotips = self.video_tip_repository.get_all()
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_a)
+        tips = self.repository.get_all()
 
-        self.assertEqual(len(videotips), 1)
+        self.assertEqual(len(tips), 1)
     
     def test_delete_all(self):
-        self.video_tip_repository.add(self.videotip_a)
-        self.video_tip_repository.add(self.videotip_b)
-        self.video_tip_repository.delete_all()
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_b)
+        self.repository.delete_all()
         
-        videotips = self.video_tip_repository.get_all()
-        self.assertEqual(len(videotips), 0)
+        tips = self.repository.get_all()
+        self.assertEqual(len(tips), 0)
     
     def test_drop_tables(self):
-        self.video_tip_repository.add(self.videotip_a)
-        self.video_tip_repository.add(self.videotip_b)
-        self.video_tip_repository.drop_tables()
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_b)
+        self.repository.drop_tables()
         self.assertRaises(
             Exception,
-            lambda: self.video_tip_repository.get_all()
+            lambda: self.repository.get_all()
         )

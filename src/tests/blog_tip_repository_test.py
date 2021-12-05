@@ -9,47 +9,84 @@ class TestBlogTipRepository(unittest.TestCase):
     def setUp(self):
         self.connection = sqlite3.connect(":memory:")
         self.connection.row_factory = sqlite3.Row
-        self.blog_tip_repository = BlogTipRepository(self.connection)
+        self.repository = BlogTipRepository(self.connection)
 
-        self.blogtip_a = BlogTip('Blog1','Blogaaja1', 'blog.example.com/1', 1, False) 
-        self.blogtip_b = BlogTip('Blog2', 'Blogaaja2', 'blog.example.com/2', 2, False)
+        self.tip_a = BlogTip('Blog1', 'Blogaaja1', 'blog.example.com/1', 1, False) 
+        self.tip_b = BlogTip('Blog2', 'Blogaaja2', 'blog.example.com/2', 2, False)
+        self.tip_c = BlogTip('Blog3', 'Blogaaja3', 'blog.example.com/3', 3, True) 
+        self.tip_d = BlogTip('Blog4', 'Blogaaja4', 'blog.example.com/4', 4, True)
 
     def test_add(self):
-        self.blog_tip_repository.add(self.blogtip_a)
-        blogtips = self.blog_tip_repository.get_all()
+        self.repository.add(self.tip_a)
+        tips = self.repository.get_all()
 
-        self.assertEqual(len(blogtips), 1)
-        self.assertEqual(blogtips[0].__str__(), self.blogtip_a.__str__())
+        self.assertEqual(len(tips), 1)
+        self.assertEqual(tips[0].__str__(), self.tip_a.__str__())
 
     def test_get_all(self):
-        self.blog_tip_repository.add(self.blogtip_a)
-        self.blog_tip_repository.add(self.blogtip_b)
-        blogtips = self.blog_tip_repository.get_all()
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_b)
+        tips = self.repository.get_all()
 
-        self.assertEqual(len(blogtips), 2)
-        self.assertEqual(blogtips[0].__str__(), self.blogtip_a.__str__())
-        self.assertEqual(blogtips[1].__str__(), self.blogtip_b.__str__())
+        self.assertEqual(len(tips), 2)
+        self.assertEqual(tips[0].__str__(), self.tip_a.__str__())
+        self.assertEqual(tips[1].__str__(), self.tip_b.__str__())
+
+    def test_get_read(self):
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_b)
+        self.repository.add(self.tip_c)
+        self.repository.add(self.tip_d)
+        tips = self.repository.get_read(True)
+
+        self.assertEqual(len(tips), 2)
+        self.assertEqual(tips[0].__str__(), self.tip_c.__str__())
+        self.assertEqual(tips[1].__str__(), self.tip_d.__str__())
+    
+    def test_get_unread(self):
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_b)
+        self.repository.add(self.tip_c)
+        self.repository.add(self.tip_d)
+        tips = self.repository.get_read(False)
+
+        self.assertEqual(len(tips), 2)
+        self.assertEqual(tips[0].__str__(), self.tip_a.__str__())
+        self.assertEqual(tips[1].__str__(), self.tip_b.__str__())
+    
+    def test_marking_as_read_works_correctly(self):
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_b)
+        tips = self.repository.get_read(True)
+
+        self.assertEqual(len(tips), 0)
+
+        self.repository.mark_as_read("1")
+        tips = self.repository.get_read(True)
+
+        self.assertEqual(len(tips), 1)
+        self.assertEqual(tips[0].__str__(), "Index:  1\nRead:   True\nTitle:  Blog1\nAuthor: Blogaaja1\nurl:    blog.example.com/1\n")
 
     def test_cannot_add_same_blog_twice(self):
-        self.blog_tip_repository.add(self.blogtip_a)
-        self.blog_tip_repository.add(self.blogtip_a)
-        blogtips = self.blog_tip_repository.get_all()
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_a)
+        tips = self.repository.get_all()
 
-        self.assertEqual(len(blogtips), 1)
+        self.assertEqual(len(tips), 1)
     
     def test_delete_all(self):
-        self.blog_tip_repository.add(self.blogtip_a)
-        self.blog_tip_repository.add(self.blogtip_b)
-        self.blog_tip_repository.delete_all()
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_b)
+        self.repository.delete_all()
         
-        blogtips = self.blog_tip_repository.get_all()
-        self.assertEqual(len(blogtips), 0)
+        tips = self.repository.get_all()
+        self.assertEqual(len(tips), 0)
     
     def test_drop_tables(self):
-        self.blog_tip_repository.add(self.blogtip_a)
-        self.blog_tip_repository.add(self.blogtip_b)
-        self.blog_tip_repository.drop_tables()
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_b)
+        self.repository.drop_tables()
         self.assertRaises(
             Exception,
-            lambda: self.blog_tip_repository.get_all()
+            lambda: self.repository.get_all()
         )

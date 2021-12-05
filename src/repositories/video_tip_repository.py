@@ -28,7 +28,7 @@ class VideoTipRepository:
             return
 
         cursor.execute("INSERT INTO Videotips (title, url, read) VALUES (?, ?, ?)",
-            (video_tip.title, video_tip.url, 0))
+            (video_tip.title, video_tip.url, video_tip.read))
 
         self._connection.commit()
 

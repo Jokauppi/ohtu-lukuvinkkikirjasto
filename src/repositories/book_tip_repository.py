@@ -30,7 +30,7 @@ class BookTipRepository:
             return
 
         cursor.execute("INSERT INTO BookTips (name, author, isbn, publication_year, read) VALUES (?, ?, ?, ?, ?)",
-            (book_tip.name, book_tip.author, book_tip.isbn, book_tip.publication_year, 0))
+            (book_tip.name, book_tip.author, book_tip.isbn, book_tip.publication_year, book_tip.read))
 
         self._connection.commit()
 
