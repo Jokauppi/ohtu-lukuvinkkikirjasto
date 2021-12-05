@@ -40,7 +40,7 @@ class VideoTipRepository:
         rows = cursor.fetchall()
 
         return self.to_list(rows)
-    
+
     def get_read(self, read):
         cursor = self._connection.cursor()
 
@@ -74,15 +74,18 @@ class VideoTipRepository:
             return True
         except:
             return False
-    
 
-    def search_tips(self, fields, values, comparators, sortByValues, sortbyOrders=['ASC']):
+
+    def search_tips(self, fields, values, comparators, sort_by_values, sort_by_orders=['ASC']):
         if not fields: return self.get_all()
         values = [x.lower() for x in values]
-        if not sortByValues: sortByValues.append(fields[0])
+        if not sort_by_values: sort_by_values.append(fields[0])
         if not comparators: comparators.append('=')
+        if not sort_by_orders: sort_by_orders.append('ASC')
 
-        search_string = "SELECT * FROM Videotips " + self.where_string(fields, comparators) + self.order_string(sortByValues, sortbyOrders)+";"
+        search_string = "SELECT * FROM Videotips "
+        search_string += self.where_string(fields, comparators)
+        search_string += self.order_string(sort_by_values, sort_by_orders)+";"
 
         k=0
         while k < len(comparators):
@@ -90,7 +93,7 @@ class VideoTipRepository:
             k += 1
 
         cursor = self._connection.cursor()
-        
+
         cursor.execute(search_string, values)
 
         rows = cursor.fetchall()
@@ -109,15 +112,15 @@ class VideoTipRepository:
             where_string +=  " AND lower("+ fields[i].lower() + ")" + comparator.upper() + "?"
             i += 1
         return where_string
-    
 
-    def order_string(self, sortByValues, sortbyOrders):
-        if not sortByValues: return ""
-        order_string = " ORDER BY " + sortByValues[0].lower() + " " + sortbyOrders[0].upper()
+
+    def order_string(self, sort_by_values, sort_by_orders):
+        if not sort_by_values: return ""
+        order_string = " ORDER BY " + sort_by_values[0].lower() + " " + sort_by_orders[0].upper()
 
         j=1
-        while j < len(sortByValues):
-            order_string += ", " + sortByValues[j].lower() + " " + sortbyOrders[j].upper()
+        while j < len(sort_by_values):
+            order_string += ", " + sort_by_values[j].lower() + " " + sort_by_orders[j].upper()
             j += 1
         return order_string
 
