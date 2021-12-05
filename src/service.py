@@ -53,11 +53,11 @@ class Service:
 
 # Search
     
-    def search_book_tips(self, fields, values, comparators, sortByValues, sortbyOrders):
-        return self._repository.search_tips(fields, values, comparators, sortByValues, sortbyOrders)
+    def search_book_tips(self, fields, values, comparators, sort_by_values, sort_by_orders):
+        return self._repository.search_tips(fields, values, comparators, sort_by_values, sort_by_orders)
     
-    def search_blog_tips(self, fields, values, comparators, sortByValues, sortbyOrders):
-        return self._blogrepository.search_tips(fields, values, comparators, sortByValues, sortbyOrders)
+    def search_blog_tips(self, fields, values, comparators, sort_by_values, sort_by_orders):
+        return self._blogrepository.search_tips(fields, values, comparators, sort_by_values, sort_by_orders)
     
-    def search_video_tips(self, fields, values, comparators, sortByValues, sortbyOrders):
-        return self._videorepository.search_tips(fields, values, comparators, sortByValues, sortbyOrders)
+    def search_video_tips(self, fields, values, comparators, sort_by_values, sort_by_orders):
+        return self._videorepository.search_tips(fields, values, comparators, sort_by_values, sort_by_orders)
