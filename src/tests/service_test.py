@@ -98,3 +98,25 @@ class TestService(unittest.TestCase):
         self.assertEqual(len(videotips), 2)
         self.assertEqual(videotips[0].__str__(), self.videotip_a.__str__())
         self.assertEqual(videotips[1].__str__(), self.videotip_b.__str__())
+
+# Blog Tips
+
+    def test_add_blog_tip(self):
+
+        self.service.create_blog_tip(self.blogtip_a.name, self.blogtip_a.author, self.blogtip_a.url)
+        blogtips = self.service.get_all_blog_tips()
+
+        self.assertEqual(len(blogtips), 1)
+        self.assertEqual(blogtips[0].__str__(), self.blogtip_a.__str__())
+    
+    
+    def test_get_all_blog_tips(self):
+
+        self.service.create_blog_tip(self.blogtip_a.name, self.blogtip_a.author, self.blogtip_a.url)
+        self.service.create_blog_tip(self.blogtip_b.name, self.blogtip_b.author, self.blogtip_b.url)
+
+        blogtips = self.service.get_all_blog_tips()
+
+        self.assertEqual(len(blogtips), 2)
+        self.assertEqual(blogtips[0].__str__(), self.blogtip_a.__str__())
+        self.assertEqual(blogtips[1].__str__(), self.blogtip_b.__str__())
