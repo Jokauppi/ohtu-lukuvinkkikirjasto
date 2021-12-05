@@ -39,7 +39,7 @@ class Service:
 
     def get_read_book_tips(self, read):
         return self._repository.get_read(read)
-    
+
     def get_read_blog_tips(self, read):
         return self._blogrepository.get_read(read)
 
@@ -52,12 +52,24 @@ class Service:
         return self._repository.mark_as_read(id_number)
 
 # Search
-    
+
     def search_book_tips(self, fields, values, comparators, sort_by_values, sort_by_orders):
-        return self._repository.search_tips(fields, values, comparators, sort_by_values, sort_by_orders)
-    
+        return self._repository.search_tips(fields,
+                                            values,
+                                            comparators,
+                                            sort_by_values,
+                                            sort_by_orders)
+
     def search_blog_tips(self, fields, values, comparators, sort_by_values, sort_by_orders):
-        return self._blogrepository.search_tips(fields, values, comparators, sort_by_values, sort_by_orders)
-    
+        return self._blogrepository.search_tips(fields,
+                                            values,
+                                            comparators,
+                                            sort_by_values,
+                                            sort_by_orders)
+
     def search_video_tips(self, fields, values, comparators, sort_by_values, sort_by_orders):
-        return self._videorepository.search_tips(fields, values, comparators, sort_by_values, sort_by_orders)
+        return self._videorepository.search_tips(fields,
+                                            values,
+                                            comparators,
+                                            sort_by_values,
+                                            sort_by_orders)
