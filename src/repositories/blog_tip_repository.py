@@ -1,3 +1,4 @@
+import sqlite3
 from entities.blog_tip import BlogTip
 from repositories.database_connection import get_connection
 
@@ -73,7 +74,8 @@ class BlogTipRepository:
             cursor.execute("UPDATE Blogtips SET read = 1 WHERE id = ?", (id_number))
             self._connection.commit()
             return True
-        except:
+        except sqlite3.Error as err:
+            print(err)
             return False
 
     def search_tips(self, fields, values, comparators, sort_by_values, sort_by_orders=['ASC']):

@@ -1,3 +1,4 @@
+import sqlite3
 from entities.book_tip import BookTip
 from repositories.database_connection import get_connection
 
@@ -76,7 +77,8 @@ class BookTipRepository:
             cursor.execute("UPDATE BookTips SET read = 1 WHERE id = ?", (id_number))
             self._connection.commit()
             return True
-        except:
+        except sqlite3.Error as err:
+            print(err)
             return False
 
     def search_tips(self, fields, values, comparators, sort_by_values, sort_by_orders):
@@ -144,6 +146,7 @@ class BookTipRepository:
         return order_string
 
     def to_list(self, rows):
-        return [BookTip(row["name"], row["author"], row["isbn"], str(row["publication_year"]), row["id"], bool(row["read"]))
+        return [BookTip(row["name"],row["author"], row["isbn"],
+                str(row["publication_year"]), row["id"], bool(row["read"]))
                  # olio vaatii stringia, tietokannassa integer
                 for row in rows]

@@ -15,8 +15,8 @@ def show_menu(commands, text_io, title=None, cancel=True):
     for option in options:
         actions[option["shortcut"]] = option["action"]
 
-    options_strings = list(map(lambda c : get_option(c), options))
-    max_option_length = max(map(lambda o : len(o), options_strings))
+    options_strings = [get_option(c) for c in options]
+    max_option_length = len(max(options_strings, key=len))
 
     if title:
         text_io.output(title)

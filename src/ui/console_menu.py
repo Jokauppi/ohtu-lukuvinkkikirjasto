@@ -11,7 +11,7 @@ def show_menu(commands, title=None, cancel=True):
             "shortcut": None
         })
 
-    options_strings = list(map(lambda c : get_option(c), options))
+    options_strings = [get_option(c) for c in options]
 
     terminal_menu = TerminalMenu(options_strings, title=title)
 

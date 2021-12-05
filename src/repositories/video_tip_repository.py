@@ -1,3 +1,4 @@
+import sqlite3
 from entities.video_tip import VideoTip
 from repositories.database_connection import get_connection
 
@@ -72,7 +73,8 @@ class VideoTipRepository:
             cursor.execute("UPDATE Videotips SET read = 1 WHERE id = ?", (id_number))
             self._connection.commit()
             return True
-        except:
+        except sqlite3.Error as err:
+            print(err)
             return False
 
 
