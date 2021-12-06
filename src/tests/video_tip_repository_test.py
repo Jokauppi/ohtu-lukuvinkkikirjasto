@@ -67,6 +67,11 @@ class TestVideoTipRepository(unittest.TestCase):
 
         self.assertEqual(len(tips), 1)
         self.assertEqual(tips[0].__str__(), "Title:  Video1\nUrl:    video.example.com/1\n")
+    
+    def test_mark_as_read_returns_error(self):
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_b)
+        self.assertFalse(self.repository.mark_as_read("10000"))
 
     def test_cannot_add_same_video_twice(self):
         self.repository.add(self.tip_a)
@@ -120,3 +125,6 @@ class TestVideoTipRepository(unittest.TestCase):
         self.assertEqual(tips[2].__str__(), tip_c.__str__())
         self.assertEqual(self.repository.where_string([],[]), "")
         self.assertEqual(self.repository.order_string([],[]), "")
+        tips = self.repository.search_tips(['title', 'url'], ['Video1', 'video.example.com/1'], ['LIKE','LIKE'], [], [])
+        self.assertEqual(len(tips), 1)
+        self.assertEqual(tips[0].__str__(), self.tip_a.__str__())

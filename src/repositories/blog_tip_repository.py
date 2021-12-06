@@ -78,7 +78,7 @@ class BlogTipRepository:
             print(err)
             return False
 
-    def search_tips(self, fields, values, comparators, sort_by_values, sort_by_orders=['ASC']):
+    def search_tips(self, fields, values, comparators, sort_by_values, sort_by_orders):
         if not fields:
             return self.get_all()
 
@@ -89,6 +89,9 @@ class BlogTipRepository:
 
         if not comparators:
             comparators.append('=')
+
+        if not sort_by_orders:
+            sort_by_orders.append('ASC')
 
         search_string = "SELECT * FROM Blogtips "
         search_string += self.where_string(fields, comparators)

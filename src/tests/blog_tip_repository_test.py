@@ -67,6 +67,11 @@ class TestBlogTipRepository(unittest.TestCase):
         self.assertEqual(len(tips), 1)
         self.assertEqual(tips[0].__str__(), "Title:  Blog1\nAuthor: Blogaaja1\nurl:    blog.example.com/1\n")
 
+    def test_mark_as_read_returns_error(self):
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_b)
+        self.assertFalse(self.repository.mark_as_read("10000"))
+
     def test_cannot_add_same_blog_twice(self):
         self.repository.add(self.tip_a)
         self.repository.add(self.tip_a)
@@ -90,3 +95,30 @@ class TestBlogTipRepository(unittest.TestCase):
             Exception,
             lambda: self.repository.get_all()
         )
+
+    def test_search_blog_tips(self):
+        self.repository.add(self.tip_a)
+        self.repository.add(self.tip_b)
+        self.repository.add(self.tip_c)
+        tips = self.repository.search_tips([], [], [], [], [])
+        self.assertEqual(len(tips), 3)
+        self.assertEqual(tips[0].__str__(), self.tip_a.__str__())
+        self.assertEqual(tips[1].__str__(), self.tip_b.__str__())
+        self.assertEqual(tips[2].__str__(), self.tip_c.__str__())
+        tips = self.repository.search_tips(['name'], ['blog1'], [], [], [])
+        self.assertEqual(len(tips), 1)
+        self.assertEqual(tips[0].__str__(), self.tip_a.__str__())
+        tips = self.repository.search_tips(['name', 'author'], ['blog1', 'blogaaja1'], [], ['name', 'author'], ['ASC','DESC'])
+        self.assertEqual(len(tips), 1)
+        self.assertEqual(tips[0].__str__(), self.tip_a.__str__())
+        tips = self.repository.search_tips([], [], [], ['name', 'author'], ['ASC','DESC'])
+        self.assertEqual(len(tips), 3)
+        self.assertEqual(tips[0].__str__(), self.tip_a.__str__())
+        self.assertEqual(tips[1].__str__(), self.tip_b.__str__())
+        self.assertEqual(tips[2].__str__(), self.tip_c.__str__())
+        self.assertEqual(self.repository.where_string([],[]), "")
+        self.assertEqual(self.repository.order_string([],[]), "")
+        tips = self.repository.search_tips(['name', 'author'], ['blog', 'blogaaja'], ['LIKE','LIKE'], [], [])
+        self.assertEqual(len(tips), 3)
+        self.assertEqual(tips[0].__str__(), self.tip_a.__str__())
+

@@ -144,7 +144,12 @@ class App():
         self.add_sort_bys(sort_by_values, sort_by_orders, 'name', 'ASC')
         self.add_field_and_value(fields, values, comparators, 'author', author, ' LIKE ')
         self.add_sort_bys(sort_by_values, sort_by_orders, 'author', 'ASC')
-        self.add_field_and_value(fields, values, comparators, 'publication_year', publication_year, '=')
+        self.add_field_and_value(fields,
+                                values,
+                                comparators,
+                                'publication_year',
+                                publication_year,
+                                '=')
         self.add_sort_bys(sort_by_values, sort_by_orders, 'publication_year', 'DESC')
         self.add_field_and_value(fields, values, comparators, 'isbn', isbn, '=')
 
@@ -153,7 +158,11 @@ class App():
         if isread.lower() == 'e':
             self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
 
-        tips = self.service.search_book_tips(fields, values, comparators, sort_by_values, sort_by_orders)
+        tips = self.service.search_book_tips(fields,
+                                            values,
+                                            comparators,
+                                            sort_by_values,
+                                            sort_by_orders)
 
         return tips
 
@@ -177,7 +186,11 @@ class App():
         if isread.lower() == 'e':
             self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
 
-        tips = self.service.search_video_tips(fields, values, comparators, sort_by_values, sort_by_orders)
+        tips = self.service.search_video_tips(fields,
+                                            values,
+                                            comparators,
+                                            sort_by_values,
+                                            sort_by_orders)
 
         return tips
 
@@ -205,7 +218,11 @@ class App():
         if isread.lower() == 'e':
             self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
 
-        tips = self.service.search_blog_tips(fields, values, comparators, sort_by_values, sort_by_orders)
+        tips = self.service.search_blog_tips(fields,
+                                            values,
+                                            comparators,
+                                            sort_by_values,
+                                            sort_by_orders)
 
         return tips
 

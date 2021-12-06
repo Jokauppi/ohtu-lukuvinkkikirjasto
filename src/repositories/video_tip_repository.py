@@ -78,7 +78,7 @@ class VideoTipRepository:
             return False
 
 
-    def search_tips(self, fields, values, comparators, sort_by_values, sort_by_orders=['ASC']):
+    def search_tips(self, fields, values, comparators, sort_by_values, sort_by_orders):
         if not fields:
             return self.get_all()
 
