@@ -51,6 +51,13 @@ class Service:
     def mark_book_tip_as_read(self, id_number):
         return self._repository.mark_as_read(id_number)
 
+    def mark_blog_tip_as_read(self, id_number):
+        return self._blogrepository.mark_as_read(id_number)
+
+    def mark_video_tip_as_read(self, id_number):
+        return self._videorepository.mark_as_read(id_number)
+
+
 # Search
 
     def search_book_tips(self, fields, values, comparators, sort_by_values, sort_by_orders):

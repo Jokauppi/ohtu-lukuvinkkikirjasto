@@ -2,6 +2,7 @@ from ui.loopbreak import LoopBreak
 from ui.book_browser import BookBrowser
 from ui.print_ui import PrintUI
 from ui.add_ui import AddUI
+from ui.read_ui import ReadUI
 from ui.text_menu import show_menu
 
 
@@ -13,6 +14,7 @@ class App():
         self.browser = BookBrowser(textio, service)
         self.print_ui = PrintUI(textio, service)
         self.add_ui = AddUI(textio, service)
+        self.read_ui = ReadUI(textio, service)
 
     def run(self):
 
@@ -28,7 +30,7 @@ class App():
                 "shortcut": "p"
             },
             {
-                "action": self.mark_as_read,
+                "action": self.read_ui.print_tips,
                 "message": "Merkitse vinkki luetuksi",
                 "shortcut": "r"
             },
