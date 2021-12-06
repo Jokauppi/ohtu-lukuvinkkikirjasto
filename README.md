@@ -107,6 +107,11 @@ Ohjelma tulostaa vinkit ja niihin liittyvät tiedot.
 #### Vinkin merkkaaminen luetuksi
 
 Anna ohjelmalle komennoksi "r" ja paina enteriä.
+Valitse seuraavaksi valikosta haluamasi vinkin tyyppi:
+* "k" kirjavinkki,
+* "b" blogivinkki,
+* "v" videolinkki,
+* "q" palaa päävalikkoon.
 Ohjelma listaa vinkit ja niiden tiedot mukaan lukien vinkkien id-numerot.
 
 Syötä ohjelmalle luetuksi merkittävän vinkin id-numero.
