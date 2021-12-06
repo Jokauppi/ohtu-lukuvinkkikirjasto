@@ -65,7 +65,7 @@ class TestBlogTipRepository(unittest.TestCase):
         tips = self.repository.get_read(True)
 
         self.assertEqual(len(tips), 1)
-        self.assertEqual(tips[0].__str__(), "Index:  1\nRead:   True\nTitle:  Blog1\nAuthor: Blogaaja1\nurl:    blog.example.com/1\n")
+        self.assertEqual(tips[0].__str__(), "Title:  Blog1\nAuthor: Blogaaja1\nurl:    blog.example.com/1\n")
 
     def test_cannot_add_same_blog_twice(self):
         self.repository.add(self.tip_a)
