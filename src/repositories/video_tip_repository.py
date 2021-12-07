@@ -36,9 +36,9 @@ class VideoTipRepository:
     def remove_row(self, video_tip):
         if video_tip is None:
             return
-        
+
         cursor = self._connection.cursor()
-        
+
         cursor.execute("DELETE FROM VideoTips WHERE title = ? and url = ? and read = ?",
                        (video_tip.title, video_tip.url, video_tip.read))
 
