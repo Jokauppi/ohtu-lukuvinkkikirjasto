@@ -1,5 +1,5 @@
 from ui.loopbreak import LoopBreak
-from ui.book_browser import BookBrowser
+from ui.item_browser import ItemBrowser
 from ui.print_ui import PrintUI
 from ui.add_ui import AddUI
 from ui.read_ui import ReadUI
@@ -11,7 +11,7 @@ class App():
         self.textio = textio
         self.service = service
 
-        self.browser = BookBrowser(textio, service)
+        self.browser = ItemBrowser(textio, service)
         self.print_ui = PrintUI(textio, service)
         self.add_ui = AddUI(textio, service)
         self.read_ui = ReadUI(textio, service)
@@ -40,10 +40,15 @@ class App():
                 "shortcut": "s"
             },
             {
+                "action": self.browser.run,
+                "message": "Selaa vinkkejä",
+                "shortcut": "b"
+            },
+            {
                 "action": self.quit_program,
                 "message": "Poistu sovelluksesta",
                 "shortcut": "q"
-            },
+            }
         ]
 
         while True:

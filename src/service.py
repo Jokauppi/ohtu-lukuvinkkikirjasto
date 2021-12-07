@@ -24,6 +24,17 @@ class Service:
         video_tip = VideoTip(title, url)
         return self._videorepository.add(video_tip)
 
+# Delete
+
+    def remove_book_tip(self, book_tip):
+        return self._repository.remove_row(book_tip)
+
+    def remove_blog_tip(self, blog_tip):
+        return self._blogrepository.remove_row(blog_tip)
+
+    def remove_video_tip(self, video_tip):
+        return self._videorepository.remove_row(video_tip)
+
 # Get All
 
     def get_all_book_tips(self):

@@ -37,6 +37,18 @@ class BookTipRepository:
 
         self._connection.commit()
 
+    def remove_row(self, book_tip):
+        if book_tip is None:
+            return
+        
+        cursor = self._connection.cursor()
+        
+        cursor.execute("DELETE FROM BookTips WHERE name = ? and author = ? and isbn = ? and publication_year = ? and read = ?",
+                       (book_tip.name, book_tip.author, book_tip.isbn,
+                        book_tip.publication_year, book_tip.read))
+
+        self._connection.commit()
+
     def get_all(self):
         cursor = self._connection.cursor()
 
