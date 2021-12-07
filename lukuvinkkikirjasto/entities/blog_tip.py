@@ -1,6 +1,6 @@
 
 class BlogTip:
-    # pylint: disable-all
+    # pylint: disable-duplicate-code
 
     def __init__(self, name: str, author: str, url: str, id_number: int = None, read: bool = False):
         self.name = name

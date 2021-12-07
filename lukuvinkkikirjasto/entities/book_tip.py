@@ -1,7 +1,7 @@
 import re
 
 class BookTip:
-    # pylint: disable-all
+    # pylint: disable-duplicate-code
 
     def __init__(self, name: str, author: str, isbn: str, publication_year: str, \
                  id_number: int = None, read: bool = False):
