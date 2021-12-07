@@ -1,5 +1,3 @@
-from ui.text_io import TextIO
-
 def show_menu(commands, text_io, title=None, cancel=True):
 
     options = commands.copy()

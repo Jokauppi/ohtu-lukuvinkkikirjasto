@@ -70,4 +70,3 @@ class ReadUI():
             self.textio.output(video)
         id_number = self.textio.input("Syötä luetuksi merkattavan vinkin id numero\n")
         self.service.mark_video_tip_as_read(id_number)
-
