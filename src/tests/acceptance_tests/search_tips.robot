@@ -32,6 +32,19 @@ Search For Video Tip
 
     Output Should Contain Video  Video1  video.example.com/1
 
+Search For Blog Tip
+    Add Blog Tip To Service  Blog1  Author1  blog.example.com/1
+    Add Blog Tip To Service  Blog2  Author2  blog.example.com/2
+    Input Command  s
+    Input Command  b
+	Input Command  Blog1
+	Input Command  Author1
+	Input Command  blog.example.com/1
+	Input Command  E
+    Run And Quit Application
+
+    Output Should Contain Blog  Blog1  Author1  blog.example.com/1
+
 
 *** Keywords ***
 Setup App And Input Add Blog Command

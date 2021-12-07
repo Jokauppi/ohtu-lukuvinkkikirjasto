@@ -30,7 +30,7 @@ Output Should Contain Book
 
 Output Should Contain Blog
     [Arguments]  ${name}  ${author}  ${url}
-    Output Should Contain  Title:${SPACE*2}${name}\nAuthor: ${author}\nISBN:${SPACE*3}${url}\n
+    Output Should Contain  Title:${SPACE*2}${name}\nAuthor: ${author}\nurl:${SPACE*4}${url}\n
 
 Output Should Contain Video
     [Arguments]  ${title}  ${url}
