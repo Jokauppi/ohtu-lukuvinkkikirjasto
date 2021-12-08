@@ -35,9 +35,6 @@ class BlogTipRepository:
         self._connection.commit()
 
     def remove_row(self, blog_tip):
-        if blog_tip is None:
-            return
-
         cursor = self._connection.cursor()
 
         cursor.execute(

@@ -61,6 +61,42 @@ class AppLibrary:
         else:
             raise AssertionError("Desired video is not in database")
 
+    def database_should_not_contain_blog(self, name, author, url):
+        undesired_blog = BlogTip(name, author, url)
+        all_blogs = self._service.get_all_blog_tips()
+
+        for blog in all_blogs:
+            if blog == undesired_blog:
+                raise AssertionError("Deleted blog is in database")
+
+    def database_should_not_contain_book(self, name, author, isbn, publication):
+        undesired_book = BookTip(name, author, isbn, publication)
+        all_books = self._service.get_all_book_tips()
+
+        for book in all_books:
+            if book == undesired_book:
+                raise AssertionError("Deleted book is in database")
+
+    def database_should_not_contain_video(self, title, url):
+        undesired_video = VideoTip(title, url)
+        all_videos = self._service.get_all_video_tips()
+
+        for video in all_videos:
+            if video == undesired_video:
+                raise AssertionError("Deleted video is in database")
+
+    def delete_blog_tip(self, name, author, url):
+        blog = BlogTip(name, author, url)
+        self._service.remove_blog_tip(blog)
+
+    def delete_book_tip(self, name, author, isbn, publication):
+        book = BookTip(name, author, isbn, publication)
+        self._service.remove_book_tip(book)
+
+    def delete_video_tip(self, title, url):
+        video = VideoTip(title, url)
+        self._service.remove_video_tip(video)
+
     def setup_app(self):
         self._io = StubIO()
         book_repository = BookTipRepository(get_connection(self._db))

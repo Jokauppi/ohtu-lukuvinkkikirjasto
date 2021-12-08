@@ -24,6 +24,13 @@ class TestBookTipRepository(unittest.TestCase):
         self.assertEqual(len(tips), 1)
         self.assertEqual(tips[0].__str__(), self.tip_a.__str__())
 
+    def test_delete(self):
+        self.repository.add(self.tip_a)
+        self.repository.remove_row(self.tip_a)
+        tips = self.repository.get_all()
+        
+        self.assertEqual(len(tips), 0)
+
     def test_get_all(self):
         self.repository.add(self.tip_a)
         self.repository.add(self.tip_b)

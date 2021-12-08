@@ -19,6 +19,9 @@ class MockBookTipRepository:
 
         return booktip
 
+    def remove_row(self, booktip):
+        self.booktips.remove(booktip)
+
     def get_read(self, read):
         if read:
             return[book for book in self.booktips if book.read == True]
@@ -41,6 +44,9 @@ class MockBlogTipRepository:
         self.blogtips.append(blogtip)
 
         return blogtip
+
+    def remove_row(self, blogtip):
+        self.blogtips.remove(blogtip)
 
     def mark_as_read(self, id):
         self.blogtips[id-1].read = True
@@ -67,6 +73,9 @@ class MockVideoTipRepository:
         self.videotips.append(videotip)
 
         return videotip
+
+    def remove_row(self, videotip):
+        self.videotips.remove(videotip)
 
     def mark_as_read(self, id):
         self.videotips[id-1].read = True
@@ -127,7 +136,14 @@ class TestService(unittest.TestCase):
         self.assertEqual(len(booktips), 2)
         self.assertEqual(booktips[0].__str__(), self.booktip_a.__str__())
         self.assertEqual(booktips[1].__str__(), self.booktip_b.__str__())
-        
+
+    def test_remove_book_tip(self):
+        self.service.create_book_tip(self.booktip_a.name, self.booktip_a.author, self.booktip_a.isbn, self.booktip_a.publication_year)
+        self.service.remove_book_tip(self.booktip_a)
+
+        booktips = self.service.get_all_book_tips()
+        self.assertEqual(len(booktips), 0)
+
 # Video Tips
 
     def test_add_video_tip(self):
@@ -161,6 +177,13 @@ class TestService(unittest.TestCase):
         self.assertEqual(videotips[0].__str__(), self.videotip_a.__str__())
         self.assertEqual(videotips[1].__str__(), self.videotip_b.__str__())
 
+    def test_remove_video_tips(self):
+        self.service.create_video_tip(self.videotip_a.title, self.videotip_a.url)
+        self.service.remove_video_tip(self.videotip_a)
+
+        videotips = self.service.get_all_video_tips()
+        self.assertEqual(len(videotips), 0)
+
 # Blog Tips
 
     def test_add_blog_tip(self):
@@ -193,6 +216,13 @@ class TestService(unittest.TestCase):
         self.assertEqual(len(blogtips), 2)
         self.assertEqual(blogtips[0].__str__(), self.blogtip_a.__str__())
         self.assertEqual(blogtips[1].__str__(), self.blogtip_b.__str__())
+
+    def test_remove_blog_tips(self):
+        self.service.create_blog_tip(self.blogtip_a.name, self.blogtip_a.author, self.blogtip_a.url)
+        self.service.remove_blog_tip(self.blogtip_a)
+
+        blogtips = self.service.get_all_blog_tips()
+        self.assertEqual(len(blogtips), 0)
 
 #Search
     def test_search_book_tips(self):

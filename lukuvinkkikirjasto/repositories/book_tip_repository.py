@@ -38,9 +38,6 @@ class BookTipRepository:
         self._connection.commit()
 
     def remove_row(self, book_tip):
-        if book_tip is None:
-            return
-
         cursor = self._connection.cursor()
 
         cursor.execute(
