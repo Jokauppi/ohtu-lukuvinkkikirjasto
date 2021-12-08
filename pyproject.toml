@@ -3,6 +3,14 @@ name = "lukuvinkkikirjasto"
 version = "0.1.0"
 description = ""
 authors = ["tommijuslin <tommi.juslin@gmail.com>"]
+packages = [
+    { include = "lukuvinkkikirjasto"}
+]
+exclude = ["lukuvinkkikirjasto/tests"]
+include = [".env"]
+
+[tool.poetry.scripts]
+lukuvinkkikirjasto = "lukuvinkkikirjasto.index:main"
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -21,6 +29,3 @@ pytest-dotenv = "^0.5.2"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-packages = [
-    { include = "src" }
-]
