@@ -1,8 +1,9 @@
 from simple_term_menu import TerminalMenu
 
 class ConsoleMenu:
-    def __init__(self):
+    def __init__(self, text_io):
         pass
+
     def show(self, commands, title=None, cancel=True):
 
         options = commands.copy()
@@ -11,7 +12,7 @@ class ConsoleMenu:
             options.append({
                 "action": self.no_op,
                 "message": "Peruuta",
-                "shortcut": None
+                "shortcut": "q"
             })
 
         options_strings = [self.get_option(c) for c in options]

@@ -1,4 +1,5 @@
 import os
+os.environ["TEXTMODE"]="true"
 
 import config # pylint: disable=unused-import
 

@@ -1,10 +1,10 @@
 from ui.text_menu import TextMenu
 
 class ReadUI():
-    def __init__(self, textio, service):
+    def __init__(self, textio, menu, service):
         self.textio = textio
         self.service = service
-        self.menu = TextMenu(self.textio)
+        self.menu = menu
 
         self.commands = [
             {

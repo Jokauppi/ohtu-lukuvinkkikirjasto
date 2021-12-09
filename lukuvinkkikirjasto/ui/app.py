@@ -3,19 +3,23 @@ from ui.item_browser import ItemBrowser
 from ui.print_ui import PrintUI
 from ui.add_ui import AddUI
 from ui.read_ui import ReadUI
-from ui.text_menu import TextMenu
 
+import os
+if os.name == "nt" or os.getenv("TEXTMODE", 'False').lower() in ('true', '1', 't'):
+    from ui.text_menu import TextMenu as Menu
+else:
+    from ui.console_menu import ConsoleMenu as Menu
 
 class App():
     def __init__(self, textio, service):
         self.textio = textio
+        self.menu = Menu(self.textio)
         self.service = service
 
-        self.menu = TextMenu(self.textio)
         self.browser = ItemBrowser(textio, service)
-        self.print_ui = PrintUI(textio, service)
-        self.add_ui = AddUI(textio, service)
-        self.read_ui = ReadUI(textio, service)
+        self.print_ui = PrintUI(textio, self.menu, service)
+        self.add_ui = AddUI(textio, self.menu, service)
+        self.read_ui = ReadUI(textio, self.menu, service)
 
     def run(self):
 
