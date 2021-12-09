@@ -75,10 +75,14 @@ class VideoTipRepository:
 
         self._connection.commit()
 
-    def mark_as_read(self, id_number):
+    def mark_as_read(self, videotip):
         cursor = self._connection.cursor()
+        if not isinstance(videotip, VideoTip):
+            raise TypeError("Wrong object type")
+        if not videotip.id_number:
+            return False
         try:
-            cursor.execute("UPDATE Videotips SET read = 1 WHERE id = ?", (id_number))
+            cursor.execute("UPDATE Videotips SET read = 1 WHERE id = ?", (str(videotip.id_number)))
             self._connection.commit()
             return True
         except sqlite3.Error as err:

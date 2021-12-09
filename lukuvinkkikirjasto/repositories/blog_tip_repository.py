@@ -77,10 +77,14 @@ class BlogTipRepository:
 
         self._connection.commit()
 
-    def mark_as_read(self, id_number):
+    def mark_as_read(self, blogtip):
+        if not isinstance(blogtip, BlogTip):
+            raise TypeError("Wrong object type")
         cursor = self._connection.cursor()
+        if not blogtip.id_number:
+            return False
         try:
-            cursor.execute("UPDATE Blogtips SET read = 1 WHERE id = ?", (id_number))
+            cursor.execute("UPDATE Blogtips SET read = 1 WHERE id = ?", (str(blogtip.id_number)))
             self._connection.commit()
             return True
         except sqlite3.Error as err:

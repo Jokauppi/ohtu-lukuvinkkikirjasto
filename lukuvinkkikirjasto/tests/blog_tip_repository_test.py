@@ -3,6 +3,7 @@ from typing import Any
 import unittest
 from repositories.blog_tip_repository import BlogTipRepository
 from entities.blog_tip import BlogTip
+from entities.book_tip import BookTip
 
 
 class TestBlogTipRepository(unittest.TestCase):
@@ -68,16 +69,16 @@ class TestBlogTipRepository(unittest.TestCase):
 
         self.assertEqual(len(tips), 0)
 
-        self.repository.mark_as_read("1")
+        self.repository.mark_as_read(self.tip_a)
         tips = self.repository.get_read(True)
 
         self.assertEqual(len(tips), 1)
-        self.assertEqual(tips[0].__str__(), "Title:  Blog1\nAuthor: Blogaaja1\nurl:    blog.example.com/1\n")
+        self.assertEqual(tips[0].__str__(), "Title:  Blog1\nAuthor: Blogaaja1\nurl:    blog.example.com/1\nRead:   True\n")
 
     def test_mark_as_read_returns_error(self):
         self.repository.add(self.tip_a)
         self.repository.add(self.tip_b)
-        self.assertFalse(self.repository.mark_as_read("10000"))
+        self.assertFalse(self.repository.mark_as_read(BlogTip("asdf", "qwer", "www.google.fi")))
 
     def test_cannot_add_same_blog_twice(self):
         self.repository.add(self.tip_a)

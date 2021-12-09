@@ -69,16 +69,16 @@ class TestBookTipRepository(unittest.TestCase):
 
         self.assertEqual(len(tips), 0)
 
-        self.repository.mark_as_read("1")
+        self.repository.mark_as_read(self.tip_a)
         tips = self.repository.get_read(True)
 
         self.assertEqual(len(tips), 1)
-        self.assertEqual(tips[0].__str__(), "Title:  Book1\nAuthor: Firstname1, lastname1\nISBN:   123-456\nYear:   2001\n")
+        self.assertEqual(tips[0].__str__(), "Title:  Book1\nAuthor: Firstname1, lastname1\nISBN:   123-456\nYear:   2001\nRead:   True\n")
     
     def test_mark_as_read_returns_error(self):
         self.repository.add(self.tip_a)
         self.repository.add(self.tip_b)
-        self.assertFalse(self.repository.mark_as_read("10000"))
+        self.assertFalse(self.repository.mark_as_read(BookTip("asdf", "qwer", "1234", "1000")))
 
     def test_cannot_add_same_book_twice(self):
         self.repository.add(self.tip_a)
