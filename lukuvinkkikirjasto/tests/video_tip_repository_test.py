@@ -31,6 +31,14 @@ class TestVideoTipRepository(unittest.TestCase):
         
         self.assertEqual(len(tips), 0)
 
+    def test_modify(self):
+        self.repository.add(self.tip_a)
+        self.repository.modify(self.tip_a, self.tip_b)
+        tips = self.repository.get_all()
+
+        self.assertEqual(len(tips), 1)
+        self.assertEqual(tips[0].__str__(), self.tip_b.__str__())
+
     def test_get_all(self):
         self.repository.add(self.tip_a)
         self.repository.add(self.tip_b)

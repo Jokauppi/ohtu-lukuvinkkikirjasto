@@ -33,6 +33,20 @@ class VideoTipRepository:
 
         self._connection.commit()
 
+    def modify(self, video_tip, modified_tip):
+        cursor = self._connection.cursor()
+
+        try:
+            cursor.execute("UPDATE VideoTips SET title=?, url=? WHERE id = ?",
+                            (modified_tip.title, modified_tip.url,
+                            video_tip.id_number))
+            self._connection.commit()
+            return True
+
+        except sqlite3.Error as err:
+            print(err)
+            return False
+
     def remove_row(self, video_tip):
         cursor = self._connection.cursor()
 

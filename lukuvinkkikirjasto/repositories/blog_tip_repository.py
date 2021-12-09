@@ -34,6 +34,20 @@ class BlogTipRepository:
 
         self._connection.commit()
 
+    def modify(self, blog_tip, modified_tip):
+        cursor = self._connection.cursor()
+
+        try:
+            cursor.execute("UPDATE BlogTips SET name=?, author=?, url=? WHERE id = ?",
+                            (modified_tip.name, modified_tip.author, modified_tip.url,
+                            blog_tip.id_number))
+            self._connection.commit()
+            return True
+
+        except sqlite3.Error as err:
+            print(err)
+            return False
+
     def remove_row(self, blog_tip):
         cursor = self._connection.cursor()
 
