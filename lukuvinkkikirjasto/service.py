@@ -26,6 +26,14 @@ class Service:
 
 # Delete
 
+    def remove_tip(self, tip):
+        if isinstance(tip, BookTip):
+            self.remove_book_tip(tip)
+        elif isinstance(tip, BlogTip):
+            self.remove_blog_tip(tip)
+        elif isinstance(tip, VideoTip):
+            self.remove_video_tip(tip)
+
     def remove_book_tip(self, book_tip):
         return self._repository.remove_row(book_tip)
 

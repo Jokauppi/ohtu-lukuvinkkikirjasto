@@ -51,12 +51,7 @@ class ItemBrowser():
 
     def delete_item(self):
         item = self.items[self.spot-1]
-        if isinstance(item, BookTip):
-            self.service.remove_book_tip(self.items[self.spot-1])
-        elif isinstance(item, BlogTip):
-            self.service.remove_blog_tip(self.items[self.spot-1])
-        elif isinstance(item, VideoTip):
-            self.service.remove_video_tip(self.items[self.spot-1])
+        self.service.remove_tip(item)
         self.refresh_items()
 
     def refresh_items(self):
