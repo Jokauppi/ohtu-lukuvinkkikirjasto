@@ -74,7 +74,8 @@ class BookTip:
         return  f"{'Title:':{pad}} {self.name}\n" \
                 f"{'Author:':{pad}} {self.author}\n" \
                 f"{'ISBN:':{pad}} {self.isbn}\n" \
-                f"{'Year:':{pad}} {self.publication_year}\n"
+                f"{'Year:':{pad}} {self.publication_year}\n"\
+                f"{'Read:' :{pad}} {self.read}\n"
 
     def __eq__(self, other: object) -> bool:
 

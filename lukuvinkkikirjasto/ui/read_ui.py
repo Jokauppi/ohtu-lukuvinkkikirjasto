@@ -35,12 +35,12 @@ class ReadUI():
             self.mark_book_as_read(books)
 
     def mark_book_as_read(self, books):
-        for book in books:
-            self.textio.output(f"ID number: {book.id_number}")
-            self.textio.output(f"Read: {book.read}")
+        for index, book in enumerate(books):
+            self.textio.output(f"ID number: {index}")
             self.textio.output(book)
-        id_number = self.textio.input("Syötä luetuksi merkattavan vinkin id numero\n")
-        self.service.mark_book_tip_as_read(id_number)
+        id_number = int(self.textio.input("Syötä luetuksi merkattavan vinkin id numero\n"))
+        selected_book = books[id_number]
+        self.service.mark_as_read(selected_book)
 
     def print_blogs(self):
         blogs = self.service.get_read_blog_tips(False)
@@ -50,12 +50,13 @@ class ReadUI():
             self.mark_blog_as_read(blogs)
 
     def mark_blog_as_read(self, blogs):
-        for blog in blogs:
-            self.textio.output(f"ID number: {blog.id_number}")
-            self.textio.output(f"Read: {blog.read}")
+        for index, blog in enumerate(blogs):
+            self.textio.output(f"ID number: {index}")
             self.textio.output(blog)
-        id_number = self.textio.input("Syötä luetuksi merkattavan vinkin id numero\n")
-        self.service.mark_blog_tip_as_read(id_number)
+        id_number = int(self.textio.input("Syötä luetuksi merkattavan vinkin id numero\n"))
+        selected_blog = blogs[id_number]
+        self.service.mark_as_read(selected_blog)
+
 
     def print_videos(self):
         videos = self.service.get_read_video_tips(False)
@@ -65,9 +66,9 @@ class ReadUI():
             self.mark_video_as_read(videos)
 
     def mark_video_as_read(self, videos):
-        for video in videos:
-            self.textio.output(f"ID number: {video.id_number}")
-            self.textio.output(f"Read: {video.read}")
+        for index, video in enumerate(videos):
+            self.textio.output(f"ID number: {index}")
             self.textio.output(video)
-        id_number = self.textio.input("Syötä luetuksi merkattavan vinkin id numero\n")
-        self.service.mark_video_tip_as_read(id_number)
+        id_number = int(self.textio.input("Syötä luetuksi merkattavan vinkin id numero\n"))
+        selected_video = videos[id_number]
+        self.service.mark_as_read(selected_video)

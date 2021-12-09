@@ -36,7 +36,8 @@ class VideoTip:
         pad = 7
 
         return  f"{'Title:':{pad}} {self.title}\n" \
-                f"{'Url:':{pad}} {self.url}\n"
+                f"{'Url:':{pad}} {self.url}\n"\
+                f"{'Read:' :{pad}} {self.read}\n"
 
     def __eq__(self, other: object) -> bool:
 

@@ -35,6 +35,16 @@ class Service:
     def remove_video_tip(self, video_tip):
         return self._videorepository.remove_row(video_tip)
 
+# Modify
+
+    def modify(self, tip, modified_tip):
+        if isinstance(tip, BookTip):
+            return self._repository.modify(tip, modified_tip)
+        elif isinstance(tip, VideoTip):
+            return self._videorepository.modify(tip, modified_tip)
+        elif isinstance(tip, BlogTip):
+            return self._blogrepository.modify(tip, modified_tip)
+
 # Get All
 
     def get_all_book_tips(self):
@@ -59,14 +69,22 @@ class Service:
 
 # Mark as read
 
-    def mark_book_tip_as_read(self, id_number):
-        return self._repository.mark_as_read(id_number)
+    def mark_as_read(self, tip):
+        if isinstance(tip, BookTip):
+            return self.mark_book_tip_as_read(tip)
+        elif isinstance(tip, VideoTip):
+            return self.mark_video_tip_as_read(tip)
+        elif isinstance(tip, BlogTip):
+            return self.mark_blog_tip_as_read(tip)
 
-    def mark_blog_tip_as_read(self, id_number):
-        return self._blogrepository.mark_as_read(id_number)
+    def mark_book_tip_as_read(self, book_tip):
+        return self._repository.mark_as_read(book_tip)
 
-    def mark_video_tip_as_read(self, id_number):
-        return self._videorepository.mark_as_read(id_number)
+    def mark_blog_tip_as_read(self, blog_tip):
+        return self._blogrepository.mark_as_read(blog_tip)
+
+    def mark_video_tip_as_read(self, video_tip):
+        return self._videorepository.mark_as_read(video_tip)
 
 
 # Search
