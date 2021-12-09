@@ -3,7 +3,7 @@ from ui.item_browser import ItemBrowser
 from ui.print_ui import PrintUI
 from ui.add_ui import AddUI
 from ui.read_ui import ReadUI
-from ui.text_menu import show_menu
+from ui.text_menu import TextMenu
 
 
 class App():
@@ -11,6 +11,7 @@ class App():
         self.textio = textio
         self.service = service
 
+        self.menu = TextMenu(self.textio)
         self.browser = ItemBrowser(textio, service)
         self.print_ui = PrintUI(textio, service)
         self.add_ui = AddUI(textio, service)
@@ -53,7 +54,7 @@ class App():
 
         while True:
             try:
-                show_menu(commands, self.textio, "Lukuvinkkikirjasto", cancel=False)()
+                self.menu.show(commands, "Lukuvinkkikirjasto", cancel=False)()
             except LoopBreak:
                 break
 

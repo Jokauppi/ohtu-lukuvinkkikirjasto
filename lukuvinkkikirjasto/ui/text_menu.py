@@ -1,45 +1,50 @@
-def show_menu(commands, text_io, title=None, cancel=True):
 
-    options = commands.copy()
+class TextMenu:
+    def __init__(self, text_io):
+        self.text_io = text_io
 
-    if cancel:
-        options.append({
-            "action": no_op,
-            "message": "Peruuta",
-            "shortcut": "q"
-        })
+    def show(self, commands, title=None, cancel=True):
 
-    actions = {}
-    for option in options:
-        actions[option["shortcut"]] = option["action"]
+        options = commands.copy()
 
-    options_strings = [get_option(c) for c in options]
-    max_option_length = len(max(options_strings, key=len))
+        if cancel:
+            options.append({
+                "action": self.no_op,
+                "message": "Peruuta",
+                "shortcut": "q"
+            })
 
-    if title:
-        text_io.output(title)
+        actions = {}
+        for option in options:
+            actions[option["shortcut"]] = option["action"]
 
-    text_io.output(max_option_length * "=")
+        options_strings = [self.get_option(c) for c in options]
+        max_option_length = len(max(options_strings, key=len))
 
-    for opt_str in options_strings:
-        text_io.output(opt_str)
+        if title:
+            self.text_io.output(title)
 
-    text_io.output(max_option_length * "=")
+        self.text_io.output(max_option_length * "=")
 
-    while True:
-        chosen = text_io.input("> ")
-        try:
-            action = actions[chosen]
-            text_io.output("")
-            return action
-        except:
-            text_io.output("Virheellinen komento")
+        for opt_str in options_strings:
+            self.text_io.output(opt_str)
 
-def no_op():
-    pass
+        self.text_io.output(max_option_length * "=")
 
-def get_option(command):
+        while True:
+            chosen = self.text_io.input("> ")
+            try:
+                action = actions[chosen]
+                self.text_io.output("")
+                return action
+            except:
+                self.text_io.output("Virheellinen komento")
 
-    if command["shortcut"]:
-        return f"[{command['shortcut']}] {command['message']}"
-    return command["message"]
+    def no_op(self):
+        pass
+
+    def get_option(self, command):
+
+        if command["shortcut"]:
+            return f"[{command['shortcut']}] {command['message']}"
+        return command["message"]

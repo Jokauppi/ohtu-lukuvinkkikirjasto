@@ -1,4 +1,7 @@
 import sys
+
+import config # pylint: disable=unused-import
+
 from ui.app import App
 from ui.text_io import TextIO
 from service import Service

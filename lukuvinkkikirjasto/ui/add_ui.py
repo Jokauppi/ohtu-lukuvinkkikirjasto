@@ -1,9 +1,10 @@
-from ui.text_menu import show_menu
+from ui.text_menu import TextMenu
 
 class AddUI():
     def __init__(self, textio, service):
         self.textio = textio
         self.service = service
+        self.menu = TextMenu(self.textio)
 
         self.commands = [
             {
@@ -24,7 +25,7 @@ class AddUI():
         ]
 
     def add_tip(self):
-        show_menu(self.commands, self.textio, "Valitse lisättävän vinkin tyyppi")()
+        self.menu.show(self.commands, "Valitse lisättävän vinkin tyyppi")()
 
     def add_book(self):
         name = self.textio.input("Syötä kirjan nimi:\n")

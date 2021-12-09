@@ -1,4 +1,7 @@
 import os
+
+import config # pylint: disable=unused-import
+
 from entities.book_tip import BookTip
 from entities.blog_tip import BlogTip
 from entities.video_tip import VideoTip

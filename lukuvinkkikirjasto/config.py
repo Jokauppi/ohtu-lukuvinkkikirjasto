@@ -8,5 +8,3 @@ try:
     load_dotenv(dotenv_path=os.path.join(dirname, '.env'))
 except FileNotFoundError:
     pass
-
-DATABASE = os.getenv("DATABASE") or "database.db"

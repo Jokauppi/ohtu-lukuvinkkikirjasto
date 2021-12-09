@@ -1,9 +1,10 @@
-from ui.text_menu import show_menu
+from ui.text_menu import TextMenu
 
 class ReadUI():
     def __init__(self, textio, service):
         self.textio = textio
         self.service = service
+        self.menu = TextMenu(self.textio)
 
         self.commands = [
             {
@@ -24,7 +25,7 @@ class ReadUI():
         ]
 
     def print_tips(self):
-        show_menu(self.commands, self.textio, "Valitse kategoria")()
+        self.menu.show(self.commands, "Valitse kategoria")()
 
     def print_books(self):
         books = self.service.get_read_book_tips(False)

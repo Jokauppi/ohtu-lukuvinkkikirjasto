@@ -1,29 +1,32 @@
 from simple_term_menu import TerminalMenu
 
-def show_menu(commands, title=None, cancel=True):
+class ConsoleMenu:
+    def __init__(self):
+        pass
+    def show(self, commands, title=None, cancel=True):
 
-    options = commands.copy()
+        options = commands.copy()
 
-    if cancel:
-        options.append({
-            "action": no_op,
-            "message": "Peruuta",
-            "shortcut": None
-        })
+        if cancel:
+            options.append({
+                "action": self.no_op,
+                "message": "Peruuta",
+                "shortcut": None
+            })
 
-    options_strings = [get_option(c) for c in options]
+        options_strings = [self.get_option(c) for c in options]
 
-    terminal_menu = TerminalMenu(options_strings, title=title)
+        terminal_menu = TerminalMenu(options_strings, title=title)
 
-    menu_entry_index = terminal_menu.show()
+        menu_entry_index = terminal_menu.show()
 
-    return options[menu_entry_index]["action"]
+        return options[menu_entry_index]["action"]
 
-def no_op():
-    pass
+    def no_op(self):
+        pass
 
-def get_option(command):
+    def get_option(self, command):
 
-    if command["shortcut"]:
-        return f"[{command['shortcut']}] {command['message']}"
-    return command["message"]
+        if command["shortcut"]:
+            return f"[{command['shortcut']}] {command['message']}"
+        return command["message"]
