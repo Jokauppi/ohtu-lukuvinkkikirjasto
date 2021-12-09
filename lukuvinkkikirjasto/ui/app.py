@@ -3,6 +3,7 @@ from ui.item_browser import ItemBrowser
 from ui.print_ui import PrintUI
 from ui.add_ui import AddUI
 from ui.read_ui import ReadUI
+from entities.filter import Filter
 
 import os
 if os.name == "nt" or os.getenv("TEXTMODE", 'False').lower() in ('true', '1', 't'):
@@ -20,6 +21,7 @@ class App():
         self.print_ui = PrintUI(textio, self.menu, service)
         self.add_ui = AddUI(textio, self.menu, service)
         self.read_ui = ReadUI(textio, self.menu, service)
+        self.filter = Filter()
 
     def run(self):
 
@@ -33,6 +35,12 @@ class App():
                 "action": self.print_ui.print_tips,
                 "message": "Tulosta vinkkejä",
                 "shortcut": "p"
+            },
+            
+            {
+                "action": self.set_filters,
+                "message": "Aseta tai muokkaa suodattimia",
+                "shortcut": "f"
             },
             {
                 "action": self.read_ui.print_tips,
@@ -76,6 +84,20 @@ class App():
     def browse_books(self):
         self.browser.run()
 
+    def set_filters(self):
+        choice = "-1"
+        while choice:
+            self.textio.output(self.filter)
+            choice = self.textio.input("Valitse muokattava filtteri (1, 2,... TYHJÄ = lopeta,  0 = Tyhjennä kaikki): ").lower()
+            if not choice:
+                self.textio.output("")
+                return
+            if choice == "0":
+                self.filter.clear_filters()
+            else:
+                value = self.textio.input("Suodattimen " +choice+ " uusi arvo: ").lower()
+                self.filter.set_choice(choice, value)
+
     def search_start(self):
         command_dict = {"k": self.search_books,
                         "v": self.search_videos,
@@ -94,155 +116,28 @@ class App():
                 action = self.search_all_tips
 
             if action is None:
-                print("Virheellinen komento\n")
+                self.textio.output("Virheellinen komento\n")
             else:
                 results = action()
-                print("-------------\n")
-                print("Haku: " + str(len(results)) + " tulosta\n")
+                self.textio.output("-------------\n")
+                self.textio.output("Haku: " + str(len(results)) + " tulosta\n")
                 for result in results:
                     self.textio.output(result)
 
     def search_all_tips(self):
-        fields = []
-        values = []
-        sort_by_values = []
-        sort_by_orders = []
-        comparators = []
-        name = self.textio.input("Teoksen nimi (tai tyhjä): ")
-        isread = self.textio.input("Merkitty luetuksi (K = Kyllä, E = Ei, Tyhjä = Ei väliä): ")
-        self.add_field_and_value(fields, values, comparators, 'name', name, ' LIKE ')
-        self.add_sort_bys(sort_by_values, sort_by_orders, 'name', 'ASC')
-
-        if isread.lower() == 'k':
-            self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
-        if isread.lower() == 'e':
-            self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
-
-        tips = self.service.search_book_tips \
-            (fields, values, comparators, sort_by_values, sort_by_orders)
-        tips += self.service.search_blog_tips \
-            (fields, values, comparators, sort_by_values, sort_by_orders)
-
-        if fields and fields[0] == 'name':
-            fields[0]='title'
-        if sort_by_values and sort_by_values[0] == 'name':
-            sort_by_values[0]='title'
-
-        for i in enumerate(fields):
-            print(fields[i])
-            print(sort_by_values[i])
-
-        tips += self.service.search_video_tips \
-            (fields, values, comparators, sort_by_values, sort_by_orders)
-
+        tips = self.search_books()
+        tips += self.search_blogs()
+        tips += self.search_videos()
         return tips
-
+    
     def search_books(self):
-        fields = []
-        values = []
-        sort_by_values = []
-        sort_by_orders = []
-        comparators = []
-
-        name = self.textio.input("Teoksen nimi (tai tyhjä): ")
-        author = self.textio.input("Tekijän nimi (tai tyhjä): ")
-        isbn = self.textio.input("ISBN (tai tyhjä): ")
-        publication_year = self.textio.input("Julkaisuvuosi (tai tyhjä): ")
-        isread = self.textio.input("Merkitty luetuksi (K = Kyllä, E = Ei, Tyhjä = Ei väliä): ")
-
-        self.add_field_and_value(fields, values, comparators, 'name', name, ' LIKE ')
-        self.add_sort_bys(sort_by_values, sort_by_orders, 'name', 'ASC')
-        self.add_field_and_value(fields, values, comparators, 'author', author, ' LIKE ')
-        self.add_sort_bys(sort_by_values, sort_by_orders, 'author', 'ASC')
-        self.add_field_and_value(fields,
-                                values,
-                                comparators,
-                                'publication_year',
-                                publication_year,
-                                '=')
-        self.add_sort_bys(sort_by_values, sort_by_orders, 'publication_year', 'DESC')
-        self.add_field_and_value(fields, values, comparators, 'isbn', isbn, '=')
-
-        if isread.lower() == 'k':
-            self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
-        if isread.lower() == 'e':
-            self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
-
-        tips = self.service.search_book_tips(fields,
-                                            values,
-                                            comparators,
-                                            sort_by_values,
-                                            sort_by_orders)
-
-        return tips
+        f, v, c, sv, so = self.filter.book_filters()
+        return self.service.search_book_tips(f, v, c, sv, so)
 
     def search_videos(self):
-        fields = []
-        values = []
-        sort_by_values = []
-        sort_by_orders = []
-        comparators = []
-
-        title = self.textio.input("Teoksen nimi (tai tyhjä): ")
-        url = self.textio.input("url (tai tyhjä): ")
-        isread = self.textio.input("Merkitty luetuksi (K = Kyllä, E = Ei, Tyhjä = Ei väliä): ")
-
-        self.add_field_and_value(fields, values, comparators, 'title', title, ' LIKE ')
-        self.add_sort_bys(sort_by_values, sort_by_orders, 'title', 'ASC')
-        self.add_field_and_value(fields, values, comparators, 'url', url, ' LIKE ')
-        self.add_sort_bys(sort_by_values, sort_by_orders, 'url', 'ASC')
-        if isread.lower() == 'k':
-            self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
-        if isread.lower() == 'e':
-            self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
-
-        tips = self.service.search_video_tips(fields,
-                                            values,
-                                            comparators,
-                                            sort_by_values,
-                                            sort_by_orders)
-
-        return tips
+        f, v, c, sv, so = self.filter.video_filters()
+        return self.service.search_video_tips(f, v, c, sv, so)
 
     def search_blogs(self):
-        fields = []
-        values = []
-        sort_by_values = []
-        sort_by_orders = []
-        comparators = []
-
-        name = self.textio.input("Teoksen nimi (tai tyhjä): ")
-        author = self.textio.input("Tekijän nimi (tai tyhjä): ")
-        url = self.textio.input("url (tai tyhjä): ")
-        isread = self.textio.input("Merkitty luetuksi (K = Kyllä, E = Ei, Tyhjä = Ei väliä): ")
-
-        self.add_field_and_value(fields, values, comparators, 'name', name, ' LIKE ')
-        self.add_sort_bys(sort_by_values, sort_by_orders, 'name', 'ASC')
-        self.add_field_and_value(fields, values, comparators, 'author', author, ' LIKE ')
-        self.add_sort_bys(sort_by_values, sort_by_orders, 'author', 'ASC')
-        self.add_field_and_value(fields, values, comparators, 'url', url, ' LIKE ')
-        self.add_sort_bys(sort_by_values, sort_by_orders, 'url', 'ASC')
-
-        if isread.lower() == 'k':
-            self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
-        if isread.lower() == 'e':
-            self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
-
-        tips = self.service.search_blog_tips(fields,
-                                            values,
-                                            comparators,
-                                            sort_by_values,
-                                            sort_by_orders)
-
-        return tips
-
-    def add_field_and_value(self, fields, values, comparators, field, value, comparator='='):
-        if value:
-            fields.append(field)
-            values.append(value)
-            comparators.append(comparator)
-
-    def add_sort_bys(self, sort_by_values, sort_by_orders, value, order='ASC'):
-        if value:
-            sort_by_values.append(value)
-            sort_by_orders.append(order)
+        f, v, c, sv, so = self.filter.blog_filters()
+        return self.service.search_blog_tips(f, v, c, sv, so)
