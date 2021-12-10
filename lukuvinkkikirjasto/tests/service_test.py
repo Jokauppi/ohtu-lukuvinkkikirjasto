@@ -20,6 +20,7 @@ class MockBookTipRepository:
     def add(self, booktip):
         new = BookTip(booktip.name, booktip.author,
                         booktip.isbn, booktip.publication_year,
+                        booktip.comment,
                         self.index, False)
         self.booktips.append(new)
         self.index += 1
@@ -118,9 +119,9 @@ class TestService(unittest.TestCase):
     def setUp(self):
         self.service = Service(MockBookTipRepository(), MockBlogTipRepository(), MockVideoTipRepository())
 
-        self.booktip_a = BookTip('Book1', 'Firstname1, lastname1', '1234', '2001', 1, False)
-        self.booktip_a_read = BookTip('Book1', 'Firstname1, lastname1', '1234', '2001', 1, True)
-        self.booktip_b = BookTip('Book2', 'Firstname2, lastname2', '1234', '2002', 2, False)
+        self.booktip_a = BookTip('Book1', 'Firstname1, lastname1', '1234', '2001', '', 1, False)
+        self.booktip_a_read = BookTip('Book1', 'Firstname1, lastname1', '1234', '2001', '', 1, True)
+        self.booktip_b = BookTip('Book2', 'Firstname2, lastname2', '1234', '2002', '', 2, False)
 
         self.blogtip_a = BlogTip('Blog1', 'Firstname1, lastname1', 'www.1.com', '', 1, False)
         self.blogtip_a_read = BlogTip('Blog1', 'Firstname1, lastname1', 'www.1.com', '', 1, True)
@@ -134,7 +135,7 @@ class TestService(unittest.TestCase):
 
     def test_add_book_tip(self):
 
-        self.service.create_book_tip(self.booktip_a.name, self.booktip_a.author, self.booktip_a.isbn, self.booktip_a.publication_year)
+        self.service.create_book_tip(self.booktip_a.name, self.booktip_a.author, self.booktip_a.isbn, self.booktip_a.publication_year, self.booktip_a.comment)
         booktips = self.service.get_all_book_tips()
 
         self.assertEqual(len(booktips), 1)
@@ -143,8 +144,8 @@ class TestService(unittest.TestCase):
 
     def test_mark_book_tip_as_read(self):
 
-        self.service.create_book_tip(self.booktip_a.name, self.booktip_a.author, self.booktip_a.isbn, self.booktip_a.publication_year)
-        self.service.create_book_tip(self.booktip_b.name, self.booktip_b.author, self.booktip_b.isbn, self.booktip_b.publication_year)
+        self.service.create_book_tip(self.booktip_a.name, self.booktip_a.author, self.booktip_a.isbn, self.booktip_a.publication_year, self.booktip_a.comment)
+        self.service.create_book_tip(self.booktip_b.name, self.booktip_b.author, self.booktip_b.isbn, self.booktip_b.publication_year, self.booktip_b.comment)
 
         self.service.mark_as_read(self.booktip_a)
         booktips = self.service.get_read_book_tips(True)
@@ -154,8 +155,8 @@ class TestService(unittest.TestCase):
     
     def test_get_all_book_tips(self):
 
-        self.service.create_book_tip(self.booktip_a.name, self.booktip_a.author, self.booktip_a.isbn, self.booktip_a.publication_year)
-        self.service.create_book_tip(self.booktip_b.name, self.booktip_b.author, self.booktip_b.isbn, self.booktip_b.publication_year)
+        self.service.create_book_tip(self.booktip_a.name, self.booktip_a.author, self.booktip_a.isbn, self.booktip_a.publication_year, self.booktip_a.comment)
+        self.service.create_book_tip(self.booktip_b.name, self.booktip_b.author, self.booktip_b.isbn, self.booktip_b.publication_year, self.booktip_b.comment)
 
         booktips = self.service.get_all_book_tips()
 
@@ -164,7 +165,7 @@ class TestService(unittest.TestCase):
         self.assertEqual(booktips[1].__str__(), self.booktip_b.__str__())
 
     def test_remove_book_tip(self):
-        self.service.create_book_tip(self.booktip_a.name, self.booktip_a.author, self.booktip_a.isbn, self.booktip_a.publication_year)
+        self.service.create_book_tip(self.booktip_a.name, self.booktip_a.author, self.booktip_a.isbn, self.booktip_a.publication_year, self.booktip_a.comment)
         self.service.remove_book_tip(self.booktip_a)
 
         booktips = self.service.get_all_book_tips()
@@ -252,7 +253,7 @@ class TestService(unittest.TestCase):
 
 #Search
     def test_search_book_tips(self):
-        self.service.create_book_tip(self.booktip_a.name, self.booktip_a.author, self.booktip_a.isbn, self.booktip_a.publication_year)
+        self.service.create_book_tip(self.booktip_a.name, self.booktip_a.author, self.booktip_a.isbn, self.booktip_a.publication_year, self.booktip_a.comment)
         booktips = self.service.search_book_tips(['name', 'author'], ['Book1', 'Firstname1, lastname1'], [], ['name', 'author'], ['ASC','DESC'])
 
         self.assertEqual(len(booktips), 1)

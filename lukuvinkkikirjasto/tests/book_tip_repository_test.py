@@ -12,10 +12,10 @@ class TestBookTipRepository(unittest.TestCase):
         self.connection.row_factory = sqlite3.Row
         self.repository = BookTipRepository(self.connection)
 
-        self.tip_a = BookTip('Book1', 'Firstname1, lastname1', '123-456', '2001', 1, False) 
-        self.tip_b = BookTip('Book2', 'Firstname2, lastname2', '132-456', '2002', 2, False)
-        self.tip_c = BookTip('Book3', 'Firstname3, lastname3', '123-987', '2003', 3, True)
-        self.tip_d = BookTip('Book4', 'Firstname4, lastname4', '123-983', '2004', 4, True)
+        self.tip_a = BookTip('Book1', 'Firstname1, lastname1', '123-456', '2001','Kommentti', 1, False) 
+        self.tip_b = BookTip('Book2', 'Firstname2, lastname2', '132-456', '2002','Kommentti', 2, False)
+        self.tip_c = BookTip('Book3', 'Firstname3, lastname3', '123-987', '2003','Kommentti', 3, True)
+        self.tip_d = BookTip('Book4', 'Firstname4, lastname4', '123-983', '2004','Kommentti', 4, True)
 
     def test_add(self):
         self.repository.add(self.tip_a)
@@ -81,7 +81,7 @@ class TestBookTipRepository(unittest.TestCase):
         tips = self.repository.get_read(True)
 
         self.assertEqual(len(tips), 1)
-        self.assertEqual(tips[0].__str__(), "Title:  Book1\nAuthor: Firstname1, lastname1\nISBN:   123-456\nYear:   2001\nRead:   True\n")
+        self.assertEqual(tips[0].__str__(), "Title:  Book1\nAuthor: Firstname1, lastname1\nISBN:   123-456\nYear:   2001\nRead:   True\nComment: Kommentti\n")
     
     def test_mark_as_read_returns_error(self):
         self.repository.add(self.tip_a)
@@ -115,7 +115,7 @@ class TestBookTipRepository(unittest.TestCase):
     def test_search_book_tips(self):
         self.repository.add(self.tip_a)
         self.repository.add(self.tip_b)
-        tip_c = BookTip('Book1', 'Firstname1, lastname1', '2222222', '2002', 1, False)
+        tip_c = BookTip('Book1', 'Firstname1, lastname1', '2222222', '2002', '', 1, False)
         self.repository.add(tip_c)
         tips = self.repository.search_tips([], [], [], [], [])
         self.assertEqual(len(tips), 3)
