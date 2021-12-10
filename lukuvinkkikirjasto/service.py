@@ -109,3 +109,37 @@ class Service:
                                             comparators,
                                             sort_by_values,
                                             sort_by_orders)
+
+# Filter
+
+    def filter_tips(self, filter):
+        tips = []
+
+        if not filter.type:
+            tips = self.search_all_tips()
+        if "book" in filter.type:
+            tips += self.search_books()
+        if "blog" in filter.type:
+            tips += self.search_blog_tips()
+        if "video" in filter.type:
+            tips += self.search_video_tips()
+        
+        return tips
+    
+    def search_all_tips(self):
+        tips = self.search_books()
+        tips += self.search_blogs()
+        tips += self.search_videos()
+        return tips
+    
+    def search_books(self):
+        f, v, c, sv, so = self.filter.book_filters()
+        return self.service.search_book_tips(f, v, c, sv, so)
+
+    def search_videos(self):
+        f, v, c, sv, so = self.filter.video_filters()
+        return self.service.search_video_tips(f, v, c, sv, so)
+
+    def search_blogs(self):
+        f, v, c, sv, so = self.filter.blog_filters()
+        return self.service.search_blog_tips(f, v, c, sv, so)
