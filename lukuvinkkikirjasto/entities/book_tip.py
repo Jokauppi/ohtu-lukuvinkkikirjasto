@@ -17,6 +17,7 @@ class BookTip:
     def name(self):
         return self.__name
 
+
     @name.setter
     def name(self, value):
         if not isinstance(value, str):

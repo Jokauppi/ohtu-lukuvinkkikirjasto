@@ -87,7 +87,7 @@ class MockVideoTipRepository:
         return self.videotips
 
     def add(self, videotip):
-        new = VideoTip(videotip.title, videotip.url,
+        new = VideoTip(videotip.title, videotip.url, videotip.comment,
                         self.index, False)
         self.videotips.append(new)
         self.index += 1
@@ -125,9 +125,9 @@ class TestService(unittest.TestCase):
         self.blogtip_a_read = BlogTip('Blog1', 'Firstname1, lastname1', 'www.1.com', 1, True)
         self.blogtip_b = BlogTip('Blog2', 'Firstname2, lastname2', 'www.2.com', 2, False)
     
-        self.videotip_a = VideoTip('Video1', 'www.video.com/1', 1, False)
-        self.videotip_a_read = VideoTip('Video1', 'www.video.com/1', 1, True)
-        self.videotip_b = VideoTip('VIdeo2', 'www.video.com/2', 2, False)
+        self.videotip_a = VideoTip('Video1', 'www.video.com/1', '', 1, False)
+        self.videotip_a_read = VideoTip('Video1', 'www.video.com/1', '', 1, True)
+        self.videotip_b = VideoTip('VIdeo2', 'www.video.com/2', '', 2, False)
 
 # Book Tips
 
@@ -173,7 +173,7 @@ class TestService(unittest.TestCase):
 
     def test_add_video_tip(self):
 
-        self.service.create_video_tip(self.videotip_a.title, self.videotip_a.url)
+        self.service.create_video_tip(self.videotip_a.title, self.videotip_a.url, self.videotip_a.comment)
         videotips = self.service.get_all_video_tips()
 
         self.assertEqual(len(videotips), 1)
@@ -182,8 +182,8 @@ class TestService(unittest.TestCase):
 
     def test_mark_video_tip_as_read(self):
 
-        self.service.create_video_tip(self.videotip_a.title, self.videotip_a.url)
-        self.service.create_video_tip(self.videotip_b.title, self.videotip_b.url)
+        self.service.create_video_tip(self.videotip_a.title, self.videotip_a.url, self.videotip_a.comment)
+        self.service.create_video_tip(self.videotip_b.title, self.videotip_b.url, self.videotip_b.comment)
 
         self.service.mark_as_read(self.videotip_a)
         videotips = self.service.get_read_video_tips(True)
@@ -193,8 +193,8 @@ class TestService(unittest.TestCase):
     
     def test_get_all_video_tips(self):
 
-        self.service.create_video_tip(self.videotip_a.title, self.videotip_a.url)
-        self.service.create_video_tip(self.videotip_b.title, self.videotip_b.url)
+        self.service.create_video_tip(self.videotip_a.title, self.videotip_a.url, self.videotip_a.comment)
+        self.service.create_video_tip(self.videotip_b.title, self.videotip_b.url, self.videotip_b.comment)
 
         videotips = self.service.get_all_video_tips()
 
@@ -203,7 +203,7 @@ class TestService(unittest.TestCase):
         self.assertEqual(videotips[1].__str__(), self.videotip_b.__str__())
 
     def test_remove_video_tips(self):
-        self.service.create_video_tip(self.videotip_a.title, self.videotip_a.url)
+        self.service.create_video_tip(self.videotip_a.title, self.videotip_a.url, self.videotip_a.comment)
         self.service.remove_video_tip(self.videotip_a)
 
         videotips = self.service.get_all_video_tips()
@@ -265,7 +265,7 @@ class TestService(unittest.TestCase):
         self.assertEqual(blogtips[0].__str__(), self.blogtip_a.__str__())
 
     def test_search_video_tips(self):
-        self.service.create_video_tip(self.videotip_a.title, self.videotip_a.url)
+        self.service.create_video_tip(self.videotip_a.title, self.videotip_a.url, self.videotip_a.comment)
         videotips = self.service.search_video_tips(['title', 'url'], ['Video1', 'www.video.com/1'], [], ['title', 'url'], ['ASC','DESC'])
 
         self.assertEqual(len(videotips), 1)

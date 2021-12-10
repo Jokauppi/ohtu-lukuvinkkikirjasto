@@ -20,8 +20,8 @@ class Service:
         blog_tip = BlogTip(name, author, url)
         return self._blogrepository.add(blog_tip)
 
-    def create_video_tip(self, title, url):
-        video_tip = VideoTip(title, url)
+    def create_video_tip(self, title, url, comment):
+        video_tip = VideoTip(title, url, comment)
         return self._videorepository.add(video_tip)
 
 # Delete
