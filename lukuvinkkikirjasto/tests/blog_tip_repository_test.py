@@ -12,10 +12,10 @@ class TestBlogTipRepository(unittest.TestCase):
         self.connection.row_factory = sqlite3.Row
         self.repository = BlogTipRepository(self.connection)
 
-        self.tip_a = BlogTip('Blog1', 'Blogaaja1', 'blog.example.com/1', 1, False) 
-        self.tip_b = BlogTip('Blog2', 'Blogaaja2', 'blog.example.com/2', 2, False)
-        self.tip_c = BlogTip('Blog3', 'Blogaaja3', 'blog.example.com/3', 3, True) 
-        self.tip_d = BlogTip('Blog4', 'Blogaaja4', 'blog.example.com/4', 4, True)
+        self.tip_a = BlogTip('Blog1', 'Blogaaja1', 'blog.example.com/1', 'Kommentti', 1, False) 
+        self.tip_b = BlogTip('Blog2', 'Blogaaja2', 'blog.example.com/2', 'Kommentti', 2, False)
+        self.tip_c = BlogTip('Blog3', 'Blogaaja3', 'blog.example.com/3', 'Kommentti', 3, True) 
+        self.tip_d = BlogTip('Blog4', 'Blogaaja4', 'blog.example.com/4', 'Kommentti', 4, True)
 
     def test_add(self):
         self.repository.add(self.tip_a)
@@ -81,7 +81,7 @@ class TestBlogTipRepository(unittest.TestCase):
         tips = self.repository.get_read(True)
 
         self.assertEqual(len(tips), 1)
-        self.assertEqual(tips[0].__str__(), "Title:  Blog1\nAuthor: Blogaaja1\nurl:    blog.example.com/1\nRead:   True\n")
+        self.assertEqual(tips[0].__str__(), "Title:  Blog1\nAuthor: Blogaaja1\nurl:    blog.example.com/1\nRead:   True\nComment: Kommentti\n")
 
     def test_mark_as_read_returns_error(self):
         self.repository.add(self.tip_a)

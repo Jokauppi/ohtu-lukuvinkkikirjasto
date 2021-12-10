@@ -16,8 +16,8 @@ class Service:
         book_tip = BookTip(name, author, isbn, publication_year)
         return self._repository.add(book_tip)
 
-    def create_blog_tip(self, name, author, url):
-        blog_tip = BlogTip(name, author, url)
+    def create_blog_tip(self, name, author, url, comment):
+        blog_tip = BlogTip(name, author, url, comment)
         return self._blogrepository.add(blog_tip)
 
     def create_video_tip(self, title, url, comment):

@@ -2,16 +2,29 @@
 class BlogTip:
     # pylint: disable-duplicate-code
 
-    def __init__(self, name: str, author: str, url: str, id_number: int = None, read: bool = False):
+    def __init__(self, name: str, author: str, url: str, comment: str = '', id_number: int = None, read: bool = False):
         self.name = name
         self.author = author
         self.url = url
         self.id_number = id_number
         self.read = read
+        self.comment = comment
 
     @property
     def name(self):
         return self.__name
+
+    @property
+    def comment(self):
+        return self.__comment
+
+    @comment.setter
+    def comment(self, value):
+        if not isinstance(value, str):
+            raise TypeError("Kommentin pitää olla merkkijono")
+        self.__comment = value
+
+
 
     @name.setter
     def name(self, value):
@@ -51,7 +64,8 @@ class BlogTip:
         return f"{'Title:':{pad}} {self.name}\n" \
                 f"{'Author:':{pad}} {self.author}\n" \
                 f"{'url:':{pad}} {self.url}\n"\
-                f"{'Read:' :{pad}} {self.read}\n"
+                f"{'Read:' :{pad}} {self.read}\n"\
+                f"{'Comment:' :{pad}} {self.comment}\n"
 
     def __eq__(self, other: object) -> bool:
 

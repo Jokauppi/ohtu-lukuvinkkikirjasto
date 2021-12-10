@@ -51,6 +51,7 @@ class MockBlogTipRepository:
     def add(self, blogtip):
         new = BlogTip(blogtip.name, blogtip.author,
                         blogtip.url,
+                        blogtip.comment,
                         self.index, False)
         self.blogtips.append(new)
         self.index += 1
@@ -121,9 +122,9 @@ class TestService(unittest.TestCase):
         self.booktip_a_read = BookTip('Book1', 'Firstname1, lastname1', '1234', '2001', 1, True)
         self.booktip_b = BookTip('Book2', 'Firstname2, lastname2', '1234', '2002', 2, False)
 
-        self.blogtip_a = BlogTip('Blog1', 'Firstname1, lastname1', 'www.1.com', 1, False)
-        self.blogtip_a_read = BlogTip('Blog1', 'Firstname1, lastname1', 'www.1.com', 1, True)
-        self.blogtip_b = BlogTip('Blog2', 'Firstname2, lastname2', 'www.2.com', 2, False)
+        self.blogtip_a = BlogTip('Blog1', 'Firstname1, lastname1', 'www.1.com', '', 1, False)
+        self.blogtip_a_read = BlogTip('Blog1', 'Firstname1, lastname1', 'www.1.com', '', 1, True)
+        self.blogtip_b = BlogTip('Blog2', 'Firstname2, lastname2', 'www.2.com', '', 2, False)
     
         self.videotip_a = VideoTip('Video1', 'www.video.com/1', '', 1, False)
         self.videotip_a_read = VideoTip('Video1', 'www.video.com/1', '', 1, True)
@@ -213,7 +214,7 @@ class TestService(unittest.TestCase):
 
     def test_add_blog_tip(self):
 
-        self.service.create_blog_tip(self.blogtip_a.name, self.blogtip_a.author, self.blogtip_a.url)
+        self.service.create_blog_tip(self.blogtip_a.name, self.blogtip_a.author, self.blogtip_a.url, self.blogtip_a.comment)
         blogtips = self.service.get_all_blog_tips()
 
         self.assertEqual(len(blogtips), 1)
@@ -221,8 +222,8 @@ class TestService(unittest.TestCase):
     
     def test_mark_blog_tip_as_read(self):
 
-        self.service.create_blog_tip(self.blogtip_a.name, self.blogtip_a.author, self.blogtip_a.url)
-        self.service.create_blog_tip(self.blogtip_b.name, self.blogtip_b.author, self.blogtip_b.url)
+        self.service.create_blog_tip(self.blogtip_a.name, self.blogtip_a.author, self.blogtip_a.url, self.blogtip_a.comment)
+        self.service.create_blog_tip(self.blogtip_b.name, self.blogtip_b.author, self.blogtip_b.url, self.blogtip_a.comment)
 
         self.service.mark_as_read(self.blogtip_a)
         blogtips = self.service.get_read_blog_tips(True)
@@ -233,8 +234,8 @@ class TestService(unittest.TestCase):
 
     def test_get_all_blog_tips(self):
 
-        self.service.create_blog_tip(self.blogtip_a.name, self.blogtip_a.author, self.blogtip_a.url)
-        self.service.create_blog_tip(self.blogtip_b.name, self.blogtip_b.author, self.blogtip_b.url)
+        self.service.create_blog_tip(self.blogtip_a.name, self.blogtip_a.author, self.blogtip_a.url, self.blogtip_a.comment)
+        self.service.create_blog_tip(self.blogtip_b.name, self.blogtip_b.author, self.blogtip_b.url, self.blogtip_b.comment)
 
         blogtips = self.service.get_all_blog_tips()
 
@@ -243,7 +244,7 @@ class TestService(unittest.TestCase):
         self.assertEqual(blogtips[1].__str__(), self.blogtip_b.__str__())
 
     def test_remove_blog_tips(self):
-        self.service.create_blog_tip(self.blogtip_a.name, self.blogtip_a.author, self.blogtip_a.url)
+        self.service.create_blog_tip(self.blogtip_a.name, self.blogtip_a.author, self.blogtip_a.url, self.blogtip_a.comment)
         self.service.remove_blog_tip(self.blogtip_a)
 
         blogtips = self.service.get_all_blog_tips()
@@ -258,7 +259,7 @@ class TestService(unittest.TestCase):
         self.assertEqual(booktips[0].__str__(), self.booktip_a.__str__())
 
     def test_search_blog_tips(self):
-        self.service.create_blog_tip(self.blogtip_a.name, self.blogtip_a.author, self.blogtip_a.url)
+        self.service.create_blog_tip(self.blogtip_a.name, self.blogtip_a.author, self.blogtip_a.url, self.blogtip_a.comment)
         blogtips = self.service.search_blog_tips(['name', 'author'], ['Blog1', 'Firstname1, lastname1'], [], ['name', 'author'], ['ASC','DESC'])
 
         self.assertEqual(len(blogtips), 1)
