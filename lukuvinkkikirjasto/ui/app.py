@@ -38,7 +38,7 @@ class App():
             },
             
             {
-                "action": self.filter_ui.set_filters,
+                "action": self.filter_ui.view,
                 "message": "Aseta tai muokkaa suodattimia",
                 "shortcut": "f"
             },

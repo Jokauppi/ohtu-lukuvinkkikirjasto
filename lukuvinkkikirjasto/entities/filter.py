@@ -6,10 +6,10 @@ class Filter:
     def __init__(self):
         self.__types = []
         self.__name = ""
+        self.__title = "" #should this be used?
         self.__author = ""
         self.__isbn = ""
         self.__publication_year = ""
-        self.__id_number = ""
         self.__url = ""
         self.__read = ""
 
@@ -67,13 +67,10 @@ class Filter:
         self.__author = ""
         self.__isbn = ""
         self.__publication_year = ""
-        self.__id_number = ""
         self.__url = ""
         self.__read = ""
 
     def set_choice(self, choice, value):
-        if choice == "0":
-            self.__id_number = value
         if choice == "1":
             self.__name = value
         if choice == "2":
@@ -89,11 +86,9 @@ class Filter:
 
 
     def book_filters(self):
-        fields = []
-        values = []
-        comparators = []
-        sort_by_values = []
-        sort_by_orders = []
+
+        fields, values, comparators, sort_by_values, sort_by_orders = [], [], [], [], []
+
         if self.__name:
              self.add_field_and_value(fields, values, comparators, 'name', self.__name, ' LIKE ')
              self.add_sort_bys(sort_by_values, sort_by_orders, 'name', 'ASC')
@@ -118,11 +113,9 @@ class Filter:
         return fields, values, comparators, sort_by_values, sort_by_orders
 
     def blog_filters(self):
-        fields = []
-        values = []
-        comparators = []
-        sort_by_values = []
-        sort_by_orders = []
+
+        fields, values, comparators, sort_by_values, sort_by_orders = [], [], [], [], []
+
         if self.__name:
              self.add_field_and_value(fields, values, comparators, 'name', self.__name, ' LIKE ')
              self.add_sort_bys(sort_by_values, sort_by_orders, 'name', 'ASC')
@@ -140,11 +133,9 @@ class Filter:
         return fields, values, comparators, sort_by_values, sort_by_orders
 
     def video_filters(self):
-        fields = []
-        values = []
-        comparators = []
-        sort_by_values = []
-        sort_by_orders = []
+
+        fields, values, comparators, sort_by_values, sort_by_orders = [], [], [], [], []
+
         if self.__name:
              self.add_field_and_value(fields, values, comparators, 'title', self.__name, ' LIKE ')
              self.add_sort_bys(sort_by_values, sort_by_orders, 'title', 'ASC')

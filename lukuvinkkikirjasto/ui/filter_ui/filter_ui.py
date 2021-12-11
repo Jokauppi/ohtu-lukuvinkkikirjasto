@@ -7,11 +7,25 @@ class FilterUI:
 
         self.commands = [
             {
-                "action": lambda *args: None,
-                "message": "filter",
-                "shortcut": "f"
+                "action": filter.clear_filters,
+                "message": "Nollaa kaikki",
+                "shortcut": "c"
+            },
+            {
+                "action": "save",
+                "message": "Tallenna",
+                "shortcut": "s"
             }
         ]
+    
+    def view(self):
+        while True:
+            response = self.menu.show(self.commands, "Valitse muokattava suodatin", cancel=False)
+
+            if response == "save":
+                break
+
+            response()
 
     def set_filters(self):
         choice = "-1"
