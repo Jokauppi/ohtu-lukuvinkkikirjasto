@@ -4,6 +4,7 @@ class Filter:
     # pylint: disable-duplicate-code
 
     def __init__(self):
+        self.__types = []
         self.__name = ""
         self.__author = ""
         self.__isbn = ""
@@ -11,6 +12,14 @@ class Filter:
         self.__id_number = ""
         self.__url = ""
         self.__read = ""
+
+    @property
+    def types(self):
+        return self.__types
+
+    @types.setter
+    def types(self, value):
+        self.__types = value
 
     @property
     def name(self):

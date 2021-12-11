@@ -4,17 +4,17 @@ from entities.video_tip import VideoTip
 
 
 class Service:
-    def __init__(self, repository, blogrepository, videorepository):
-        self._repository = repository
+    def __init__(self, bookrepository, blogrepository, videorepository):
+        self._bookrepository = bookrepository
         self._blogrepository = blogrepository
         self._videorepository = videorepository
 
 
 # Create
 
-    def create_book_tip(self, name, author, isbn, publication_year, comment):
+    def create_book_tip(self, name, author, isbn, publication_year, comment=''):
         book_tip = BookTip(name, author, isbn, publication_year, comment)
-        return self._repository.add(book_tip)
+        return self._bookrepository.add(book_tip)
 
     def create_blog_tip(self, name, author, url, comment):
         blog_tip = BlogTip(name, author, url, comment)
@@ -27,7 +27,7 @@ class Service:
 # Delete
 
     def remove_book_tip(self, book_tip):
-        return self._repository.remove_row(book_tip)
+        return self._bookrepository.remove_row(book_tip)
 
     def remove_blog_tip(self, blog_tip):
         return self._blogrepository.remove_row(blog_tip)
@@ -39,7 +39,7 @@ class Service:
 
     def modify(self, tip, modified_tip):
         if isinstance(tip, BookTip):
-            return self._repository.modify(tip, modified_tip)
+            return self._bookrepository.modify(tip, modified_tip)
         elif isinstance(tip, VideoTip):
             return self._videorepository.modify(tip, modified_tip)
         elif isinstance(tip, BlogTip):
@@ -49,7 +49,7 @@ class Service:
 
     def modify(self, tip, comment):
         if isinstance(tip, BookTip):
-            return self._repository.modify(tip, comment)
+            return self._bookrepository.modify(tip, comment)
         elif isinstance(tip, VideoTip):
             return self._videorepository.modify(tip, comment)
         elif isinstance(tip, BlogTip):
@@ -58,7 +58,7 @@ class Service:
 # Get All
 
     def get_all_book_tips(self):
-        return self._repository.get_all()
+        return self._bookrepository.get_all()
 
     def get_all_blog_tips(self):
         return self._blogrepository.get_all()
@@ -69,7 +69,7 @@ class Service:
 # Get Read/Unread
 
     def get_read_book_tips(self, read):
-        return self._repository.get_read(read)
+        return self._bookrepository.get_read(read)
 
     def get_read_blog_tips(self, read):
         return self._blogrepository.get_read(read)
@@ -88,7 +88,7 @@ class Service:
             return self.mark_blog_tip_as_read(tip)
 
     def mark_book_tip_as_read(self, book_tip):
-        return self._repository.mark_as_read(book_tip)
+        return self._bookrepository.mark_as_read(book_tip)
 
     def mark_blog_tip_as_read(self, blog_tip):
         return self._blogrepository.mark_as_read(blog_tip)
@@ -99,21 +99,30 @@ class Service:
 
 # Search
 
-    def search_book_tips(self, fields, values, comparators, sort_by_values, sort_by_orders):
-        return self._repository.search_tips(fields,
+    def search_book_tips(self, filter):
+
+        fields, values, comparators, sort_by_values, sort_by_orders = filter.book_filters()
+
+        return self._bookrepository.search_tips(fields,
                                             values,
                                             comparators,
                                             sort_by_values,
                                             sort_by_orders)
 
-    def search_blog_tips(self, fields, values, comparators, sort_by_values, sort_by_orders):
+    def search_blog_tips(self, filter):
+
+        fields, values, comparators, sort_by_values, sort_by_orders = filter.blog_filters()
+
         return self._blogrepository.search_tips(fields,
                                             values,
                                             comparators,
                                             sort_by_values,
                                             sort_by_orders)
 
-    def search_video_tips(self, fields, values, comparators, sort_by_values, sort_by_orders):
+    def search_video_tips(self, filter):
+
+        fields, values, comparators, sort_by_values, sort_by_orders = filter.video_filters()
+
         return self._videorepository.search_tips(fields,
                                             values,
                                             comparators,
@@ -125,31 +134,20 @@ class Service:
     def filter_tips(self, filter):
         tips = []
 
-        if not filter.type:
-            tips = self.search_all_tips()
-        if "book" in filter.type:
-            tips += self.search_books()
-        if "blog" in filter.type:
-            tips += self.search_blog_tips()
-        if "video" in filter.type:
-            tips += self.search_video_tips()
+        if not filter.types:
+            tips = self.search_all_tips(filter)
+        if "book" in filter.types:
+            tips += self.search_book_tips(filter)
+        if "blog" in filter.types:
+            tips += self.search_blog_tips(filter)
+        if "video" in filter.types:
+            tips += self.search_video_tips(filter)
         
         return tips
     
-    def search_all_tips(self):
-        tips = self.search_books()
-        tips += self.search_blogs()
-        tips += self.search_videos()
+    def search_all_tips(self, filter):
+        tips = self.search_book_tips(filter)
+        tips += self.search_blog_tips(filter)
+        tips += self.search_video_tips(filter)
         return tips
-    
-    def search_books(self):
-        f, v, c, sv, so = self.filter.book_filters()
-        return self.service.search_book_tips(f, v, c, sv, so)
 
-    def search_videos(self):
-        f, v, c, sv, so = self.filter.video_filters()
-        return self.service.search_video_tips(f, v, c, sv, so)
-
-    def search_blogs(self):
-        f, v, c, sv, so = self.filter.blog_filters()
-        return self.service.search_blog_tips(f, v, c, sv, so)
