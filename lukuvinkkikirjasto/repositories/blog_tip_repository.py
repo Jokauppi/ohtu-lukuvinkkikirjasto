@@ -35,6 +35,21 @@ class BlogTipRepository:
 
         self._connection.commit()
 
+    def comment(self, blog_tip, comment):
+        cursor = self._connection.cursor()
+
+        try:
+            cursor.execute("UPDATE BlogTips SET comment=? WHERE id = ?",
+                            (comment,
+                            blog_tip.id_number))
+            self._connection.commit()
+            return True
+
+        except sqlite3.Error as err:
+            print(err)
+            return False
+
+
     def modify(self, blog_tip, modified_tip):
         cursor = self._connection.cursor()
 

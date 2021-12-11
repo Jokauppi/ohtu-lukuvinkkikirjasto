@@ -45,6 +45,16 @@ class Service:
         elif isinstance(tip, BlogTip):
             return self._blogrepository.modify(tip, modified_tip)
 
+# Comment
+
+    def modify(self, tip, comment):
+        if isinstance(tip, BookTip):
+            return self._repository.modify(tip, comment)
+        elif isinstance(tip, VideoTip):
+            return self._videorepository.modify(tip, comment)
+        elif isinstance(tip, BlogTip):
+            return self._blogrepository.modify(tip, comment)
+
 # Get All
 
     def get_all_book_tips(self):

@@ -34,6 +34,21 @@ class VideoTipRepository:
 
         self._connection.commit()
 
+    
+    def comment(self, video_tip, comment):
+        cursor = self._connection.cursor()
+
+        try:
+            cursor.execute("UPDATE VideoTips SET comment=? WHERE id = ?",
+                            (comment,
+                            video_tip.id_number))
+            self._connection.commit()
+            return True
+            
+        except sqlite3.Error as err:
+            print(err)
+            return False
+
     def modify(self, video_tip, modified_tip):
         cursor = self._connection.cursor()
 
