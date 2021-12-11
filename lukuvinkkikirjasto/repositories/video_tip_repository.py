@@ -12,6 +12,7 @@ class VideoTipRepository:
                 id INTEGER PRIMARY KEY,
                 title TEXT,
                 url TEXT,
+                comment TEXT,
                 read INTEGER
             );
         """)
@@ -28,10 +29,25 @@ class VideoTipRepository:
         if result:
             return
 
-        cursor.execute("INSERT INTO Videotips (title, url, read) VALUES (?, ?, ?)",
-            (video_tip.title, video_tip.url, video_tip.read))
+        cursor.execute("INSERT INTO Videotips (title, url, comment, read) VALUES (?, ?, ?, ?)",
+            (video_tip.title, video_tip.url, video_tip.comment, video_tip.read))
 
         self._connection.commit()
+
+    
+    def comment(self, video_tip, comment):
+        cursor = self._connection.cursor()
+
+        try:
+            cursor.execute("UPDATE VideoTips SET comment=? WHERE id = ?",
+                            (comment,
+                            video_tip.id_number))
+            self._connection.commit()
+            return True
+            
+        except sqlite3.Error as err:
+            print(err)
+            return False
 
     def modify(self, video_tip, modified_tip):
         cursor = self._connection.cursor()
@@ -170,5 +186,5 @@ class VideoTipRepository:
 
 
     def to_list(self, rows):
-        return [VideoTip(row["title"], row["url"], row["id"], bool(row["read"]))
+        return [VideoTip(row["title"], row["url"], row["comment"], row["id"], bool(row["read"]))
                 for row in rows]

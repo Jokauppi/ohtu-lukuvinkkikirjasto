@@ -14,6 +14,7 @@ class BookTipRepository:
                 author TEXT,
                 isbn TEXT,
                 publication_year INTEGER,
+                comment TEXT,
                 read INTEGER
             );
         """)
@@ -31,11 +32,26 @@ class BookTipRepository:
             return
 
         cursor.execute("""
-            INSERT INTO BookTips (name, author, isbn, publication_year, read) VALUES (?, ?, ?, ?, ?)
+            INSERT INTO BookTips (name, author, isbn, publication_year, comment, read) VALUES (?, ?, ?, ?, ?, ?)
         """, (book_tip.name, book_tip.author, book_tip.isbn,
-              book_tip.publication_year, book_tip.read))
+              book_tip.publication_year, book_tip.comment, book_tip.read))
 
         self._connection.commit()
+
+    
+    def comment(self, book_tip, comment):
+        cursor = self._connection.cursor()
+
+        try:
+            cursor.execute("UPDATE BookTips SET comment=? WHERE id = ?",
+                            (comment,
+                            book_tip.id_number))
+            self._connection.commit()
+            return True
+            
+        except sqlite3.Error as err:
+            print(err)
+            return False
 
     def modify(self, book_tip, modified_tip):
         cursor = self._connection.cursor()
@@ -177,6 +193,6 @@ class BookTipRepository:
 
     def to_list(self, rows):
         return [BookTip(row["name"],row["author"], row["isbn"],
-                str(row["publication_year"]), row["id"], bool(row["read"]))
+                str(row["publication_year"]), row["comment"], row["id"], bool(row["read"]))
                  # olio vaatii stringia, tietokannassa integer
                 for row in rows]

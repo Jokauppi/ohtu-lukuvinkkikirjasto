@@ -13,6 +13,7 @@ class BlogTipRepository:
                 name TEXT,
                 author TEXT,
                 url TEXT,
+                comment TEXT,
                 read INTEGER
             );
         """)
@@ -29,10 +30,25 @@ class BlogTipRepository:
         if result:
             return
 
-        cursor.execute("INSERT INTO Blogtips (name, author, url, read) VALUES (?, ?, ?, ?)",
-            (blog_tip.name, blog_tip.author, blog_tip.url, blog_tip.read))
+        cursor.execute("INSERT INTO Blogtips (name, author, url, comment, read) VALUES (?, ?, ?, ?, ?)",
+            (blog_tip.name, blog_tip.author, blog_tip.url, blog_tip.comment, blog_tip.read))
 
         self._connection.commit()
+
+    def comment(self, blog_tip, comment):
+        cursor = self._connection.cursor()
+
+        try:
+            cursor.execute("UPDATE BlogTips SET comment=? WHERE id = ?",
+                            (comment,
+                            blog_tip.id_number))
+            self._connection.commit()
+            return True
+
+        except sqlite3.Error as err:
+            print(err)
+            return False
+
 
     def modify(self, blog_tip, modified_tip):
         cursor = self._connection.cursor()
@@ -171,5 +187,5 @@ class BlogTipRepository:
         return order_string
 
     def to_list(self, rows):
-        return [BlogTip(row["name"], row["author"], row["url"], row["id"], bool(row["read"]))
+        return [BlogTip(row["name"], row["author"], row["url"], row["comment"], row["id"], bool(row["read"]))
                 for row in rows]

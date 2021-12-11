@@ -12,10 +12,10 @@ class TestVideoTipRepository(unittest.TestCase):
         self.connection.row_factory = sqlite3.Row
         self.repository = VideoTipRepository(self.connection)
 
-        self.tip_a = VideoTip('Video1', 'video.example.com/1', 1, False) 
-        self.tip_b = VideoTip('Video2', 'video.example.com/2', 2, False)
-        self.tip_c = VideoTip('Video3', 'video.example.com/3', 3, True)
-        self.tip_d = VideoTip('Video4', 'video.example.com/4', 4, True)
+        self.tip_a = VideoTip('Video1', 'video.example.com/1', 'Kommentti', 1, False) 
+        self.tip_b = VideoTip('Video2', 'video.example.com/2', 'Kommentti', 2, False)
+        self.tip_c = VideoTip('Video3', 'video.example.com/3', 'Kommentti', 3, True)
+        self.tip_d = VideoTip('Video4', 'video.example.com/4', 'Kommentti', 4, True)
         
     def test_add(self):
         self.repository.add(self.tip_a)
@@ -81,7 +81,7 @@ class TestVideoTipRepository(unittest.TestCase):
         tips = self.repository.get_read(True)
 
         self.assertEqual(len(tips), 1)
-        self.assertEqual(tips[0].__str__(), "Title:  Video1\nUrl:    video.example.com/1\nRead:   True\n")
+        self.assertEqual(tips[0].__str__(), "Title:  Video1\nUrl:    video.example.com/1\nRead:   True\nComment: Kommentti\n")
     
     def test_mark_as_read_returns_error(self):
         self.repository.add(self.tip_a)
@@ -115,7 +115,7 @@ class TestVideoTipRepository(unittest.TestCase):
     def test_search_video_tips(self):
         self.repository.add(self.tip_a)
         self.repository.add(self.tip_b)
-        tip_c = VideoTip('Video1', 'video.example.fi/2', 1, False)
+        tip_c = VideoTip('Video1', 'video.example.fi/2', '', 1, False)
         self.repository.add(tip_c)
         tips = self.repository.search_tips([], [], [], [], [])
         self.assertEqual(len(tips), 3)

@@ -4,7 +4,7 @@ class BookTip:
     # pylint: disable-duplicate-code
 
     def __init__(self, name: str, author: str, isbn: str, publication_year: str, \
-                 id_number: int = None, read: bool = False):
+                 comment: str = '', id_number: int = None, read: bool = False):
 
         self.name = name
         self.author = author
@@ -12,10 +12,24 @@ class BookTip:
         self.publication_year = publication_year
         self.id_number = id_number
         self.read = read
+        self.comment = comment
 
     @property
     def name(self):
         return self.__name
+
+    @property
+    def comment(self):
+        return self.__comment
+
+    @comment.setter
+    def comment(self, value):
+        if not isinstance(value, str):
+            raise TypeError("Kommentin pitää olla merkkijono")
+        self.__comment = value
+
+
+
 
     @name.setter
     def name(self, value):
@@ -75,7 +89,8 @@ class BookTip:
                 f"{'Author:':{pad}} {self.author}\n" \
                 f"{'ISBN:':{pad}} {self.isbn}\n" \
                 f"{'Year:':{pad}} {self.publication_year}\n"\
-                f"{'Read:' :{pad}} {self.read}\n"
+                f"{'Read:' :{pad}} {self.read}\n"\
+                f"{'Comment:' :{pad}} {self.comment}\n"
 
     def __eq__(self, other: object) -> bool:
 
