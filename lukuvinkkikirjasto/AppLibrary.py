@@ -7,7 +7,7 @@ from entities.book_tip import BookTip
 from entities.blog_tip import BlogTip
 from entities.video_tip import VideoTip
 from ui.app import App
-from ui.stub_io import StubIO
+from ui.io.stub_io import StubIO
 from service import Service
 from repositories.book_tip_repository import BookTipRepository
 from repositories.blog_tip_repository import BlogTipRepository

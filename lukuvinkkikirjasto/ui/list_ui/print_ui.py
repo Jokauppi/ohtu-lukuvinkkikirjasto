@@ -1,9 +1,10 @@
 
 class PrintUI():
-    def __init__(self, textio, menu, service):
+    def __init__(self, textio, menu, service, filter):
         self.textio = textio
         self.service = service
         self.menu = menu
+        self.filter = filter
 
 
         self.commands = [

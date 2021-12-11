@@ -1,4 +1,4 @@
-from ui.text_menu import TextMenu
+from ui.menu.text_menu import TextMenu
 
 class ReadUI():
     def __init__(self, textio, menu, service):

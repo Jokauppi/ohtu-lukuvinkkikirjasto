@@ -1,15 +1,15 @@
 from ui.loopbreak import LoopBreak
-from ui.item_browser import ItemBrowser
-from ui.print_ui import PrintUI
-from ui.add_ui import AddUI
-from ui.read_ui import ReadUI
+from lukuvinkkikirjasto.ui.add_ui.add_ui import AddUI
+from lukuvinkkikirjasto.ui.list_ui.print_ui import PrintUI
+from lukuvinkkikirjasto.ui.filter_ui.filter_ui import FilterUI
+from lukuvinkkikirjasto.ui.tip_ui.tip_ui import TipUI
 from entities.filter import Filter
 
 import os
 if os.name == "nt" or os.getenv("TEXTMODE", 'False').lower() in ('true', '1', 't'):
-    from ui.text_menu import TextMenu as Menu
+    from ui.menu.text_menu import TextMenu as Menu
 else:
-    from ui.console_menu import ConsoleMenu as Menu
+    from ui.menu.console_menu import ConsoleMenu as Menu
 
 class App():
     def __init__(self, textio, service):
@@ -17,11 +17,11 @@ class App():
         self.menu = Menu(self.textio)
         self.service = service
 
-        self.browser = ItemBrowser(textio, service)
-        self.print_ui = PrintUI(textio, self.menu, service)
-        self.add_ui = AddUI(textio, self.menu, service)
-        self.read_ui = ReadUI(textio, self.menu, service)
         self.filter = Filter()
+        self.add_ui = AddUI(textio, self.menu, service)
+        self.print_ui = PrintUI(textio, self.menu, service, self.filter)
+        self.filter_ui = FilterUI(textio, self.menu, service, self.filter)
+        self.tip_ui = TipUI(textio, self.menu, service, self.filter)
 
     def run(self):
 
@@ -33,7 +33,7 @@ class App():
             },
             {
                 "action": self.print_ui.print_tips,
-                "message": "Tulosta vinkkejä",
+                "message": "Tarkastele vinkkejä",
                 "shortcut": "p"
             },
             
@@ -43,20 +43,25 @@ class App():
                 "shortcut": "f"
             },
             {
-                "action": self.read_ui.print_tips,
-                "message": "Merkitse vinkki luetuksi",
-                "shortcut": "r"
+                "action": self.tip_ui.choose_tip,
+                "message": "Muokkaa vinkkiä",
+                "shortcut": "c"
             },
-            {
-                "action": self.search_start,
-                "message": "Etsi vinkkejä",
-                "shortcut": "s"
-            },
-            {
-                "action": self.browser.run,
-                "message": "Selaa vinkkejä",
-                "shortcut": "b"
-            },
+#            {
+#                "action": self.read_ui.print_tips,
+#                "message": "Merkitse vinkki luetuksi",
+#                "shortcut": "r"
+#            },
+#            {
+#                "action": self.search_start,
+#                "message": "Etsi vinkkejä",
+#                "shortcut": "s"
+#            },
+#            {
+#                "action": self.browser.run,
+#                "message": "Selaa vinkkejä",
+#                "shortcut": "b"
+#            },
             {
                 "action": self.quit_program,
                 "message": "Poistu sovelluksesta",
@@ -72,17 +77,6 @@ class App():
 
     def quit_program(self):
         raise LoopBreak
-
-    def mark_as_read(self):
-        for book in self.service.get_all_book_tips():
-            self.textio.output(f"ID number: {book.id_number}")
-            self.textio.output(f"Read: {book.read}")
-            self.textio.output(book)
-        id_number = self.textio.input("Syötä luetuksi merkattavan vinkin id numero\n")
-        self.service.mark_book_tip_as_read(id_number)
-
-    def browse_books(self):
-        self.browser.run()
 
     def set_filters(self):
         choice = "-1"

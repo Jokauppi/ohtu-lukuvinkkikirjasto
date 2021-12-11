@@ -3,7 +3,7 @@ import sys
 import config # pylint: disable=unused-import
 
 from ui.app import App
-from ui.text_io import TextIO
+from ui.io.text_io import TextIO
 from service import Service
 from repositories.book_tip_repository import BookTipRepository
 from repositories.blog_tip_repository import BlogTipRepository
