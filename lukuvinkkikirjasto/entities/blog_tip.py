@@ -2,15 +2,17 @@
 class BlogTip:
     # pylint: disable-duplicate-code
 
-    def __init__(self, name: str, author: str, url: str, comment: str = '', id_number: int = None, read: bool = False, tags:str = ""):
+    def __init__(self, name: str, author: str, url: str, comment: str = '', \
+            id_number: int = None, read: bool = False, tags:str = ""):
         self.name = name
         self.author = author
         self.url = url
         self.id_number = id_number
         self.read = read
         self.comment = comment
-        #Sisäiset muuttujat joilla ei tarkoituksella ole setteriä. Käytä ohjelmassa add_tag tai remove_tag -metodeja.
-        self.__tags = tags #string databaselle
+        # Sisäiset muuttujat joilla ei tarkoituksella ole setteriä.
+        # Käytä ohjelmassa add_tag tai remove_tag -metodeja.
+        self.__tags = tags # string databaselle
         self.__taglist = tags.split(",") #ohjelmistokäyttöön
 
     @property
@@ -63,11 +65,11 @@ class BlogTip:
 
     @property
     def tags(self):
-            return self.__tags
+        return self.__tags
 
     @property
     def taglist(self):
-            return self.__taglist
+        return self.__taglist
 
     def add_tag(self, value):
         if str(value).lower() not in self.taglist:

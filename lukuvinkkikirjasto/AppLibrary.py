@@ -1,8 +1,5 @@
 import os
-os.environ["TEXTMODE"]="true"
-
 import config # pylint: disable=unused-import
-
 from entities.book_tip import BookTip
 from entities.blog_tip import BlogTip
 from entities.video_tip import VideoTip
@@ -13,6 +10,8 @@ from repositories.book_tip_repository import BookTipRepository
 from repositories.blog_tip_repository import BlogTipRepository
 from repositories.video_tip_repository import VideoTipRepository
 from repositories.database_connection import get_connection
+
+os.environ["TEXTMODE"]="true"
 
 class AppLibrary:
     def __init__(self):

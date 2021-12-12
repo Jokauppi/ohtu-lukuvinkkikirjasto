@@ -52,7 +52,7 @@ class Filter:
     @publication_year.setter
     def publication_year(self, value):
         self.__publication_year = value
-    
+
     @property
     def url(self):
         return self.__url
@@ -85,11 +85,11 @@ class Filter:
         fields, values, comparators, sort_by_values, sort_by_orders = [], [], [], [], []
 
         if self.__name:
-             self.add_field_and_value(fields, values, comparators, 'name', self.__name, ' LIKE ')
-             self.add_sort_bys(sort_by_values, sort_by_orders, 'name', 'ASC')
+            self.add_field_and_value(fields, values, comparators, 'name', self.__name, ' LIKE ')
+            self.add_sort_bys(sort_by_values, sort_by_orders, 'name', 'ASC')
         if self.__author:
-             self.add_field_and_value(fields, values, comparators, 'author', self.__author, ' LIKE ')
-             self.add_sort_bys(sort_by_values, sort_by_orders, 'author', 'ASC')
+            self.add_field_and_value(fields, values, comparators, 'author', self.__author, ' LIKE ')
+            self.add_sort_bys(sort_by_values, sort_by_orders, 'author', 'ASC')
         if self.__publication_year:
             self.add_field_and_value(fields,
                                 values,
@@ -112,11 +112,11 @@ class Filter:
         fields, values, comparators, sort_by_values, sort_by_orders = [], [], [], [], []
 
         if self.__name:
-             self.add_field_and_value(fields, values, comparators, 'name', self.__name, ' LIKE ')
-             self.add_sort_bys(sort_by_values, sort_by_orders, 'name', 'ASC')
+            self.add_field_and_value(fields, values, comparators, 'name', self.__name, ' LIKE ')
+            self.add_sort_bys(sort_by_values, sort_by_orders, 'name', 'ASC')
         if self.__author:
-             self.add_field_and_value(fields, values, comparators, 'author', self.__author, ' LIKE ')
-             self.add_sort_bys(sort_by_values, sort_by_orders, 'author', 'ASC')
+            self.add_field_and_value(fields, values, comparators, 'author', self.__author, ' LIKE ')
+            self.add_sort_bys(sort_by_values, sort_by_orders, 'author', 'ASC')
         if self.__url:
             self.add_field_and_value(fields, values, comparators, 'url', self.__isbn, ' LIKE ')
             self.add_sort_bys(sort_by_values, sort_by_orders, 'url', 'ASC')
@@ -132,8 +132,8 @@ class Filter:
         fields, values, comparators, sort_by_values, sort_by_orders = [], [], [], [], []
 
         if self.__name:
-             self.add_field_and_value(fields, values, comparators, 'title', self.__name, ' LIKE ')
-             self.add_sort_bys(sort_by_values, sort_by_orders, 'title', 'ASC')
+            self.add_field_and_value(fields, values, comparators, 'title', self.__name, ' LIKE ')
+            self.add_sort_bys(sort_by_values, sort_by_orders, 'title', 'ASC')
         if self.__url:
             self.add_field_and_value(fields, values, comparators, 'url', self.__isbn, ' LIKE ')
             self.add_sort_bys(sort_by_values, sort_by_orders, 'url', 'ASC')

@@ -38,7 +38,7 @@ class BookTipRepository:
 
         self._connection.commit()
 
-    
+
     def comment(self, book_tip, comment):
         cursor = self._connection.cursor()
 
@@ -48,7 +48,7 @@ class BookTipRepository:
                             book_tip.id_number))
             self._connection.commit()
             return True
-            
+
         except sqlite3.Error as err:
             print(err)
             return False
@@ -57,9 +57,10 @@ class BookTipRepository:
         cursor = self._connection.cursor()
 
         try:
-            cursor.execute("UPDATE BookTips SET name=?, author=?, isbn=?, publication_year=? WHERE id = ?",
-                            (modified_tip.name, modified_tip.author, modified_tip.isbn, modified_tip.publication_year,
-                            modified_tip.id_number))
+            cursor.execute("""
+                UPDATE BookTips SET name=?, author=?, isbn=?, publication_year=? WHERE id = ?
+            """, (modified_tip.name, modified_tip.author, modified_tip.isbn,
+                  modified_tip.publication_year, modified_tip.id_number))
             self._connection.commit()
             return True
 
