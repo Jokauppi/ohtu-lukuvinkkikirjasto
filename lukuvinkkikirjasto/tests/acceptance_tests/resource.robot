@@ -26,16 +26,19 @@ Input Video Tip
 
 Output Should Contain Book
     [Arguments]  ${name}  ${author}  ${isbn}  ${pub_year}
-    Output Should Contain  Title:${SPACE*2}${name}\nAuthor: ${author}\nISBN:${SPACE*3}${isbn}\nYear:${SPACE*3}${pub_year}\n
+    Output Should Contain  Title:${SPACE*2}${name}\nAuthor: ${author}\nISBN:${SPACE*3}${isbn}\nYear:${SPACE*3}${pub_year}\nRead:${SPACE*3}False\nComment:${SPACE}
 
 Output Should Contain Blog
     [Arguments]  ${name}  ${author}  ${url}
-    Output Should Contain  Title:${SPACE*2}${name}\nAuthor: ${author}\nurl:${SPACE*4}${url}\n
+    Output Should Contain  Title:${SPACE*2}${name}\nAuthor: ${author}\nurl:${SPACE*4}${url}\nRead:${SPACE*3}False\nComment:${SPACE}
 
 Output Should Contain Video
     [Arguments]  ${title}  ${url}
-    Output Should Contain  Title:${SPACE*2}${title}\nUrl:${SPACE*4}${url}\n
+    Output Should Contain  Title:${SPACE*2}${title}\nUrl:${SPACE*4}${url}\nRead:${SPACE*3}False\nComment:${SPACE}
 
 Run And Quit Application
     Input  q
     Run Application
+
+List Tips
+    Input Command  p

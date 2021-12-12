@@ -19,7 +19,6 @@ Search For Book Tip
     Output Should Contain Book  book1  writer1  11111-11111-11111  2000
 
 
-
 Search For Video Tip
     Add Video Tip To Service  Video1  video.example.com/1
     Add Video Tip To Service  Video2  video.example.com/2
@@ -31,6 +30,7 @@ Search For Video Tip
     Run And Quit Application
 
     Output Should Contain Video  Video1  video.example.com/1
+
 
 Search For Blog Tip
     Add Blog Tip To Service  Blog1  Author1  blog.example.com/1
