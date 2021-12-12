@@ -37,13 +37,13 @@ class Service:
 
 # Modify
 
-    def modify(self, tip, modified_tip):
-        if isinstance(tip, BookTip):
-            return self._bookrepository.modify(tip, modified_tip)
-        elif isinstance(tip, VideoTip):
-            return self._videorepository.modify(tip, modified_tip)
-        elif isinstance(tip, BlogTip):
-            return self._blogrepository.modify(tip, modified_tip)
+    def modify(self, modified_tip):
+        if isinstance(modified_tip, BookTip):
+            return self._bookrepository.modify(modified_tip)
+        elif isinstance(modified_tip, VideoTip):
+            return self._videorepository.modify(modified_tip)
+        elif isinstance(modified_tip, BlogTip):
+            return self._blogrepository.modify(modified_tip)
 
 # Comment
 
