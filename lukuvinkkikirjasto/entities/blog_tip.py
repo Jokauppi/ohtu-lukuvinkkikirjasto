@@ -2,13 +2,16 @@
 class BlogTip:
     # pylint: disable-duplicate-code
 
-    def __init__(self, name: str, author: str, url: str, comment: str = '', id_number: int = None, read: bool = False):
+    def __init__(self, name: str, author: str, url: str, comment: str = '', id_number: int = None, read: bool = False, tags:str = ""):
         self.name = name
         self.author = author
         self.url = url
         self.id_number = id_number
         self.read = read
         self.comment = comment
+        #Sisäiset muuttujat joilla ei tarkoituksella ole setteriä. Käytä ohjelmassa add_tag tai remove_tag -metodeja.
+        self.__tags = tags #string databaselle
+        self.__taglist = tags.split(",") #ohjelmistokäyttöön
 
     @property
     def name(self):
@@ -57,6 +60,26 @@ class BlogTip:
         if len(value) < 5 or len(value) > 100:
             raise ValueError("url pituus pitää olla 5-100 merkkiä")
         self.__url = value
+
+    @property
+    def tags(self):
+            return self.__tags
+
+    @property
+    def taglist(self):
+            return self.__taglist
+
+    def add_tag(self, value):
+        if str(value).lower() not in self.taglist:
+            self.__taglist.append(str(value).lower())
+            self.__tags = ",".join(self.taglist)
+
+    def remove_tag(self, value):
+        if str(value).lower() in self.taglist:
+            self.__taglist.remove(str(value).lower())
+            self.__tags = ",".join(self.taglist)
+        else:
+            raise ValueError("tagia ei ole olemassa")
 
     def __str__(self):
         pad = 7
