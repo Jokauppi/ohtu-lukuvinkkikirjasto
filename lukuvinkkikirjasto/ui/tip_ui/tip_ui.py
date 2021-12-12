@@ -17,7 +17,7 @@ class TipUI:
                 "shortcut": "r"
             },
             {
-                "action": self.modify_ui.modify,
+                "action": self.modify_ui.choose_action,
                 "message": "Muokkaa vinkkiä",
                 "shortcut": "m"
             },
