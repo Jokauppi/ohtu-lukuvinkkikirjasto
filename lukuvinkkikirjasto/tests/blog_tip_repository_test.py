@@ -33,7 +33,8 @@ class TestBlogTipRepository(unittest.TestCase):
 
     def test_modify(self):
         self.repository.add(self.tip_a)
-        self.repository.modify(self.tip_a, self.tip_b)
+        tip_a_mod = BlogTip('Blog2', 'Blogaaja2', 'blog.example.com/2', 'Kommentti', 1, False)
+        self.repository.modify(tip_a_mod)
         tips = self.repository.get_all()
 
         self.assertEqual(len(tips), 1)

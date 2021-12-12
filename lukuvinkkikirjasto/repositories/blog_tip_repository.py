@@ -50,13 +50,13 @@ class BlogTipRepository:
             return False
 
 
-    def modify(self, blog_tip, modified_tip):
+    def modify(self, modified_tip):
         cursor = self._connection.cursor()
 
         try:
             cursor.execute("UPDATE BlogTips SET name=?, author=?, url=? WHERE id = ?",
                             (modified_tip.name, modified_tip.author, modified_tip.url,
-                            blog_tip.id_number))
+                            modified_tip.id_number))
             self._connection.commit()
             return True
 
