@@ -6,13 +6,15 @@ class ListUI():
         self.menu = menu
         self.filter = filter
 
-    def list_tips(self):
+    def list_tips(self):        
         tips = self.service.filter_tips(self.filter)
 
         if len(tips) == 0:
             self.textio.output("Ei vinkkejä")
         for item in tips:
+            self.textio.output("-"*15)
             self.textio.output(item)
+        self.textio.output("="*15)
 
     def list_books(self):
         if len(self.service.get_all_book_tips()) == 0:
@@ -40,6 +42,7 @@ class ListUI():
         if len(result) == 0:
             self.textio.output("Ei vinkkejä")
         for item in result:
+            self.textio.output("=")
             self.textio.output(item)
 
     def list_unread(self):

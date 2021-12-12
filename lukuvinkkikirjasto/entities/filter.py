@@ -61,6 +61,16 @@ class Filter:
     def url(self, value):
         self.__url = value
 
+    @property
+    def read(self):
+        return self.__read
+
+    @read.setter
+    def read(self, value):
+        if value.strip() not in ['k', 'e']:
+            raise ValueError
+        self.__read = value.strip()
+
     def clear_filters(self):
         self.__name = ""
         self.__title = ""
@@ -69,21 +79,6 @@ class Filter:
         self.__publication_year = ""
         self.__url = ""
         self.__read = ""
-
-    def set_choice(self, choice, value):
-        if choice == "1":
-            self.__name = value
-        if choice == "2":
-            self.__author = value
-        if choice == "3":
-            self.__publication_year = value
-        if choice == "4":
-            self.__isbn = value
-        if choice == "5":
-            self.__url = value
-        if choice == "6":
-            self.__read = value
-
 
     def book_filters(self):
 

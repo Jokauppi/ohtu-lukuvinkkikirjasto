@@ -65,7 +65,7 @@ class BlogTip:
                 f"{'Author:':{pad}} {self.author}\n" \
                 f"{'url:':{pad}} {self.url}\n"\
                 f"{'Read:' :{pad}} {self.read}\n"\
-                f"{'Comment:' :{pad}} {self.comment}\n"
+                f"{'Comment:' :{pad}} {self.comment}"
 
     def __eq__(self, other: object) -> bool:
 

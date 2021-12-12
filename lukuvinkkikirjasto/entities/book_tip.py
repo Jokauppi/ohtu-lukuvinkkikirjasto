@@ -90,7 +90,7 @@ class BookTip:
                 f"{'ISBN:':{pad}} {self.isbn}\n" \
                 f"{'Year:':{pad}} {self.publication_year}\n"\
                 f"{'Read:' :{pad}} {self.read}\n"\
-                f"{'Comment:' :{pad}} {self.comment}\n"
+                f"{'Comment:' :{pad}} {self.comment}"
 
     def __eq__(self, other: object) -> bool:
 

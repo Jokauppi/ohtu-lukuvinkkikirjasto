@@ -35,7 +35,7 @@ class TestBookTip(unittest.TestCase):
         self.assertEqual(self.booktip.publication_year, "2022")
     
     def test_str(self):
-        self.assertEqual(self.booktip.__str__(), 'Title:  name\nAuthor: author\nISBN:   9781107009462\nYear:   2021\nRead:   False\nComment: Kommentti\n')
+        self.assertEqual(self.booktip.__str__(), 'Title:  name\nAuthor: author\nISBN:   9781107009462\nYear:   2021\nRead:   False\nComment: Kommentti')
     
     def test_name_is_null(self):
          self.assertRaises(

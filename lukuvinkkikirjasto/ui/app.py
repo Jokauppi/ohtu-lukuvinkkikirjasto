@@ -1,8 +1,8 @@
 from ui.loopbreak import LoopBreak
-from lukuvinkkikirjasto.ui.add_ui.add_ui import AddUI
-from lukuvinkkikirjasto.ui.list_ui.list_ui import ListUI
-from lukuvinkkikirjasto.ui.filter_ui.filter_ui import FilterUI
-from lukuvinkkikirjasto.ui.tip_ui.tip_ui import TipUI
+from ui.add_ui.add_ui import AddUI
+from ui.list_ui.list_ui import ListUI
+from ui.filter_ui.filter_ui import FilterUI
+from ui.tip_ui.tip_ui import TipUI
 from entities.filter import Filter
 
 import os
@@ -39,7 +39,7 @@ class App():
             
             {
                 "action": self.filter_ui.view,
-                "message": "Aseta tai muokkaa suodattimia",
+                "message": "Muokkaa suodattimia",
                 "shortcut": "f"
             },
             {
