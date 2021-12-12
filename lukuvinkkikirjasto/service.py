@@ -16,11 +16,11 @@ class Service:
         book_tip = BookTip(name, author, isbn, publication_year, comment)
         return self._bookrepository.add(book_tip)
 
-    def create_blog_tip(self, name, author, url, comment):
+    def create_blog_tip(self, name, author, url, comment=''):
         blog_tip = BlogTip(name, author, url, comment)
         return self._blogrepository.add(blog_tip)
 
-    def create_video_tip(self, title, url, comment):
+    def create_video_tip(self, title, url, comment=''):
         video_tip = VideoTip(title, url, comment)
         return self._videorepository.add(video_tip)
 
