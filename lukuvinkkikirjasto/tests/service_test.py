@@ -31,6 +31,11 @@ class MockBookTipRepository:
     def remove_row(self, booktip):
         self.booktips.remove(booktip)
 
+    def comment(self, booktip, comment):
+        for i, e in enumerate(self.booktips):
+            if e.id_number == booktip.id_number:
+                self.booktips[i].comment = comment
+
     def get_read(self, read):
         if read:
             return[book for book in self.booktips if book.read == True]
@@ -62,6 +67,11 @@ class MockBlogTipRepository:
 
     def remove_row(self, blogtip):
         self.blogtips.remove(blogtip)
+
+    def comment(self, blogtip, comment):
+        for i, e in enumerate(self.blogtips):
+            if e.id_number == blogtip.id_number:
+                self.blogtips[i].comment = comment
 
     def mark_as_read(self, blogtip):
         for i, e in enumerate(self.blogtips):
@@ -99,6 +109,11 @@ class MockVideoTipRepository:
 
     def remove_row(self, videotip):
         self.videotips.remove(videotip)
+
+    def comment(self, videotip, comment):
+        for i, e in enumerate(self.videotips):
+            if e.id_number == videotip.id_number:
+                self.videotips[i].comment = comment
 
     def mark_as_read(self, videotip):
         for i, e in enumerate(self.videotips):
@@ -171,6 +186,16 @@ class TestService(unittest.TestCase):
 
         booktips = self.service.get_all_book_tips()
         self.assertEqual(len(booktips), 0)
+    
+    def test_comment_book_tip(self):
+        self.service.create_book_tip(self.booktip_a.name, self.booktip_a.author, self.booktip_a.isbn, self.booktip_a.publication_year, self.booktip_a.comment)
+        self.service.comment(self.booktip_a, "Uusi kommentti")
+
+        booktips = self.service.get_all_book_tips()
+        self.assertEqual(len(booktips), 1)
+        self.assertEqual(booktips[0].comment, "Uusi kommentti")
+
+
 
 # Video Tips
 
@@ -212,6 +237,14 @@ class TestService(unittest.TestCase):
         videotips = self.service.get_all_video_tips()
         self.assertEqual(len(videotips), 0)
 
+    def test_comment_video_tip(self):
+        self.service.create_video_tip(self.videotip_a.title, self.videotip_a.url, self.videotip_a.comment)
+        self.service.comment(self.videotip_a, "Uusi kommentti")
+
+        videotips = self.service.get_all_video_tips()
+        self.assertEqual(len(videotips), 1)
+        self.assertEqual(videotips[0].comment, "Uusi kommentti")
+
 # Blog Tips
 
     def test_add_blog_tip(self):
@@ -251,6 +284,15 @@ class TestService(unittest.TestCase):
 
         blogtips = self.service.get_all_blog_tips()
         self.assertEqual(len(blogtips), 0)
+
+    
+    def test_comment_blog_tip(self):
+        self.service.create_blog_tip(self.blogtip_a.name, self.blogtip_a.author, self.blogtip_a.url, self.blogtip_a.comment)
+        self.service.comment(self.blogtip_a, "Uusi kommentti")
+
+        blogtips = self.service.get_all_blog_tips()
+        self.assertEqual(len(blogtips), 1)
+        self.assertEqual(blogtips[0].comment, "Uusi kommentti")
 
 #Search
     def test_search_book_tips(self):

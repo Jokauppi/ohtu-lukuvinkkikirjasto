@@ -49,11 +49,11 @@ class Service:
 
     def comment(self, tip, comment):
         if isinstance(tip, BookTip):
-            return self._bookrepository.modify(tip, comment)
+            return self._bookrepository.comment(tip, comment)
         elif isinstance(tip, VideoTip):
-            return self._videorepository.modify(tip, comment)
+            return self._videorepository.comment(tip, comment)
         elif isinstance(tip, BlogTip):
-            return self._blogrepository.modify(tip, comment)
+            return self._blogrepository.comment(tip, comment)
 
 # Get All
 
