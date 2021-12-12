@@ -55,9 +55,9 @@ class BlogTipRepository:
         cursor = self._connection.cursor()
 
         try:
-            cursor.execute("UPDATE BlogTips SET name=?, author=?, url=? WHERE id = ?",
+            cursor.execute("UPDATE BlogTips SET name=?, author=?, url=?, comment=? WHERE id = ?",
                             (modified_tip.name, modified_tip.author, modified_tip.url,
-                            modified_tip.id_number))
+                            modified_tip.comment, modified_tip.id_number))
             self._connection.commit()
             return True
 

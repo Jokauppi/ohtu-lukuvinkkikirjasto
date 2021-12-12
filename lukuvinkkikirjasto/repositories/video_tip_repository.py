@@ -53,9 +53,9 @@ class VideoTipRepository:
         cursor = self._connection.cursor()
 
         try:
-            cursor.execute("UPDATE VideoTips SET title=?, url=? WHERE id = ?",
+            cursor.execute("UPDATE VideoTips SET title=?, url=?, comment=? WHERE id = ?",
                             (modified_tip.title, modified_tip.url,
-                            modified_tip.id_number))
+                            modified_tip.comment, modified_tip.id_number))
             self._connection.commit()
             return True
 

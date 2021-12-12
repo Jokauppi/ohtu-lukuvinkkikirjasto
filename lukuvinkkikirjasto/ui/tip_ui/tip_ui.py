@@ -18,7 +18,7 @@ class TipUI:
             },
             {
                 "action": self.modify_ui.choose_action,
-                "message": "Muokkaa vinkkiä",
+                "message": "Muokkaa kenttiä",
                 "shortcut": "m"
             },
             {

@@ -58,9 +58,9 @@ class BookTipRepository:
 
         try:
             cursor.execute("""
-                UPDATE BookTips SET name=?, author=?, isbn=?, publication_year=? WHERE id = ?
+                UPDATE BookTips SET name=?, author=?, isbn=?, publication_year=?, comment=? WHERE id = ?
             """, (modified_tip.name, modified_tip.author, modified_tip.isbn,
-                  modified_tip.publication_year, modified_tip.id_number))
+                  modified_tip.publication_year, modified_tip.comment, modified_tip.id_number))
             self._connection.commit()
             return True
 
