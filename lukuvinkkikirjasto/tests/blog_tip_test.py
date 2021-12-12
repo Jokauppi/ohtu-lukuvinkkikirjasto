@@ -56,6 +56,12 @@ class TestBlogTip(unittest.TestCase):
             ValueError,
             lambda: BlogTip("name", "author", "")
         )
+
+    def test_comment_is_not_string(self):
+        self.assertRaises(
+            TypeError,
+            lambda: BlogTip("name", "author", "www.blog1.com", int(111))
+        )
     
     def test_blog_tip_not_equals_other_blogtip(self):
          self.assertFalse(self.blogtip == BlogTip('name3', 'author3', 'www.123.com'))

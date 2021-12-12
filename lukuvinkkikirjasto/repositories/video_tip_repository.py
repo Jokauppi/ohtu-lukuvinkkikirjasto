@@ -49,13 +49,13 @@ class VideoTipRepository:
             print(err)
             return False
 
-    def modify(self, video_tip, modified_tip):
+    def modify(self, modified_tip):
         cursor = self._connection.cursor()
 
         try:
             cursor.execute("UPDATE VideoTips SET title=?, url=? WHERE id = ?",
                             (modified_tip.title, modified_tip.url,
-                            video_tip.id_number))
+                            modified_tip.id_number))
             self._connection.commit()
             return True
 

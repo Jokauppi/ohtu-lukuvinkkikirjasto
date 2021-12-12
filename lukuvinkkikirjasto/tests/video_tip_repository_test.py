@@ -33,11 +33,21 @@ class TestVideoTipRepository(unittest.TestCase):
 
     def test_modify(self):
         self.repository.add(self.tip_a)
-        self.repository.modify(self.tip_a, self.tip_b)
+        tip_a_mod = VideoTip('Video2', 'video.example.com/2', 'Kommentti', 1, False)
+        self.repository.modify(tip_a_mod)
         tips = self.repository.get_all()
 
         self.assertEqual(len(tips), 1)
         self.assertEqual(tips[0].__str__(), self.tip_b.__str__())
+
+    def test_comment(self):
+        self.repository.add(self.tip_a)
+        self.repository.comment(self.tip_a, "Uusi kommentti")
+        tips = self.repository.get_all()
+
+        self.assertEqual(len(tips), 1)
+        self.assertEqual(tips[0].comment, "Uusi kommentti")
+
 
     def test_get_all(self):
         self.repository.add(self.tip_a)
