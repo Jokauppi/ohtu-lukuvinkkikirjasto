@@ -260,7 +260,7 @@ class TestService(unittest.TestCase):
         filter.author = 'Firstname1, lastname1'
 
         self.service.create_book_tip(self.booktip_a.name, self.booktip_a.author, self.booktip_a.isbn, self.booktip_a.publication_year, self.booktip_a.comment)
-        booktips = self.service.search_book_tips(filter)
+        booktips = self.service._search_book_tips(filter)
 
         self.assertEqual(len(booktips), 1)
         self.assertEqual(booktips[0].__str__(), self.booktip_a.__str__())
@@ -272,7 +272,7 @@ class TestService(unittest.TestCase):
         filter.author = 'Firstname1, lastname1'
 
         self.service.create_blog_tip(self.blogtip_a.name, self.blogtip_a.author, self.blogtip_a.url, self.blogtip_a.comment)
-        blogtips = self.service.search_blog_tips(filter)
+        blogtips = self.service._search_blog_tips(filter)
 
         self.assertEqual(len(blogtips), 1)
         self.assertEqual(blogtips[0].__str__(), self.blogtip_a.__str__())
@@ -284,7 +284,7 @@ class TestService(unittest.TestCase):
         filter.url = 'www.video.com/1'
 
         self.service.create_video_tip(self.videotip_a.title, self.videotip_a.url, self.videotip_a.comment)
-        videotips = self.service.search_video_tips(filter)
+        videotips = self.service._search_video_tips(filter)
 
         self.assertEqual(len(videotips), 1)
         self.assertEqual(videotips[0].__str__(), self.videotip_a.__str__())

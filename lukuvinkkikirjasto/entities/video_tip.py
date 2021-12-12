@@ -2,13 +2,15 @@
 class VideoTip:
     # pylint: disable-duplicate-code
 
-    def __init__(self, title: str, url: str,  comment: str = '', id_number: int = None, read: bool = False, tags: str = ""):
+    def __init__(self, title: str, url: str,  comment: str = '', \
+            id_number: int = None, read: bool = False, tags: str = ""):
         self.title = title
         self.url = url
         self.id_number = id_number
         self.read = read
         self.comment = comment
-        #Sisäiset muuttujat joilla ei tarkoituksella ole setteriä. Käytä ohjelmassa add_tag tai remove_tag -metodeja.
+        # Sisäiset muuttujat joilla ei tarkoituksella ole setteriä.
+        # Käytä ohjelmassa add_tag tai remove_tag -metodeja.
         self.__tags = tags #string databaselle
         self.__taglist = tags.split(",") #ohjelmistokäyttöön
 
@@ -48,11 +50,11 @@ class VideoTip:
 
     @property
     def tags(self):
-            return self.__tags
+        return self.__tags
 
     @property
     def taglist(self):
-            return self.__taglist
+        return self.__taglist
 
     def add_tag(self, value):
         if str(value).lower() not in self.taglist:

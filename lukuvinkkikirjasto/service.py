@@ -47,7 +47,7 @@ class Service:
 
 # Comment
 
-    def modify(self, tip, comment):
+    def modify_comment(self, tip, comment):
         if isinstance(tip, BookTip):
             return self._bookrepository.modify(tip, comment)
         elif isinstance(tip, VideoTip):
@@ -81,25 +81,25 @@ class Service:
 
     def mark_as_read(self, tip):
         if isinstance(tip, BookTip):
-            return self.mark_book_tip_as_read(tip)
+            return self._mark_book_tip_as_read(tip)
         elif isinstance(tip, VideoTip):
-            return self.mark_video_tip_as_read(tip)
+            return self._mark_video_tip_as_read(tip)
         elif isinstance(tip, BlogTip):
-            return self.mark_blog_tip_as_read(tip)
+            return self._mark_blog_tip_as_read(tip)
 
-    def mark_book_tip_as_read(self, book_tip):
+    def _mark_book_tip_as_read(self, book_tip):
         return self._bookrepository.mark_as_read(book_tip)
 
-    def mark_blog_tip_as_read(self, blog_tip):
+    def _mark_blog_tip_as_read(self, blog_tip):
         return self._blogrepository.mark_as_read(blog_tip)
 
-    def mark_video_tip_as_read(self, video_tip):
+    def _mark_video_tip_as_read(self, video_tip):
         return self._videorepository.mark_as_read(video_tip)
 
 
 # Search
 
-    def search_book_tips(self, filter):
+    def _search_book_tips(self, filter):
 
         fields, values, comparators, sort_by_values, sort_by_orders = filter.book_filters()
 
@@ -109,7 +109,7 @@ class Service:
                                             sort_by_values,
                                             sort_by_orders)
 
-    def search_blog_tips(self, filter):
+    def _search_blog_tips(self, filter):
 
         fields, values, comparators, sort_by_values, sort_by_orders = filter.blog_filters()
 
@@ -119,7 +119,7 @@ class Service:
                                             sort_by_values,
                                             sort_by_orders)
 
-    def search_video_tips(self, filter):
+    def _search_video_tips(self, filter):
 
         fields, values, comparators, sort_by_values, sort_by_orders = filter.video_filters()
 
@@ -135,19 +135,18 @@ class Service:
         tips = []
 
         if not filter.types:
-            tips = self.search_all_tips(filter)
+            tips = self._search_all_tips(filter)
         if "book" in filter.types:
-            tips += self.search_book_tips(filter)
+            tips += self._search_book_tips(filter)
         if "blog" in filter.types:
-            tips += self.search_blog_tips(filter)
+            tips += self._search_blog_tips(filter)
         if "video" in filter.types:
-            tips += self.search_video_tips(filter)
-        
-        return tips
-    
-    def search_all_tips(self, filter):
-        tips = self.search_book_tips(filter)
-        tips += self.search_blog_tips(filter)
-        tips += self.search_video_tips(filter)
+            tips += self._search_video_tips(filter)
+
         return tips
 
+    def _search_all_tips(self, filter):
+        tips = self._search_book_tips(filter)
+        tips += self._search_blog_tips(filter)
+        tips += self._search_video_tips(filter)
+        return tips
