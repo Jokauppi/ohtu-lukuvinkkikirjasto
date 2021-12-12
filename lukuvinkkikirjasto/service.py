@@ -47,7 +47,7 @@ class Service:
 
 # Comment
 
-    def modify(self, tip, comment):
+    def comment(self, tip, comment):
         if isinstance(tip, BookTip):
             return self._bookrepository.modify(tip, comment)
         elif isinstance(tip, VideoTip):

@@ -39,6 +39,14 @@ class TestBlogTipRepository(unittest.TestCase):
         self.assertEqual(len(tips), 1)
         self.assertEqual(tips[0].__str__(), self.tip_b.__str__())
 
+    def test_comment(self):
+        self.repository.add(self.tip_a)
+        self.repository.comment(self.tip_a, "Uusi kommentti")
+        tips = self.repository.get_all()
+
+        self.assertEqual(len(tips), 1)
+        self.assertEqual(tips[0].comment, "Uusi kommentti")
+
     def test_get_all(self):
         self.repository.add(self.tip_a)
         self.repository.add(self.tip_b)

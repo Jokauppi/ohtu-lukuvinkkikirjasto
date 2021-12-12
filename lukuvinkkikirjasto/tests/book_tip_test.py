@@ -96,6 +96,12 @@ class TestBookTip(unittest.TestCase):
             ValueError,
             lambda: BookTip("name", "author", "1111", "1000000")
         )
+
+    def test_comment_is_not_string(self):
+        self.assertRaises(
+            TypeError,
+            lambda: BookTip("name", "author", "9781107009462", "2021", int(111))
+        )
     
     def test_book_tip_not_equals_other_booktip(self):
          self.assertFalse(self.booktip == BookTip('name3', 'author3', '888', '1999'))
