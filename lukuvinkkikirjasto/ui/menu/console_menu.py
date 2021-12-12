@@ -23,7 +23,7 @@ class ConsoleMenu:
 
         return options[menu_entry_index]["action"]
 
-    def no_op(self):
+    def no_op(self, *args):
         pass
 
     def get_option(self, command):

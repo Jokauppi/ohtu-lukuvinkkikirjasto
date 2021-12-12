@@ -26,6 +26,9 @@ class Service:
 
 # Delete
 
+    def remove_tip(self, tip):
+        pass
+
     def remove_book_tip(self, book_tip):
         return self._bookrepository.remove_row(book_tip)
 
@@ -49,11 +52,11 @@ class Service:
 
     def comment(self, tip, comment):
         if isinstance(tip, BookTip):
-            return self._bookrepository.modify(tip, comment)
+            return self._bookrepository.comment(tip, comment)
         elif isinstance(tip, VideoTip):
-            return self._videorepository.modify(tip, comment)
+            return self._videorepository.comment(tip, comment)
         elif isinstance(tip, BlogTip):
-            return self._blogrepository.modify(tip, comment)
+            return self._blogrepository.comment(tip, comment)
 
 # Get All
 

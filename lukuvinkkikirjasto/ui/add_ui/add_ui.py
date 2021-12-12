@@ -23,7 +23,7 @@ class AddUI():
             }
         ]
 
-    def add_tip(self):
+    def view(self):
         self.menu.show(self.commands, "Valitse lisättävän vinkin tyyppi")()
 
     def add_book(self):

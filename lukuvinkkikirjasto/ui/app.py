@@ -21,18 +21,18 @@ class App():
         self.add_ui = AddUI(textio, self.menu, service)
         self.list_ui = ListUI(textio, self.menu, service, self.filter)
         self.filter_ui = FilterUI(textio, self.menu, service, self.filter)
-        self.tip_ui = TipUI(textio, self.menu, service, self.filter)
+        self.tip_ui = TipUI(textio, self.menu, service, self.list_ui)
 
     def run(self):
 
         commands = [
             {
-                "action": self.add_ui.add_tip,
+                "action": self.add_ui.view,
                 "message": "Lisää vinkki",
                 "shortcut": "a"
             },
             {
-                "action": self.list_ui.list_tips,
+                "action": self.list_ui.view,
                 "message": "Tarkastele vinkkejä",
                 "shortcut": "p"
             },
@@ -43,7 +43,7 @@ class App():
                 "shortcut": "f"
             },
             {
-                "action": self.tip_ui.choose_tip,
+                "action": self.tip_ui.view,
                 "message": "Muokkaa vinkkiä",
                 "shortcut": "c"
             },
