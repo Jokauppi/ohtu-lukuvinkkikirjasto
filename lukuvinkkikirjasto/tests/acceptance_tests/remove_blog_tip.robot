@@ -3,7 +3,7 @@ Resource  resource.robot
 Test Setup  Setup App And Input Add Blog Command
 
 *** Test Cases ***
-Remove Existing Bolg Tip
+Remove Existing Blog Tip
     Add Blog Tip  Name  Author  www.example.com/blog
     Delete Blog Tip  Name  Author  www.example.com/blog
     

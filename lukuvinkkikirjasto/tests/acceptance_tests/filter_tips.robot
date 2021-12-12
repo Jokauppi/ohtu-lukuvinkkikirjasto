@@ -67,7 +67,7 @@ List Tips With Url Filter
     List Tips
     Run And Quit Application
 
-    Output Should Contain Video  video1  video.example.com/1
+    Output Should Contain Video  video2  video.example.com/2
 
 
 List Tips After Resetting Filters
