@@ -27,16 +27,12 @@ class Service:
 # Delete
 
     def remove_tip(self, tip):
-        pass
-
-    def remove_book_tip(self, book_tip):
-        return self._bookrepository.remove_row(book_tip)
-
-    def remove_blog_tip(self, blog_tip):
-        return self._blogrepository.remove_row(blog_tip)
-
-    def remove_video_tip(self, video_tip):
-        return self._videorepository.remove_row(video_tip)
+        if isinstance(tip, BookTip):
+            return self._bookrepository.remove_row(tip)
+        elif isinstance(tip, BlogTip):
+            return self._blogrepository.remove_row(tip)
+        elif isinstance(tip, VideoTip):
+            return self._videorepository.remove_row(tip)
 
 # Modify
 

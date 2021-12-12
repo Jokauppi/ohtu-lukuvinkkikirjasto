@@ -182,7 +182,7 @@ class TestService(unittest.TestCase):
 
     def test_remove_book_tip(self):
         self.service.create_book_tip(self.booktip_a.name, self.booktip_a.author, self.booktip_a.isbn, self.booktip_a.publication_year, self.booktip_a.comment)
-        self.service.remove_book_tip(self.booktip_a)
+        self.service.remove_tip(self.booktip_a)
 
         booktips = self.service.get_all_book_tips()
         self.assertEqual(len(booktips), 0)
@@ -232,7 +232,7 @@ class TestService(unittest.TestCase):
 
     def test_remove_video_tips(self):
         self.service.create_video_tip(self.videotip_a.title, self.videotip_a.url, self.videotip_a.comment)
-        self.service.remove_video_tip(self.videotip_a)
+        self.service.remove_tip(self.videotip_a)
 
         videotips = self.service.get_all_video_tips()
         self.assertEqual(len(videotips), 0)
@@ -280,7 +280,7 @@ class TestService(unittest.TestCase):
 
     def test_remove_blog_tips(self):
         self.service.create_blog_tip(self.blogtip_a.name, self.blogtip_a.author, self.blogtip_a.url, self.blogtip_a.comment)
-        self.service.remove_blog_tip(self.blogtip_a)
+        self.service.remove_tip(self.blogtip_a)
 
         blogtips = self.service.get_all_blog_tips()
         self.assertEqual(len(blogtips), 0)
