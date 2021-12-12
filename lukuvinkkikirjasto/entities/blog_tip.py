@@ -12,7 +12,7 @@ class BlogTip:
         self.comment = comment
         # Sisäiset muuttujat joilla ei tarkoituksella ole setteriä.
         # Käytä ohjelmassa add_tag tai remove_tag -metodeja.
-        self.__tags = tags #string databaselle
+        self.__tags = tags # string databaselle
         self.__taglist = tags.split(",") #ohjelmistokäyttöön
 
     @property
