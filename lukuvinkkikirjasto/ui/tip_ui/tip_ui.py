@@ -91,11 +91,6 @@ class TipUI:
                 "shortcut": "r"
             },
             {
-                "action": self.modify_ui.choose_action,
-                "message": "Muokkaa kenttiä",
-                "shortcut": "m"
-            },
-            {
                 "action": self.service.remove_tip,
                 "message": "Poista vinkki",
                 "shortcut": "d"
