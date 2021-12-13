@@ -5,7 +5,10 @@ Test Setup  Setup App And Input Add Book Command
 *** Test Cases ***
 Remove Existing Book Tip
     Add Book Tip  Name  Author  1234  1994
-    Delete Book Tip  Name  Author  1234  1994
+    Input Command  c
+    Input Command  0
+    Input Command  d
+    Run And Quit Application
     
     Database Should Not Contain Book  Name  Author  1234  1994
 

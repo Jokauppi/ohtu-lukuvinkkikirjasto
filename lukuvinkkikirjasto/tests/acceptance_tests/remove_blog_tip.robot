@@ -5,7 +5,10 @@ Test Setup  Setup App And Input Add Blog Command
 *** Test Cases ***
 Remove Existing Blog Tip
     Add Blog Tip  Name  Author  www.example.com/blog
-    Delete Blog Tip  Name  Author  www.example.com/blog
+    Input Command  c
+    Input Command  0
+    Input Command  d
+    Run And Quit Application
     
     Database Should Not Contain Blog  Name  Author  www.example.com/blog
 

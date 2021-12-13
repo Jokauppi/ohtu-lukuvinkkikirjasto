@@ -5,7 +5,10 @@ Test Setup  Setup App And Input Add Video Command
 *** Test Cases ***
 Remove Existing Video Tip
     Add Video Tip  Title  www.example.com/video
-    Delete Video Tip  Title  www.example.com/video
+    Input Command  c
+    Input Command  0
+    Input Command  d
+    Run And Quit Application
     
     Database Should Not Contain Video  Title  www.example.com/video
 
