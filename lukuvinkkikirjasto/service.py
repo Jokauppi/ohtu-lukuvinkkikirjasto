@@ -30,9 +30,9 @@ class Service:
     def remove_tip(self, tip):
         if isinstance(tip, BookTip):
             return self._bookrepository.remove_row(tip)
-        elif isinstance(tip, BlogTip):
+        if isinstance(tip, BlogTip):
             return self._blogrepository.remove_row(tip)
-        else:
+        if isinstance(tip, VideoTip):
             return self._videorepository.remove_row(tip)
 
 # Modify
@@ -40,9 +40,9 @@ class Service:
     def modify(self, modified_tip):
         if isinstance(modified_tip, BookTip):
             return self._bookrepository.modify(modified_tip)
-        elif isinstance(modified_tip, VideoTip):
+        if isinstance(modified_tip, VideoTip):
             return self._videorepository.modify(modified_tip)
-        else:
+        if isinstance(modified_tip, BlogTip):
             return self._blogrepository.modify(modified_tip)
 
 # Comment
@@ -50,9 +50,9 @@ class Service:
     def comment(self, tip, comment):
         if isinstance(tip, BookTip):
             return self._bookrepository.comment(tip, comment)
-        elif isinstance(tip, VideoTip):
+        if isinstance(tip, VideoTip):
             return self._videorepository.comment(tip, comment)
-        else:
+        if isinstance(tip, BlogTip):
             return self._blogrepository.comment(tip, comment)
 
 # Get All
