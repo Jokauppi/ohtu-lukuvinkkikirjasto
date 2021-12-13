@@ -10,10 +10,14 @@ Comment Book Tip
     Input Command  1
     Input Command  c
     Input Command  kommentti
+    Input Command  c
+    Input Command  1
+    Input Command  c
+    Input Command  uusi kommentti
     Input Command  p
     Run And Quit Application
 
-    Output Should Contain Book  book2  writer2  22222-22222-22222  2001  kommentti
+    Output Should Contain Book  book2  writer2  22222-22222-22222  2001  uusi kommentti
 
 Comment Video Tip
     Add Video Tip To Service  Video1  video.example.com/1
@@ -22,10 +26,14 @@ Comment Video Tip
     Input Command  1
     Input Command  c
     Input Command  kommentti
+    Input Command  c
+    Input Command  1
+    Input Command  c
+    Input Command  toinen kommentti
     Input Command  p
     Run And Quit Application
 
-    Output Should Contain Video  Video2  video.example.com/2  kommentti
+    Output Should Contain Video  Video2  video.example.com/2  toinen kommentti
 
 Comment Blog Tip
     Add Blog Tip To Service  Name1  Author1  www.example.com/blog1
@@ -34,10 +42,14 @@ Comment Blog Tip
     Input Command  1
     Input Command  c
     Input Command  kommentti
+    Input Command  c
+    Input Command  1
+    Input Command  c
+    Input Command  kommentti2
     Input Command  p
     Run And Quit Application
 
-    Output Should Contain Blog  Name2  Author2  www.example.com/blog2  kommentti
+    Output Should Contain Blog  Name2  Author2  www.example.com/blog2  kommentti2
 
 
 
