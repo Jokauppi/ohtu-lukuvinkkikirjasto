@@ -13,7 +13,7 @@ Mark Book Tip As Read
     Input Command  u
     Run And Quit Application
 
-    Output Should Contain Book  book2  writer2  22222-22222-22222  2001
+    Output Should Contain Book  book2  writer2  22222-22222-22222  2001  ${EMPTY}
 
 Mark Video Tip As Read
     Add Video Tip To Service  Video1  video.example.com/1
@@ -25,7 +25,7 @@ Mark Video Tip As Read
     Input Command  u
     Run And Quit Application
 
-    Output Should Contain Video  Video2  video.example.com/2
+    Output Should Contain Video  Video2  video.example.com/2  ${EMPTY}
 
 *** Keywords ***
 Setup Application

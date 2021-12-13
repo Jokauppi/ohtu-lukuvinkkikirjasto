@@ -8,17 +8,17 @@ List Tips With Empty Filter
     List Tips
     Run And Quit Application
 
-    Output Should Contain Book  book1  writer1  11111-11111-11111  2000
-    Output Should Contain Book  book2  writer1  22222-22222-22222  2001
-    Output Should Contain Book  book3  writer2  33333-33333-33333  2002
-    Output Should Contain Book  book4  writer2  44444-44444-44444  2000
-    Output Should Contain Book  book5  writer1  55555-55555-55555  2000
-    Output Should Contain Blog  blog1  blogger1  blog.example.com/1
-    Output Should Contain Blog  blog2  blogger1  blog.example.com/2
-    Output Should Contain Blog  blog3  blogger2  blog.example.com/3
-    Output Should Contain Video  video1  video.example.com/1
-    Output Should Contain Video  video2  video.example.com/2
-    Output Should Contain Video  video3  video.example.com/3
+    Output Should Contain Book  book1  writer1  11111-11111-11111  2000  ${EMPTY} 
+    Output Should Contain Book  book2  writer1  22222-22222-22222  2001  ${EMPTY} 
+    Output Should Contain Book  book3  writer2  33333-33333-33333  2002  ${EMPTY} 
+    Output Should Contain Book  book4  writer2  44444-44444-44444  2000  ${EMPTY} 
+    Output Should Contain Book  book5  writer1  55555-55555-55555  2000  ${EMPTY} 
+    Output Should Contain Blog  blog1  blogger1  blog.example.com/1  ${EMPTY} 
+    Output Should Contain Blog  blog2  blogger1  blog.example.com/2  ${EMPTY} 
+    Output Should Contain Blog  blog3  blogger2  blog.example.com/3  ${EMPTY} 
+    Output Should Contain Video  video1  video.example.com/1  ${EMPTY} 
+    Output Should Contain Video  video2  video.example.com/2  ${EMPTY} 
+    Output Should Contain Video  video3  video.example.com/3  ${EMPTY} 
 
 
 List Tips With Name Filter
@@ -27,7 +27,7 @@ List Tips With Name Filter
     List Tips
     Run And Quit Application
 
-    Output Should Contain Book  book1  writer1  11111-11111-11111  2000
+    Output Should Contain Book  book1  writer1  11111-11111-11111  2000  ${EMPTY} 
 
 
 List Tips With Author Filter
@@ -36,9 +36,9 @@ List Tips With Author Filter
     List Tips
     Run And Quit Application
 
-    Output Should Contain Book  book1  writer1  11111-11111-11111  2000
-    Output Should Contain Book  book2  writer1  22222-22222-22222  2001
-    Output Should Contain Book  book5  writer1  55555-55555-55555  2000
+    Output Should Contain Book  book1  writer1  11111-11111-11111  2000  ${EMPTY} 
+    Output Should Contain Book  book2  writer1  22222-22222-22222  2001  ${EMPTY} 
+    Output Should Contain Book  book5  writer1  55555-55555-55555  2000  ${EMPTY} 
 
 
 List Tips With ISBN Filter
@@ -47,7 +47,7 @@ List Tips With ISBN Filter
     List Tips
     Run And Quit Application
 
-    Output Should Contain Book  book2  writer1  22222-22222-22222  2001
+    Output Should Contain Book  book2  writer1  22222-22222-22222  2001  ${EMPTY} 
 
 
 List Tips With Year Filter
@@ -56,9 +56,9 @@ List Tips With Year Filter
     List Tips
     Run And Quit Application
 
-    Output Should Contain Book  book1  writer1  11111-11111-11111  2000
-    Output Should Contain Book  book4  writer2  44444-44444-44444  2000
-    Output Should Contain Book  book5  writer1  55555-55555-55555  2000
+    Output Should Contain Book  book1  writer1  11111-11111-11111  2000  ${EMPTY} 
+    Output Should Contain Book  book4  writer2  44444-44444-44444  2000  ${EMPTY} 
+    Output Should Contain Book  book5  writer1  55555-55555-55555  2000  ${EMPTY} 
 
 
 List Tips With Url Filter
@@ -67,7 +67,7 @@ List Tips With Url Filter
     List Tips
     Run And Quit Application
 
-    Output Should Contain Video  video2  video.example.com/2
+    Output Should Contain Video  video2  video.example.com/2  ${EMPTY} 
 
 
 List Tips After Resetting Filters
@@ -79,17 +79,17 @@ List Tips After Resetting Filters
     List Tips
     Run And Quit Application
 
-    Output Should Contain Book  book1  writer1  11111-11111-11111  2000
-    Output Should Contain Book  book2  writer1  22222-22222-22222  2001
-    Output Should Contain Book  book3  writer2  33333-33333-33333  2002
-    Output Should Contain Book  book4  writer2  44444-44444-44444  2000
-    Output Should Contain Book  book5  writer1  55555-55555-55555  2000
-    Output Should Contain Blog  blog1  blogger1  blog.example.com/1
-    Output Should Contain Blog  blog2  blogger1  blog.example.com/2
-    Output Should Contain Blog  blog3  blogger2  blog.example.com/3
-    Output Should Contain Video  video1  video.example.com/1
-    Output Should Contain Video  video2  video.example.com/2
-    Output Should Contain Video  video3  video.example.com/3
+    Output Should Contain Book  book1  writer1  11111-11111-11111  2000  ${EMPTY} 
+    Output Should Contain Book  book2  writer1  22222-22222-22222  2001  ${EMPTY} 
+    Output Should Contain Book  book3  writer2  33333-33333-33333  2002  ${EMPTY} 
+    Output Should Contain Book  book4  writer2  44444-44444-44444  2000  ${EMPTY} 
+    Output Should Contain Book  book5  writer1  55555-55555-55555  2000  ${EMPTY} 
+    Output Should Contain Blog  blog1  blogger1  blog.example.com/1  ${EMPTY} 
+    Output Should Contain Blog  blog2  blogger1  blog.example.com/2  ${EMPTY} 
+    Output Should Contain Blog  blog3  blogger2  blog.example.com/3  ${EMPTY} 
+    Output Should Contain Video  video1  video.example.com/1  ${EMPTY} 
+    Output Should Contain Video  video2  video.example.com/2  ${EMPTY} 
+    Output Should Contain Video  video3  video.example.com/3  ${EMPTY} 
 
 
 List Tips With Author And Year Filters
@@ -99,8 +99,8 @@ List Tips With Author And Year Filters
     List Tips
     Run And Quit Application
 
-    Output Should Contain Book  book1  writer1  11111-11111-11111  2000
-    Output Should Contain Book  book5  writer1  55555-55555-55555  2000
+    Output Should Contain Book  book1  writer1  11111-11111-11111  2000  ${EMPTY} 
+    Output Should Contain Book  book5  writer1  55555-55555-55555  2000  ${EMPTY} 
 
 
 *** Keywords ***
