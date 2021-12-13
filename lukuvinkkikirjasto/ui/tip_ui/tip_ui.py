@@ -15,26 +15,6 @@ class TipUI:
 
         self.actions_book = [
             {
-                "action": self.service.mark_as_read,
-                "message": "Merkitse vinkki luetuksi",
-                "shortcut": "r"
-            },
-            {
-                "action": self.service.remove_tip,
-                "message": "Poista vinkki",
-                "shortcut": "d"
-            },
-            {
-                "action": self.comment_tip,
-                "message": "Kommentoi vinkkiä",
-                "shortcut": "c"
-            },
-            {
-                "action": self.tag_ui.show,
-                "message": "Lisää tageja",
-                "shortcut": "l"
-            },
-            {
                 "action": self.modify_name,
                 "message": "Muokkaa Title",
                 "shortcut": "t"
@@ -64,26 +44,6 @@ class TipUI:
 
         self.actions_blog = [
             {
-                "action": self.service.mark_as_read,
-                "message": "Merkitse vinkki luetuksi",
-                "shortcut": "r"
-            },
-            {
-                "action": self.service.remove_tip,
-                "message": "Poista vinkki",
-                "shortcut": "d"
-            },
-            {
-                "action": self.comment_tip,
-                "message": "Kommentoi vinkkiä",
-                "shortcut": "c"
-            },
-            {
-                "action": self.tag_ui.show,
-                "message": "Lisää tageja",
-                "shortcut": "l"
-            },
-            {
                 "action": self.modify_name,
                 "message": "Muokkaa Title",
                 "shortcut": "t"
@@ -106,26 +66,6 @@ class TipUI:
         ]
 
         self.actions_video = [
-            {
-                "action": self.service.mark_as_read,
-                "message": "Merkitse vinkki luetuksi",
-                "shortcut": "r"
-            },
-            {
-                "action": self.service.remove_tip,
-                "message": "Poista vinkki",
-                "shortcut": "d"
-            },
-            {
-                "action": self.comment_tip,
-                "message": "Kommentoi vinkkiä",
-                "shortcut": "c"
-            },
-            {
-                "action": self.tag_ui.show,
-                "message": "Lisää tageja",
-                "shortcut": "l"
-            },
             {
                 "action": self.modify_title,
                 "message": "Muokkaa Title",
@@ -188,11 +128,11 @@ class TipUI:
 
     def choose_action(self, tip):
         if isinstance(tip, BookTip):
-            self.menu.show(self.actions_book, "Valitse muokattava kenttä")(tip)
+            self.menu.show(self.actions + self.actions_book, "Valitse muokattava kenttä")(tip)
         if isinstance(tip, BlogTip):
-            self.menu.show(self.actions_blog, "Valitse muokattava kenttä")(tip)
+            self.menu.show(self.actions + self.actions_blog, "Valitse muokattava kenttä")(tip)
         if isinstance(tip, VideoTip):
-            self.menu.show(self.actions_video, "Valitse muokattava kenttä")(tip)
+            self.menu.show(self.actions + self.actions_video, "Valitse muokattava kenttä")(tip)
 
     def comment_tip(self, tip):
         comment = self.textio.input("Input comment:")
