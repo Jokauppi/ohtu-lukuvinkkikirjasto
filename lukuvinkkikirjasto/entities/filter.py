@@ -6,12 +6,12 @@ class Filter:
     def __init__(self):
         self.__types = []
         self.__name = ""
-        self.__title = "" #should this be used?
         self.__author = ""
         self.__isbn = ""
         self.__publication_year = ""
         self.__url = ""
         self.__read = ""
+        self.__comment = ""
 
     @property
     def types(self):
@@ -71,14 +71,22 @@ class Filter:
             raise ValueError
         self.__read = value.strip()
 
+    @property
+    def comment(self):
+        return self.__comment
+
+    @comment.setter
+    def comment(self, value):
+        self.__comment = value
+
     def clear_filters(self):
         self.__name = ""
-        self.__title = ""
         self.__author = ""
         self.__isbn = ""
         self.__publication_year = ""
         self.__url = ""
         self.__read = ""
+        self.__comment = ""
 
     def book_filters(self):
 
@@ -100,6 +108,8 @@ class Filter:
             self.add_sort_bys(sort_by_values, sort_by_orders, 'publication_year', 'DESC')
         if self.__isbn:
             self.add_field_and_value(fields, values, comparators, 'isbn', self.__isbn, '=')
+        if self.__comment:
+            self.add_field_and_value(fields, values, comparators, 'comment', self.__comment, ' LIKE ')
         if self.__read.lower() == 'k':
             self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
         if self.__read.lower() == 'e':
@@ -120,6 +130,8 @@ class Filter:
         if self.__url:
             self.add_field_and_value(fields, values, comparators, 'url', self.__url, ' LIKE ')
             self.add_sort_bys(sort_by_values, sort_by_orders, 'url', 'ASC')
+        if self.__comment:
+            self.add_field_and_value(fields, values, comparators, 'comment', self.__comment, ' LIKE ')
         if self.__read.lower() == 'k':
             self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
         if self.__read.lower() == 'e':
@@ -137,6 +149,8 @@ class Filter:
         if self.__url:
             self.add_field_and_value(fields, values, comparators, 'url', self.__url, ' LIKE ')
             self.add_sort_bys(sort_by_values, sort_by_orders, 'url', 'ASC')
+        if self.__comment:
+            self.add_field_and_value(fields, values, comparators, 'comment', self.__comment, ' LIKE ')
         if self.__read.lower() == 'k':
             self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
         if self.__read.lower() == 'e':
@@ -169,4 +183,5 @@ class Filter:
                 f"{'4. ISBN:':{pad}} {self.__isbn}\n" \
                 f"{'5. url:':{pad}} {self.__url}\n" \
                 f"{'6. Luettu (K/E):':{pad}} {self.__read}\n" \
+                f"{'7. Kommentti:':{pad}} {self.__read}\n" \
 
