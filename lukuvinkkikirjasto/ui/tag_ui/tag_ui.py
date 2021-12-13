@@ -8,7 +8,7 @@ class TagUI():
         self.actions = [
             {
                 "action": self.add_tag,
-                "meassage": "Lisää tag",
+                "message": "Lisää tag",
                 "shortcut": "a"
             },
             {
@@ -18,7 +18,7 @@ class TagUI():
             }
         ]
 
-    def choose_action(self, tip):
+    def show(self, tip):
         self.menu.show(self.actions, "Valitse toiminto")(tip)
 
     def add_tag(self, tip):
@@ -28,6 +28,3 @@ class TagUI():
     def remove_tag(self, tip):
         tip.remove_tag(self.textio.input("Tag: "))
         self.service.update_tags(tip)
-
-    def show(self, tip):
-        pass

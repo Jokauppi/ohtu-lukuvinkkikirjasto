@@ -78,7 +78,7 @@ class ModifyUI():
             }
         ]
 
-    def choose_action(self, tip):
+    def show(self, tip):
         if isinstance(tip, BookTip):
             self.menu.show(self.actions_book, "Valitse muokattava kenttä")(tip)
         if isinstance(tip, BlogTip):

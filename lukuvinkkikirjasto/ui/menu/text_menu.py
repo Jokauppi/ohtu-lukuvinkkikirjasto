@@ -40,7 +40,7 @@ class TextMenu:
             except:
                 self.text_io.output("Virheellinen komento")
 
-    def no_op(self):
+    def no_op(self, *args):
         pass
 
     def get_option(self, command):

@@ -44,7 +44,7 @@ class App():
             },
             {
                 "action": self.tip_ui.view,
-                "message": "Muokkaa vinkkiä",
+                "message": "Vinkin toiminnot",
                 "shortcut": "c"
             },
             {
