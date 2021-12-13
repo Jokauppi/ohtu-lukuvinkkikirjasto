@@ -3,9 +3,10 @@ import re
 class BookTip:
     # pylint: disable-duplicate-code
 
+    # pylint: disable=too-many-instance-attributes
+
     def __init__(self, name: str, author: str, isbn: str, publication_year: str, \
                  comment: str = '', id_number: int = None, read: bool = False, tags: str = ""):
-
         self.name = name
         self.author = author
         self.isbn = isbn
@@ -107,7 +108,7 @@ class BookTip:
             raise ValueError("tagia ei ole olemassa")
 
     def __str__(self):
-        pad = 7
+        pad = 8
 
         return  f"{'Title:':{pad}} {self.name}\n" \
                 f"{'Author:':{pad}} {self.author}\n" \

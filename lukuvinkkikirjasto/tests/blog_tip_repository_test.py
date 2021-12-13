@@ -90,7 +90,7 @@ class TestBlogTipRepository(unittest.TestCase):
         tips = self.repository.get_read(True)
 
         self.assertEqual(len(tips), 1)
-        self.assertEqual(tips[0].__str__(), "Title:  Blog1\nAuthor: Blogaaja1\nurl:    blog.example.com/1\nRead:   True\nComment: Kommentti")
+        self.assertEqual(tips[0].__str__(), "Title:   Blog1\nAuthor:  Blogaaja1\nurl:     blog.example.com/1\nRead:    True\nComment: Kommentti")
 
     def test_mark_as_read_returns_error(self):
         self.repository.add(self.tip_a)

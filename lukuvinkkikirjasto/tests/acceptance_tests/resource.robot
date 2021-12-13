@@ -26,15 +26,15 @@ Input Video Tip
 
 Output Should Contain Book
     [Arguments]  ${name}  ${author}  ${isbn}  ${pub_year}  ${comment}
-    Output Should Contain  Title:${SPACE*2}${name}\nAuthor: ${author}\nISBN:${SPACE*3}${isbn}\nYear:${SPACE*3}${pub_year}\nRead:${SPACE*3}False\nComment: ${comment}
+    Output Should Contain  Title:${SPACE*3}${name}\nAuthor:${SPACE*2}${author}\nISBN:${SPACE*4}${isbn}\nYear:${SPACE*4}${pub_year}\nRead:${SPACE*4}False\nComment: ${comment}
 
 Output Should Contain Blog
     [Arguments]  ${name}  ${author}  ${url}  ${comment}
-    Output Should Contain  Title:${SPACE*2}${name}\nAuthor: ${author}\nurl:${SPACE*4}${url}\nRead:${SPACE*3}False\nComment: ${comment}
+    Output Should Contain  Title:${SPACE*3}${name}\nAuthor:${SPACE*2}${author}\nurl:${SPACE*5}${url}\nRead:${SPACE*4}False\nComment: ${comment}
 
 Output Should Contain Video
     [Arguments]  ${title}  ${url}  ${comment}
-    Output Should Contain  Title:${SPACE*2}${title}\nUrl:${SPACE*4}${url}\nRead:${SPACE*3}False\nComment: ${comment}
+    Output Should Contain  Title:${SPACE*3}${title}\nUrl:${SPACE*5}${url}\nRead:${SPACE*4}False\nComment: ${comment}
 
 Run And Quit Application
     Input  q

@@ -29,37 +29,37 @@ class Service:
 
     def remove_tip(self, tip):
         if isinstance(tip, BookTip):
-            return self._bookrepository.remove_row(tip)
+            self._bookrepository.remove_row(tip)
         if isinstance(tip, BlogTip):
-            return self._blogrepository.remove_row(tip)
+            self._blogrepository.remove_row(tip)
         if isinstance(tip, VideoTip):
-            return self._videorepository.remove_row(tip)
+            self._videorepository.remove_row(tip)
 
 # Modify
 
     def modify(self, modified_tip):
         if isinstance(modified_tip, BookTip):
-            return self._bookrepository.modify(modified_tip)
+            self._bookrepository.modify(modified_tip)
         if isinstance(modified_tip, VideoTip):
-            return self._videorepository.modify(modified_tip)
+            self._videorepository.modify(modified_tip)
         if isinstance(modified_tip, BlogTip):
-            return self._blogrepository.modify(modified_tip)
+            self._blogrepository.modify(modified_tip)
 
 # Comment
 
     def comment(self, tip, comment):
         if isinstance(tip, BookTip):
-            return self._bookrepository.comment(tip, comment)
+            self._bookrepository.comment(tip, comment)
         if isinstance(tip, VideoTip):
-            return self._videorepository.comment(tip, comment)
+            self._videorepository.comment(tip, comment)
         if isinstance(tip, BlogTip):
-            return self._blogrepository.comment(tip, comment)
+            self._blogrepository.comment(tip, comment)
 
 # Tag
 
     def update_tags(self, tip):
         if isinstance(tip, BlogTip):
-            return self._blogrepository.update_tags(tip)
+            self._blogrepository.update_tags(tip)
 
 # Get All
 
@@ -87,27 +87,27 @@ class Service:
 
     def mark_as_read(self, tip):
         if isinstance(tip, BookTip):
-            return self._mark_book_tip_as_read(tip)
-        elif isinstance(tip, VideoTip):
-            return self._mark_video_tip_as_read(tip)
-        elif isinstance(tip, BlogTip):
-            return self._mark_blog_tip_as_read(tip)
+            self._mark_book_tip_as_read(tip)
+        if isinstance(tip, VideoTip):
+            self._mark_video_tip_as_read(tip)
+        if isinstance(tip, BlogTip):
+            self._mark_blog_tip_as_read(tip)
 
     def _mark_book_tip_as_read(self, book_tip):
-        return self._bookrepository.mark_as_read(book_tip)
+        self._bookrepository.mark_as_read(book_tip)
 
     def _mark_blog_tip_as_read(self, blog_tip):
-        return self._blogrepository.mark_as_read(blog_tip)
+        self._blogrepository.mark_as_read(blog_tip)
 
     def _mark_video_tip_as_read(self, video_tip):
-        return self._videorepository.mark_as_read(video_tip)
+        self._videorepository.mark_as_read(video_tip)
 
 
 # Search
 
-    def _search_book_tips(self, filter):
+    def _search_book_tips(self, my_filter):
 
-        fields, values, comparators, sort_by_values, sort_by_orders = filter.book_filters()
+        fields, values, comparators, sort_by_values, sort_by_orders = my_filter.book_filters()
 
         return self._bookrepository.search_tips(fields,
                                             values,
@@ -115,9 +115,9 @@ class Service:
                                             sort_by_values,
                                             sort_by_orders)
 
-    def _search_blog_tips(self, filter):
+    def _search_blog_tips(self, my_filter):
 
-        fields, values, comparators, sort_by_values, sort_by_orders = filter.blog_filters()
+        fields, values, comparators, sort_by_values, sort_by_orders = my_filter.blog_filters()
 
         return self._blogrepository.search_tips(fields,
                                             values,
@@ -125,9 +125,9 @@ class Service:
                                             sort_by_values,
                                             sort_by_orders)
 
-    def _search_video_tips(self, filter):
+    def _search_video_tips(self, my_filter):
 
-        fields, values, comparators, sort_by_values, sort_by_orders = filter.video_filters()
+        fields, values, comparators, sort_by_values, sort_by_orders = my_filter.video_filters()
 
         return self._videorepository.search_tips(fields,
                                             values,
@@ -137,64 +137,64 @@ class Service:
 
 # Filter
 
-    def filter_tips(self, filter):
-        filter_params = self._get_filter_params(filter)
+    def filter_tips(self, my_filter):
+        filter_params = self._get_filter_params(my_filter)
 
         if not filter_params:
-            return self._search_all_tips(filter)
+            return self._search_all_tips(my_filter)
 
-        if not filter.types:
-            return self._filter_all(filter, filter_params)
+        if not my_filter.types:
+            return self._filter_all(my_filter, filter_params)
 
         tips = []
 
-        if "book" in filter.types:
-            tips += self._filter_books(filter, filter_params)
-        if "blog" in filter.types:
-            tips += self._filter_blogs(filter, filter_params)
-        if "video" in filter.types:
-            tips += self._filter_videos(filter, filter_params)
+        if "book" in my_filter.types:
+            tips += self._filter_books(my_filter, filter_params)
+        if "blog" in my_filter.types:
+            tips += self._filter_blogs(my_filter, filter_params)
+        if "video" in my_filter.types:
+            tips += self._filter_videos(my_filter, filter_params)
 
         return tips
 
-    def _search_all_tips(self, filter):
-        tips = self._search_book_tips(filter)
-        tips += self._search_blog_tips(filter)
-        tips += self._search_video_tips(filter)
+    def _search_all_tips(self, my_filter):
+        tips = self._search_book_tips(my_filter)
+        tips += self._search_blog_tips(my_filter)
+        tips += self._search_video_tips(my_filter)
         return tips
 
-    def _get_filter_params(self, filter):
+    def _get_filter_params(self, my_filter):
         filter_params = set()
 
-        for param, value in vars(filter).items():
+        for param, value in vars(my_filter).items():
             if value:
                 filter_params.add(param)
 
         return filter_params
 
-    def _filter_all(self, filter, filter_params):
+    def _filter_all(self, my_filter, filter_params):
         tips = []
 
-        tips += self._filter_books(filter, filter_params)
-        tips += self._filter_blogs(filter, filter_params)
-        tips += self._filter_videos(filter, filter_params)
+        tips += self._filter_books(my_filter, filter_params)
+        tips += self._filter_blogs(my_filter, filter_params)
+        tips += self._filter_videos(my_filter, filter_params)
 
         return tips
 
-    def _filter_books(self, filter, filter_params):
+    def _filter_books(self, my_filter, filter_params):
         if filter_params.issubset(book_params):
-            return self._search_book_tips(filter)
+            return self._search_book_tips(my_filter)
 
         return []
 
-    def _filter_blogs(self, filter, filter_params):
+    def _filter_blogs(self, my_filter, filter_params):
         if filter_params.issubset(blog_params):
-            return self._search_blog_tips(filter)
+            return self._search_blog_tips(my_filter)
 
         return []
 
-    def _filter_videos(self, filter, filter_params):
+    def _filter_videos(self, my_filter, filter_params):
         if filter_params.issubset(video_params):
-            return self._search_video_tips(filter)
+            return self._search_video_tips(my_filter)
 
         return []

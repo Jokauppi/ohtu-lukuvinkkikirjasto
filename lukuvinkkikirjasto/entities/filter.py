@@ -1,5 +1,3 @@
-import re
-
 class Filter:
     # pylint: disable-duplicate-code
 
@@ -120,14 +118,18 @@ class Filter:
         if self.__isbn:
             self.add_field_and_value(fields, values, comparators, 'isbn', self.__isbn, '=')
         if self.__comment:
-            self.add_field_and_value(fields, values, comparators, 'comment', self.__comment, ' LIKE ')
+            self.add_field_and_value(
+                fields, values, comparators, 'comment', self.__comment, ' LIKE '
+            )
         if self.__read.lower() == 'k':
             self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
         if self.__read.lower() == 'e':
             self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
         if self.__taglist:
-            for i in range(len(self.__taglist)):
-                self.add_field_and_value(fields, values, comparators, 'tags', self.__taglist[i], ' LIKE ')
+            for i in enumerate(self.__taglist):
+                self.add_field_and_value(
+                    fields, values, comparators, 'tags', self.__taglist[i], ' LIKE '
+                )
 
         return fields, values, comparators, sort_by_values, sort_by_orders
 
@@ -145,14 +147,18 @@ class Filter:
             self.add_field_and_value(fields, values, comparators, 'url', self.__url, ' LIKE ')
             self.add_sort_bys(sort_by_values, sort_by_orders, 'url', 'ASC')
         if self.__comment:
-            self.add_field_and_value(fields, values, comparators, 'comment', self.__comment, ' LIKE ')
+            self.add_field_and_value(
+                fields, values, comparators, 'comment', self.__comment, ' LIKE '
+            )
         if self.__read.lower() == 'k':
             self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
         if self.__read.lower() == 'e':
             self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
         if self.__taglist:
-            for i in range(len(self.__taglist)):
-                self.add_field_and_value(fields, values, comparators, 'tags', self.__taglist[i], ' LIKE ')
+            for i in enumerate(self.__taglist):
+                self.add_field_and_value(
+                    fields, values, comparators, 'tags', self.__taglist[i], ' LIKE '
+                )
 
         return fields, values, comparators, sort_by_values, sort_by_orders
 
@@ -167,14 +173,18 @@ class Filter:
             self.add_field_and_value(fields, values, comparators, 'url', self.__url, ' LIKE ')
             self.add_sort_bys(sort_by_values, sort_by_orders, 'url', 'ASC')
         if self.__comment:
-            self.add_field_and_value(fields, values, comparators, 'comment', self.__comment, ' LIKE ')
+            self.add_field_and_value(
+                fields, values, comparators, 'comment', self.__comment, ' LIKE '
+            )
         if self.__read.lower() == 'k':
             self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
         if self.__read.lower() == 'e':
             self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
         if self.__taglist:
-            for i in range(len(self.__taglist)):
-                self.add_field_and_value(fields, values, comparators, 'tags', self.__taglist[i], ' LIKE ')
+            for i in enumerate(self.__taglist):
+                self.add_field_and_value(
+                    fields, values, comparators, 'tags', self.__taglist[i], ' LIKE '
+                )
 
         return fields, values, comparators, sort_by_values, sort_by_orders
 
@@ -190,26 +200,25 @@ class Filter:
             sort_by_values.append(value)
             sort_by_orders.append(order)
 
-'''
-    def __str__(self):
-        pad = 7
-        tags = ""
-        if self.__taglist:
-            tags = self.__taglist[0]
-        i = 1
-        while i < len(self.__taglist):
-            tags += ", " + str(self.__taglist[i])
 
-
-        return  "\n---------------------\n" \
-                "Aktiiviset filtterit:" \
-                "\n---------------------\n" \
-                f"{'1. Nimike:':{pad}} {self.__name}\n" \
-                f"{'2. Tekijä:':{pad}} {self.__author}\n" \
-                f"{'3. Vuosi:':{pad}} {self.__publication_year}\n" \
-                f"{'4. ISBN:':{pad}} {self.__isbn}\n" \
-                f"{'5. url:':{pad}} {self.__url}\n" \
-                f"{'6. Luettu (K/E):':{pad}} {self.__read}\n" \
-                f"{'7. Kommentti:':{pad}} {self.__read}\n" \
-                f"{'8. Tagit:':{pad}} {tags}\n"
-'''
+#    def __str__(self):
+#        pad = 7
+#        tags = ""
+#        if self.__taglist:
+#            tags = self.__taglist[0]
+#        i = 1
+#        while i < len(self.__taglist):
+#            tags += ", " + str(self.__taglist[i])
+#
+#
+#        return  "\n---------------------\n" \
+#                "Aktiiviset filtterit:" \
+#                "\n---------------------\n" \
+#                f"{'1. Nimike:':{pad}} {self.__name}\n" \
+#                f"{'2. Tekijä:':{pad}} {self.__author}\n" \
+#                f"{'3. Vuosi:':{pad}} {self.__publication_year}\n" \
+#                f"{'4. ISBN:':{pad}} {self.__isbn}\n" \
+#                f"{'5. url:':{pad}} {self.__url}\n" \
+#                f"{'6. Luettu (K/E):':{pad}} {self.__read}\n" \
+#                f"{'7. Kommentti:':{pad}} {self.__read}\n" \
+#                f"{'8. Tagit:':{pad}} {tags}\n"

@@ -2,6 +2,8 @@
 class BlogTip:
     # pylint: disable-duplicate-code
 
+    # pylint: disable=too-many-instance-attributes
+
     def __init__(self, name: str, author: str, url: str, comment: str = '', \
             id_number: int = None, read: bool = False, tags:str = ""):
         self.name = name
@@ -84,7 +86,7 @@ class BlogTip:
             raise ValueError("tagia ei ole olemassa")
 
     def __str__(self):
-        pad = 7
+        pad = 8
 
         return f"{'Title:':{pad}} {self.name}\n" \
                 f"{'Author:':{pad}} {self.author}\n" \
