@@ -6,6 +6,7 @@ book_params = [
     "_Filter__isbn",
     "_Filter__read",
     "_Filter__comment",
+    "_Filter__taglist",
 ]
 
 blog_params = [
@@ -15,6 +16,7 @@ blog_params = [
     "_Filter__url",
     "_Filter__read",
     "_Filter__comment",
+    "_Filter__taglist",
 ]
 
 video_params = [
@@ -23,4 +25,5 @@ video_params = [
     "_Filter__url",
     "_Filter__read",
     "_Filter__comment",
+    "_Filter__taglist",
 ]

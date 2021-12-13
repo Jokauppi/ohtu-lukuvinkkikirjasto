@@ -12,6 +12,7 @@ class Filter:
         self.__url = ""
         self.__read = ""
         self.__comment = ""
+        self.__taglist = []
 
     @property
     def types(self):
@@ -79,7 +80,16 @@ class Filter:
     def comment(self, value):
         self.__comment = value
 
+    @property
+    def taglist(self):
+        return self.__taglist
+
+    @taglist.setter
+    def taglist(self, value):
+        self.__taglist.append(value)
+
     def clear_filters(self):
+        self.__types.clear()
         self.__name = ""
         self.__author = ""
         self.__isbn = ""
@@ -87,6 +97,7 @@ class Filter:
         self.__url = ""
         self.__read = ""
         self.__comment = ""
+        self.__taglist.clear()
 
     def book_filters(self):
 
@@ -114,6 +125,9 @@ class Filter:
             self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
         if self.__read.lower() == 'e':
             self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
+        if self.__taglist:
+            for i in range(len(self.__taglist)):
+                self.add_field_and_value(fields, values, comparators, 'tags', self.__taglist[i], ' LIKE ')
 
         return fields, values, comparators, sort_by_values, sort_by_orders
 
@@ -136,6 +150,9 @@ class Filter:
             self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
         if self.__read.lower() == 'e':
             self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
+        if self.__taglist:
+            for i in range(len(self.__taglist)):
+                self.add_field_and_value(fields, values, comparators, 'tags', self.__taglist[i], ' LIKE ')
 
         return fields, values, comparators, sort_by_values, sort_by_orders
 
@@ -155,6 +172,9 @@ class Filter:
             self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
         if self.__read.lower() == 'e':
             self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
+        if self.__taglist:
+            for i in range(len(self.__taglist)):
+                self.add_field_and_value(fields, values, comparators, 'tags', self.__taglist[i], ' LIKE ')
 
         return fields, values, comparators, sort_by_values, sort_by_orders
 
@@ -173,6 +193,13 @@ class Filter:
 
     def __str__(self):
         pad = 7
+        tags = ""
+        if self.__taglist:
+            tags = self.__taglist[0]
+        i = 1
+        while i < len(self.__taglist):
+            tags += ", " + str(self.__taglist[i])
+
 
         return  "\n---------------------\n" \
                 "Aktiiviset filtterit:" \
@@ -184,4 +211,4 @@ class Filter:
                 f"{'5. url:':{pad}} {self.__url}\n" \
                 f"{'6. Luettu (K/E):':{pad}} {self.__read}\n" \
                 f"{'7. Kommentti:':{pad}} {self.__read}\n" \
-
+                f"{'8. Tagit:':{pad}} {tags}\n" \
