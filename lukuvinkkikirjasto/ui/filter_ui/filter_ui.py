@@ -1,4 +1,3 @@
-from simple_term_menu import TerminalMenu
 import os
 
 class FilterUI:
@@ -101,6 +100,11 @@ class FilterUI:
                 except ValueError as err:
                     print(err)
         else:
+
+            # pylint: disable=import-outside-toplevel
+            from simple_term_menu import TerminalMenu
+            # pylint: enable=import-outside-toplevel
+
             terminal_menu = TerminalMenu(
                 types,
                 multi_select=True,
