@@ -160,4 +160,3 @@ class TipUI:
 
     def modify_title(self, tip):
         self.modify(tip, "title", self.textio.input("Title: "))
-
