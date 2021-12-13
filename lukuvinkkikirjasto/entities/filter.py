@@ -118,7 +118,7 @@ class Filter:
             self.add_field_and_value(fields, values, comparators, 'author', self.__author, ' LIKE ')
             self.add_sort_bys(sort_by_values, sort_by_orders, 'author', 'ASC')
         if self.__url:
-            self.add_field_and_value(fields, values, comparators, 'url', self.__isbn, ' LIKE ')
+            self.add_field_and_value(fields, values, comparators, 'url', self.__url, ' LIKE ')
             self.add_sort_bys(sort_by_values, sort_by_orders, 'url', 'ASC')
         if self.__read.lower() == 'k':
             self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
@@ -135,7 +135,7 @@ class Filter:
             self.add_field_and_value(fields, values, comparators, 'title', self.__name, ' LIKE ')
             self.add_sort_bys(sort_by_values, sort_by_orders, 'title', 'ASC')
         if self.__url:
-            self.add_field_and_value(fields, values, comparators, 'url', self.__isbn, ' LIKE ')
+            self.add_field_and_value(fields, values, comparators, 'url', self.__url, ' LIKE ')
             self.add_sort_bys(sort_by_values, sort_by_orders, 'url', 'ASC')
         if self.__read.lower() == 'k':
             self.add_field_and_value(fields, values, comparators, 'read', '1', '=')
