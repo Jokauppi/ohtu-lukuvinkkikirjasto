@@ -1,3 +1,6 @@
+from simple_term_menu import TerminalMenu
+import os
+
 class FilterUI:
     def __init__(self, textio, menu, service, filter):
         self.textio = textio
@@ -10,7 +13,7 @@ class FilterUI:
 
             commands = [
                 {
-                    "action": self.filter.types,
+                    "action": "type",
                     "message": self.menu_string("Vinkin tyyppi", self.filter.types),
                     "shortcut": "t"
                 },
@@ -60,8 +63,9 @@ class FilterUI:
 
             if response == "save":
                 break
-            
-            if type(response) == str:
+            elif response == "type":
+                self.set_types()
+            elif type(response) == str:
                 self.set_filter(response)
             else:
                 response()
@@ -80,16 +84,33 @@ class FilterUI:
             return f"{text}: {value}"
         return f"{text}"
 
-    def set_filters(self):
-        choice = "-1"
-        while choice:
-            self.textio.output(self.filter)
-            choice = self.textio.input("Valitse muokattava filtteri (1, 2,... TYHJÄ = lopeta,  0 = Tyhjennä kaikki): ").lower()
-            if not choice:
-                self.textio.output("")
-                return
-            if choice == "0":
-                self.filter.clear_filters()
-            else:
-                value = self.textio.input("Suodattimen " +choice+ " uusi arvo: ").lower()
-                self.filter.set_choice(choice, value)
+    def set_types(self):
+        
+        types = ["book", "blog", "video"]
+
+        if os.name == "nt" or os.getenv("TEXTMODE", 'False').lower() in ('true', '1', 't'):
+            self.textio.output("Syödä näytettävät tyypit pilkulla erotettuna")
+            self.textio.output("Vaihtoehdot book, blog ja video")
+            while True:
+                try:
+                    chosen = self.textio.input("Syötä tyypit: ")
+                    chosen.replace(" ", "")
+                    chosen = chosen.split(",")
+                    self.filter.types = chosen
+                    break
+                except ValueError as err:
+                    print(err)
+        else:
+            terminal_menu = TerminalMenu(
+                types,
+                multi_select=True,
+                show_multi_select_hint=True,
+                multi_select_empty_ok=True,
+                multi_select_select_on_accept=False,
+                preselected_entries=self.filter.types
+            )
+            menu_entry_indices = terminal_menu.show()
+            chosen = types
+            if terminal_menu.chosen_menu_entries:
+                chosen = list(terminal_menu.chosen_menu_entries)
+            self.filter.types = chosen

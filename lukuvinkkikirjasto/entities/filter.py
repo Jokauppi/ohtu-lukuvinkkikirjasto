@@ -18,7 +18,11 @@ class Filter:
 
     @types.setter
     def types(self, value):
-        self.__types.append(value)
+        accepted = ["book", "blog", "video"]
+        for type in value:
+            if type not in accepted:
+                raise ValueError("Virheellinen tyyppi")
+        self.__types = value
 
     @property
     def name(self):

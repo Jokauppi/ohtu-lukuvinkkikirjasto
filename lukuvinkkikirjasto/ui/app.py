@@ -1,3 +1,5 @@
+import os
+
 from ui.loopbreak import LoopBreak
 from ui.add_ui.add_ui import AddUI
 from ui.list_ui.list_ui import ListUI
@@ -5,7 +7,6 @@ from ui.filter_ui.filter_ui import FilterUI
 from ui.tip_ui.tip_ui import TipUI
 from entities.filter import Filter
 
-import os
 if os.name == "nt" or os.getenv("TEXTMODE", 'False').lower() in ('true', '1', 't'):
     from ui.menu.text_menu import TextMenu as Menu
 else:
