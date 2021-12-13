@@ -86,7 +86,7 @@ class BlogTip:
             raise ValueError("tagia ei ole olemassa")
 
     def __str__(self):
-        pad = 7
+        pad = 8
 
         return f"{'Title:':{pad}} {self.name}\n" \
                 f"{'Author:':{pad}} {self.author}\n" \
