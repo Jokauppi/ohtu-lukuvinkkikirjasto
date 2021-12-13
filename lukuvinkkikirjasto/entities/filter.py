@@ -211,4 +211,4 @@ class Filter:
                 f"{'5. url:':{pad}} {self.__url}\n" \
                 f"{'6. Luettu (K/E):':{pad}} {self.__read}\n" \
                 f"{'7. Kommentti:':{pad}} {self.__read}\n" \
-                f"{'8. Tagit:':{pad}} {tags}\n" \
+                f"{'8. Tagit:':{pad}} {tags}\n"
