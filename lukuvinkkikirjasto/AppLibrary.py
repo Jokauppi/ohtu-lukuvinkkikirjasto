@@ -1,5 +1,8 @@
 import os
 os.environ["TEXTMODE"]="true"
+
+# pylint: disable=wrong-import-position
+
 import config # pylint: disable=unused-import
 from entities.book_tip import BookTip
 from entities.blog_tip import BlogTip
@@ -11,6 +14,8 @@ from repositories.book_tip_repository import BookTipRepository
 from repositories.blog_tip_repository import BlogTipRepository
 from repositories.video_tip_repository import VideoTipRepository
 from repositories.database_connection import get_connection
+
+# pylint: enable=wrong-import-position
 
 class AppLibrary:
     def __init__(self):
@@ -89,15 +94,15 @@ class AppLibrary:
 
     def delete_blog_tip(self, name, author, url):
         blog = BlogTip(name, author, url)
-        self._service.remove_blog_tip(blog)
+        self._service.remove_tip(blog)
 
     def delete_book_tip(self, name, author, isbn, publication):
         book = BookTip(name, author, isbn, publication)
-        self._service.remove_book_tip(book)
+        self._service.remove_tip(book)
 
     def delete_video_tip(self, title, url):
         video = VideoTip(title, url)
-        self._service.remove_video_tip(video)
+        self._service.remove_tip(video)
 
     def setup_app(self):
         self._io = StubIO()

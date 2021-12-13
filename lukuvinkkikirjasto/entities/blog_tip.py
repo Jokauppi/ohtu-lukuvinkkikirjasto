@@ -2,6 +2,8 @@
 class BlogTip:
     # pylint: disable-duplicate-code
 
+    # pylint: disable=too-many-instance-attributes
+
     def __init__(self, name: str, author: str, url: str, comment: str = '', \
             id_number: int = None, read: bool = False, tags:str = ""):
         self.name = name

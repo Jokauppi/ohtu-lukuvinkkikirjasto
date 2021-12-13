@@ -33,7 +33,8 @@ class BlogTipRepository:
 
         cursor.execute("""
             INSERT INTO Blogtips (name, author, url, comment, tags, read) VALUES (?, ?, ?, ?, ?, ?)
-            """, (blog_tip.name, blog_tip.author, blog_tip.url, blog_tip.comment, blog_tip.tags, blog_tip.read))
+            """, (blog_tip.name, blog_tip.author, blog_tip.url,
+                  blog_tip.comment, blog_tip.tags, blog_tip.read))
 
         self._connection.commit()
 
@@ -59,7 +60,7 @@ class BlogTipRepository:
                             (blog_tip.tags, blog_tip.id_number))
             self._connection.commit()
             return True
-        
+
         except sqlite3.Error as err:
             print(err)
             return False
@@ -68,9 +69,11 @@ class BlogTipRepository:
         cursor = self._connection.cursor()
 
         try:
-            cursor.execute("UPDATE BlogTips SET name=?, author=?, url=?, comment=?, tags=? WHERE id = ?",
-                            (modified_tip.name, modified_tip.author, modified_tip.url,
-                            modified_tip.comment, modified_tip.tags, modified_tip.id_number))
+            cursor.execute("""
+                UPDATE BlogTips SET name=?, author=?, url=?, comment=?, tags=? WHERE id = ?
+            """, (modified_tip.name, modified_tip.author, modified_tip.url,
+                  modified_tip.comment, modified_tip.tags, modified_tip.id_number))
+
             self._connection.commit()
             return True
 

@@ -30,8 +30,10 @@ class VideoTipRepository:
         if result:
             return
 
-        cursor.execute("INSERT INTO Videotips (title, url, comment, tags, read) VALUES (?, ?, ?, ?, ?)",
-            (video_tip.title, video_tip.url, video_tip.comment, video_tip.tags, video_tip.read))
+        cursor.execute("""
+            INSERT INTO Videotips (title, url, comment, tags, read) VALUES (?, ?, ?, ?, ?)
+        """, (video_tip.title, video_tip.url, video_tip.comment,
+              video_tip.tags, video_tip.read))
 
         self._connection.commit()
 
