@@ -1,6 +1,7 @@
 from entities.book_tip import BookTip
 from entities.blog_tip import BlogTip
 from entities.video_tip import VideoTip
+from entities.filter_params import book_params, blog_params, video_params
 
 
 class Service:
@@ -131,17 +132,23 @@ class Service:
 # Filter
 
     def filter_tips(self, filter):
-        tips = []
+        filter_params = self._get_filter_params(filter)
+
+        if not filter_params:
+            return self._search_all_tips(filter)
 
         if not filter.types:
-            tips = self._search_all_tips(filter)
-        if "book" in filter.types:
-            tips += self._search_book_tips(filter)
-        if "blog" in filter.types:
-            tips += self._search_blog_tips(filter)
-        if "video" in filter.types:
-            tips += self._search_video_tips(filter)
+            return self._filter_all(filter, filter_params)
 
+        tips = []
+
+        if "book" in filter.types:
+            tips += self._filter_books(filter, filter_params)
+        if "blog" in filter.types:
+            tips += self._filter_blogs(filter, filter_params)
+        if "video" in filter.types:
+            tips += self._filter_videos(filter, filter_params)
+        
         return tips
 
     def _search_all_tips(self, filter):
@@ -149,3 +156,39 @@ class Service:
         tips += self._search_blog_tips(filter)
         tips += self._search_video_tips(filter)
         return tips
+
+    def _get_filter_params(self, filter):
+        filter_params = set()
+
+        for param, value in vars(filter).items():
+            if value:
+                filter_params.add(param)
+
+        return filter_params
+
+    def _filter_all(self, filter, filter_params):
+        tips = []
+
+        tips += self._filter_books(filter, filter_params)
+        tips += self._filter_blogs(filter, filter_params)
+        tips += self._filter_videos(filter, filter_params)
+
+        return tips
+
+    def _filter_books(self, filter, filter_params):
+        if filter_params.issubset(book_params):
+            return self._search_book_tips(filter)
+        
+        return []
+    
+    def _filter_blogs(self, filter, filter_params):
+        if filter_params.issubset(blog_params):
+            return self._search_blog_tips(filter)
+        
+        return []
+
+    def _filter_videos(self, filter, filter_params):
+        if filter_params.issubset(video_params):
+            return self._search_video_tips(filter)
+        
+        return []
