@@ -20,7 +20,7 @@ class Filter:
 
     @types.setter
     def types(self, value):
-        self.__types = value
+        self.__types.append(value)
 
     @property
     def name(self):
@@ -190,7 +190,7 @@ class Filter:
             sort_by_values.append(value)
             sort_by_orders.append(order)
 
-
+'''
     def __str__(self):
         pad = 7
         tags = ""
@@ -212,3 +212,4 @@ class Filter:
                 f"{'6. Luettu (K/E):':{pad}} {self.__read}\n" \
                 f"{'7. Kommentti:':{pad}} {self.__read}\n" \
                 f"{'8. Tagit:':{pad}} {tags}\n"
+'''
