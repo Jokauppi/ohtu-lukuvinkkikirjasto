@@ -25,6 +25,9 @@ class TagUI():
         tip.add_tag(self.textio.input("Tag: "))
         self.service.update_tags(tip)
 
-    def add_tag(self, tip):
+    def remove_tag(self, tip):
         tip.remove_tag(self.textio.input("Tag: "))
         self.service.update_tags(tip)
+
+    def show(self, tip):
+        pass

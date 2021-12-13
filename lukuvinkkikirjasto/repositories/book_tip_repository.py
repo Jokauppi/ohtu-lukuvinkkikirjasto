@@ -35,7 +35,7 @@ class BookTipRepository:
         cursor.execute("""
             INSERT INTO BookTips (name, author, isbn, publication_year, comment, tags, read) VALUES (?, ?, ?, ?, ?, ?, ?)
         """, (book_tip.name, book_tip.author, book_tip.isbn,
-              book_tip.publication_year, book_tip.comment, book_tip.tags book_tip.read))
+              book_tip.publication_year, book_tip.comment, book_tip.tags, book_tip.read))
 
         self._connection.commit()
 
@@ -75,7 +75,7 @@ class BookTipRepository:
             cursor.execute("""
                 UPDATE BookTips SET name=?, author=?, isbn=?, publication_year=?, comment=?, tags=? WHERE id = ?
             """, (modified_tip.name, modified_tip.author, modified_tip.isbn,
-                  modified_tip.publication_year, modified_tip.comment, modified_tip.tags modified_tip.id_number))
+                  modified_tip.publication_year, modified_tip.comment, modified_tip.tags, modified_tip.id_number))
             self._connection.commit()
             return True
 
