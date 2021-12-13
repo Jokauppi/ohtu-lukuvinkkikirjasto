@@ -126,7 +126,7 @@ class Filter:
         if self.__read.lower() == 'e':
             self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
         if self.__taglist:
-            for i in enumerate(self.__taglist):
+            for i, _ in enumerate(self.__taglist):
                 self.add_field_and_value(
                     fields, values, comparators, 'tags', self.__taglist[i], ' LIKE '
                 )
@@ -155,7 +155,7 @@ class Filter:
         if self.__read.lower() == 'e':
             self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
         if self.__taglist:
-            for i in enumerate(self.__taglist):
+            for i, _ in enumerate(self.__taglist):
                 self.add_field_and_value(
                     fields, values, comparators, 'tags', self.__taglist[i], ' LIKE '
                 )
@@ -181,7 +181,7 @@ class Filter:
         if self.__read.lower() == 'e':
             self.add_field_and_value(fields, values, comparators, 'read', '0', '=')
         if self.__taglist:
-            for i in enumerate(self.__taglist):
+            for i, _ in enumerate(self.__taglist):
                 self.add_field_and_value(
                     fields, values, comparators, 'tags', self.__taglist[i], ' LIKE '
                 )
