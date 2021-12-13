@@ -13,6 +13,7 @@ class VideoTipRepository:
                 title TEXT,
                 url TEXT,
                 comment TEXT,
+                tags TEXT,
                 read INTEGER
             );
         """)
@@ -29,8 +30,8 @@ class VideoTipRepository:
         if result:
             return
 
-        cursor.execute("INSERT INTO Videotips (title, url, comment, read) VALUES (?, ?, ?, ?)",
-            (video_tip.title, video_tip.url, video_tip.comment, video_tip.read))
+        cursor.execute("INSERT INTO Videotips (title, url, comment, tags, read) VALUES (?, ?, ?, ?, ?)",
+            (video_tip.title, video_tip.url, video_tip.comment, video_tip.tags, video_tip.read))
 
         self._connection.commit()
 
@@ -49,13 +50,27 @@ class VideoTipRepository:
             print(err)
             return False
 
+    def update_tags(self, video_tip):
+        cursor = self._connection.cursor()
+
+        try:
+            cursor.execute("UPDATE VideoTips SET tags=? WHERE id = ?",
+                            (video_tip.tags,
+                            video_tip.id_number))
+            self._connection.commit()
+            return True
+
+        except sqlite3.Error as err:
+            print(err)
+            return False
+
     def modify(self, modified_tip):
         cursor = self._connection.cursor()
 
         try:
-            cursor.execute("UPDATE VideoTips SET title=?, url=?, comment=? WHERE id = ?",
+            cursor.execute("UPDATE VideoTips SET title=?, url=?, comment=?, tags=? WHERE id = ?",
                             (modified_tip.title, modified_tip.url,
-                            modified_tip.comment, modified_tip.id_number))
+                            modified_tip.comment, modified_tip.tags, modified_tip.id_number))
             self._connection.commit()
             return True
 
