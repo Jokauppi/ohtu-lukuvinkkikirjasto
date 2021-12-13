@@ -55,6 +55,12 @@ class Service:
         if isinstance(tip, BlogTip):
             return self._blogrepository.comment(tip, comment)
 
+# Tag
+
+    def update_tags(self, tip):
+        if isinstance(tip, BlogTip):
+            return self._blogrepository.update_tags(tip)
+
 # Get All
 
     def get_all_book_tips(self):
