@@ -103,7 +103,7 @@ class TipUI:
             {
                 "action": self.tag_ui.show,
                 "message": "Lisää tageja",
-                "shortcut": "t"
+                "shortcut": "l"
             }
         ]
 
