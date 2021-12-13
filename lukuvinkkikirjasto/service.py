@@ -32,7 +32,7 @@ class Service:
             return self._bookrepository.remove_row(tip)
         elif isinstance(tip, BlogTip):
             return self._blogrepository.remove_row(tip)
-        elif isinstance(tip, VideoTip):
+        else:
             return self._videorepository.remove_row(tip)
 
 # Modify
@@ -42,7 +42,7 @@ class Service:
             return self._bookrepository.modify(modified_tip)
         elif isinstance(modified_tip, VideoTip):
             return self._videorepository.modify(modified_tip)
-        elif isinstance(modified_tip, BlogTip):
+        else:
             return self._blogrepository.modify(modified_tip)
 
 # Comment
@@ -52,7 +52,7 @@ class Service:
             return self._bookrepository.comment(tip, comment)
         elif isinstance(tip, VideoTip):
             return self._videorepository.comment(tip, comment)
-        elif isinstance(tip, BlogTip):
+        else:
             return self._blogrepository.comment(tip, comment)
 
 # Get All
@@ -148,7 +148,7 @@ class Service:
             tips += self._filter_blogs(filter, filter_params)
         if "video" in filter.types:
             tips += self._filter_videos(filter, filter_params)
-        
+
         return tips
 
     def _search_all_tips(self, filter):
@@ -178,17 +178,17 @@ class Service:
     def _filter_books(self, filter, filter_params):
         if filter_params.issubset(book_params):
             return self._search_book_tips(filter)
-        
+
         return []
-    
+
     def _filter_blogs(self, filter, filter_params):
         if filter_params.issubset(blog_params):
             return self._search_blog_tips(filter)
-        
+
         return []
 
     def _filter_videos(self, filter, filter_params):
         if filter_params.issubset(video_params):
             return self._search_video_tips(filter)
-        
+
         return []
