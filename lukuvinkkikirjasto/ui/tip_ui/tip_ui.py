@@ -49,7 +49,7 @@ class TipUI:
             try:
                 index = self.textio.input("Valitse vinkin numero:")
                 return tips[int(index)]
-            except (KeyError, IndexError):
+            except (KeyError, IndexError, ValueError):
                 self.textio.output("Virheellinen vinkin numero")
 
     def choose_action(self, tip):
