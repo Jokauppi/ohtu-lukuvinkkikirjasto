@@ -17,7 +17,7 @@ class ConsoleMenu:
 
         options_strings = [self.get_option(c) for c in options]
 
-        terminal_menu = TerminalMenu(options_strings, title=title)
+        terminal_menu = TerminalMenu(options_strings, title=title, shortcut_key_highlight_style=("fg_cyan",))
 
         menu_entry_index = terminal_menu.show()
 
