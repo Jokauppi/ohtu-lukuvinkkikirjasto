@@ -11,6 +11,7 @@ class Filter:
         self.__read = ""
         self.__comment = ""
         self.__taglist = []
+        self.__tags = ""
 
     @property
     def types(self):
@@ -90,6 +91,18 @@ class Filter:
     def taglist(self, value):
         self.__taglist.append(value)
 
+    @property
+    def tags(self):
+        return self.__tags
+
+    @tags.setter
+    def tags(self, value):
+        if not self.__tags:
+            self.__tags = value
+        else:
+            self.__tags += ", "+value
+        self.__taglist.append(value)
+
     def clear_filters(self):
         self.__types.clear()
         self.__name = ""
@@ -100,6 +113,7 @@ class Filter:
         self.__read = ""
         self.__comment = ""
         self.__taglist.clear()
+        self.__tags = ""
 
     def book_filters(self):
 

@@ -205,5 +205,5 @@ class BlogTipRepository:
 
     def to_list(self, rows):
         return [BlogTip(row["name"], row["author"], row["url"],
-                row["comment"], row["id"], bool(row["read"]))
+                row["comment"], row["id"], bool(row["read"]), row["tags"])
                 for row in rows]

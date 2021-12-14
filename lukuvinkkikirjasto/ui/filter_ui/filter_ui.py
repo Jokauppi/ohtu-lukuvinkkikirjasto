@@ -47,6 +47,11 @@ class FilterUI:
                     "shortcut": "r"
                 },
                 {
+                    "action": "tags",
+                    "message": self.menu_string("lisää tägi", self.filter.tags),
+                    "shortcut": "l"
+                },
+                {
                     "action": self.filter.clear_filters,
                     "message": "Nollaa kaikki",
                     "shortcut": "c"

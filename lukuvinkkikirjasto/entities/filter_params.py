@@ -7,6 +7,7 @@ book_params = [
     "_Filter__read",
     "_Filter__comment",
     "_Filter__taglist",
+    "_Filter__tags",
 ]
 
 blog_params = [
@@ -17,6 +18,7 @@ blog_params = [
     "_Filter__read",
     "_Filter__comment",
     "_Filter__taglist",
+    "_Filter__tags",
 ]
 
 video_params = [
@@ -26,4 +28,5 @@ video_params = [
     "_Filter__read",
     "_Filter__comment",
     "_Filter__taglist",
+    "_Filter__tags",
 ]
