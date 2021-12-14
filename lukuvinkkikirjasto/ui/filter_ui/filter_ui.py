@@ -86,7 +86,7 @@ class FilterUI:
 
     def menu_string(self, text, value):
         if value != "":
-            return f"{text}: {value}"
+            return f"{text+':':14} {value}"
         return f"{text}"
 
     def set_types(self):
