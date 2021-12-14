@@ -44,10 +44,8 @@ pyrkimyksenä on mahdollisimman hyvä ylläpidettävyys pitämällä koodi selke
 
 ## Ohjelman viimeisin versio
 
-Ohjelma toimii toistaiseksi vain paikallisesti,
-tähän mennessä työstetyt ominaisuudet on listattu projektin backlogeissa sprintin 1 alle.
-* Käyttäjä voi lisätä kirjavinkin
-* Käyttäjä voi tulostaa kaikki vinkit
+Ohjelma toimii paikallisesti,
+tähän mennessä valmiit ominaisuudet on listattu projektin backlogeissa.
 
 ## Ohjelman käyttöohje
 
@@ -62,68 +60,28 @@ poetry install
 ```
 Sovellus käynnistyy komennolla
 ```
-poetry run python3 src/index.py
+poetry run python3 lukuvinkkikirjasto/index.py
 ```
 Vaihtoehtoisesti voit siirtyä ensin virtuaaliympäristöön komennolla poetry shell 
-ja tämän jälkeen suorittaa komennon python3 src/index.py.
+ja tämän jälkeen suorittaa komennon python3 lukuvinkkikirjasto/index.py.
 
 ### Käyttöliittymä
 
 Ohjelman käynnistyttyä voit antaa komentoja ohjelmalle. 
 Ohjeet komentojen käytöstä tulostuvat kun käynnistät ohjelman.
 Komennot:
-* "a" lisää vinkki, 
-* "p" tulosta vinkkejä, 
-* "r" merkitse vinkki luetuksi,
-* "s" etsi vinkkejä,
-* "q" poistu sovelluksesta.
+* "a" Lisää vinkki, 
+* "p" Tarkastele vinkkejä, 
+* "f" Muokkaa suodattimia,
+* "c" Muokkaa vinkkiä,
+* "q" Poistu sovelluksesta.
 
-#### Vinkin lisäys
+Lisää vinkki komennon avulla voit lisätä tietokantaan blogi, video ja kirja tyyppisiä vinkkejä.
+Tarkastele vinkkejä tulostaa oletuksena kaikki tietokantaan lisätyt vinkit.
+Mikäli haluat rajata mitä tulostetaan, se onnistuu muokkaamalla suodattimia.
+Yksittäisten vinkkien muokkaaminen, mm kommentointi ja poistaminen tapahtuu komennon muokkaa vinkkiä avulla.
+Lisäksi voit lisätä vinkeille tageja tai merkata ne luetuiksi.
 
-Anna ohjelmalle komennoksi "a" ja paina enteriä.
-Valitse seuraavaksi valikosta haluamasi vinkin tyyppi:
-* "k" kirjavinkki,
-* "b" blogivinkki,
-* "v" videolinkki,
-* "q" palaa päävalikkoon.
-
-Ohjelma kysyy vinkin tyypistä riippuen erilaisia tietoja.
-Syötä pyydetyt tiedot.
-Vinkki on nyt lisätty tietokantaan.
-
-#### Vinkkien tulostaminen
-
-Anna ohjelmalle komennoksi "p" ja paina enteriä.
-Valitse seuraavaksi valikosta minkä tyyppisiä vinkkejä haluat tulostaa:
-* "k" kirjavinkit,
-* "b" blogivinkit,
-* "v" videovinkit,
-* "r" luetut vinkit,
-* "u" lukemattomat vinkit,
-* "q" palaa päävalikkoon.
-
-Ohjelma tulostaa vinkit ja niihin liittyvät tiedot.
-
-#### Vinkin merkkaaminen luetuksi
-
-Anna ohjelmalle komennoksi "r" ja paina enteriä.
-Valitse seuraavaksi valikosta haluamasi vinkin tyyppi:
-* "k" kirjavinkki,
-* "b" blogivinkki,
-* "v" videolinkki,
-* "q" palaa päävalikkoon.
-Ohjelma listaa vinkit ja niiden tiedot mukaan lukien vinkkien id-numerot.
-
-Syötä ohjelmalle luetuksi merkittävän vinkin id-numero.
-
-#### Vinkkien etsiminen
-
-Anna ohjelmalle komennoksi "s" ja paina enteriä.
-Valitse seuraavaksi kriteeri, jonka perusteella haluat etsiä vinkkejä.
-Ohjelma kysyy tarkempia tietoja valitun vinkkityypin perusteella.
-
-Syötä pyydetyt tiedot.
-Ohjelma listaa kaikki hakukriteerejä vastaavat tiedot.
 
 ## Lisenssi
 

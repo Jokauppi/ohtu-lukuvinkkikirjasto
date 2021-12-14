@@ -15,7 +15,9 @@ class BlogTip:
         # Sisäiset muuttujat joilla ei tarkoituksella ole setteriä.
         # Käytä ohjelmassa add_tag tai remove_tag -metodeja.
         self.__tags = tags # string databaselle
-        self.__taglist = tags.split(",") #ohjelmistokäyttöön
+        self.__taglist = []
+        if self.__tags != "":
+            self.__taglist = tags.split(",") #ohjelmistokäyttöön
 
     @property
     def name(self):
@@ -76,12 +78,19 @@ class BlogTip:
     def add_tag(self, value):
         if str(value).lower() not in self.taglist:
             self.__taglist.append(str(value).lower())
-            self.__tags = ",".join(self.taglist)
+            if len(self.__taglist) == 1:
+                self.__tags = self.__taglist[0]
+            else:
+                self.__tags = ",".join(self.taglist)
 
     def remove_tag(self, value):
         if str(value).lower() in self.taglist:
             self.__taglist.remove(str(value).lower())
-            self.__tags = ",".join(self.taglist)
+            if len(self.__taglist) == 1:
+                self.__tags = self.__taglist[0]
+            else:
+                self.__tags = ",".join(self.taglist)
+
         else:
             raise ValueError("tagia ei ole olemassa")
 
