@@ -5,7 +5,7 @@ from entities.filter import Filter
 class TestFilter(unittest.TestCase):
     def setUp(self):
         self.filter = Filter()
-        self.filter.types = "book"
+        self.filter.types = ["book"]
         self.filter.name = "Book1"
         self.filter.author = "Author1"
         self.filter.isbn = "111111"
