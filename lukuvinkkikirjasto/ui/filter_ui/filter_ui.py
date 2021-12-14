@@ -48,7 +48,7 @@ class FilterUI:
                 },
                 {
                     "action": "tags",
-                    "message": self.menu_string("lisää tägi", self.filter.tags),
+                    "message": self.menu_string("Tagi", self.filter.tags),
                     "shortcut": "l"
                 },
                 {
