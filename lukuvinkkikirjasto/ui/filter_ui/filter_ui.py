@@ -1,12 +1,12 @@
 import os
 
 class FilterUI:
-    def __init__(self, textio, menu, service, filter):
+    def __init__(self, textio, menu, service, tip_filter):
         self.textio = textio
         self.service = service
         self.menu = menu
-        self.filter = filter
-    
+        self.filter = tip_filter
+
     def view(self):
         while True:
 
@@ -67,9 +67,10 @@ class FilterUI:
 
             if response == "save":
                 break
-            elif response == "type":
+
+            if response == "type":
                 self.set_types()
-            elif type(response) == str:
+            elif isinstance(response, str):
                 self.set_filter(response)
             else:
                 response()
@@ -80,7 +81,7 @@ class FilterUI:
             try:
                 setattr(self.filter, attribute, new_filter)
                 break
-            except:
+            except ValueError:
                 self.textio.output("Virheellinen arvo")
 
     def menu_string(self, text, value):
@@ -89,7 +90,7 @@ class FilterUI:
         return f"{text}"
 
     def set_types(self):
-        
+
         types = ["book", "blog", "video"]
 
         if os.name == "nt" or os.getenv("TEXTMODE", 'False').lower() in ('true', '1', 't'):
@@ -106,9 +107,7 @@ class FilterUI:
                     print(err)
         else:
 
-            # pylint: disable=import-outside-toplevel
-            from simple_term_menu import TerminalMenu
-            # pylint: enable=import-outside-toplevel
+            from simple_term_menu import TerminalMenu # pylint: disable=import-outside-toplevel
 
             terminal_menu = TerminalMenu(
                 types,
@@ -118,7 +117,7 @@ class FilterUI:
                 multi_select_select_on_accept=False,
                 preselected_entries=self.filter.types
             )
-            menu_entry_indices = terminal_menu.show()
+            terminal_menu.show()
             chosen = types
             if terminal_menu.chosen_menu_entries:
                 chosen = list(terminal_menu.chosen_menu_entries)

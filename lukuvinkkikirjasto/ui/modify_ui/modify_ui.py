@@ -1,4 +1,3 @@
-from sqlite3.dbapi2 import Error
 from entities.book_tip import BookTip
 from entities.blog_tip import BlogTip
 from entities.video_tip import VideoTip
@@ -8,7 +7,7 @@ class ModifyUI():
         self.textio = textio
         self.service = service
         self.menu = menu
-        
+
         self.actions_book = [
             {
                 "action": self.modify_name,

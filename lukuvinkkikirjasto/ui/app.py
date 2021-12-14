@@ -8,9 +8,9 @@ from ui.tip_ui.tip_ui import TipUI
 from entities.filter import Filter
 
 if os.name == "nt" or os.getenv("TEXTMODE", 'False').lower() in ('true', '1', 't'):
-    from ui.menu.text_menu import TextMenu as Menu
+    from ui.menu.text_menu import TextMenu as Menu # pylint: disable=ungrouped-imports
 else:
-    from ui.menu.console_menu import ConsoleMenu as Menu
+    from ui.menu.console_menu import ConsoleMenu as Menu # pylint: disable=ungrouped-imports
 
 class App():
     def __init__(self, textio, service):
@@ -37,7 +37,7 @@ class App():
                 "message": "Tarkastele vinkkejä",
                 "shortcut": "p"
             },
-            
+
             {
                 "action": self.filter_ui.view,
                 "message": "Muokkaa suodattimia",
@@ -63,4 +63,3 @@ class App():
 
     def quit_program(self):
         raise LoopBreak
-

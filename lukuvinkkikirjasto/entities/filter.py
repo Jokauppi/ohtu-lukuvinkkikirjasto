@@ -20,8 +20,8 @@ class Filter:
     @types.setter
     def types(self, value):
         accepted = ["book", "blog", "video"]
-        for type in value:
-            if type not in accepted:
+        for tip_type in value:
+            if tip_type not in accepted:
                 raise ValueError("Virheellinen tyyppi")
         self.__types = value
 

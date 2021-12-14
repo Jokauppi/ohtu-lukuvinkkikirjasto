@@ -37,7 +37,7 @@ class TextMenu:
                 action = actions[chosen]
                 self.text_io.output("")
                 return action
-            except:
+            except KeyError:
                 self.text_io.output("Virheellinen komento")
 
     def no_op(self, *args):
