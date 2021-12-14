@@ -1,8 +1,5 @@
 from ui.modify_ui.modify_ui import ModifyUI
 from ui.tag_ui.tag_ui import TagUI
-from entities.book_tip import BookTip
-from entities.blog_tip import BlogTip
-from entities.video_tip import VideoTip
 
 class TipUI:
     def __init__(self, textio, menu, service, list_ui):

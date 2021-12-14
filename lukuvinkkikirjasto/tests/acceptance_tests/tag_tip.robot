@@ -13,7 +13,7 @@ Add Tag For Book Tip
     Input Command  p
     Run And Quit Application
 
-    Output Should Contain Book  book2  writer2  22222-22222-22222  2001  ${EMPTY}  tag
+    Output Should Contain Book  book1  writer1  11111-11111-11111  2001  False  ${EMPTY}  tag
 
 Add Tag For Video Tip
     Add Video Tip To Service  Video1  video.example.com/1
@@ -26,7 +26,7 @@ Add Tag For Video Tip
     Run And Quit Application
     Run And Quit Application
 
-    Output Should Contain Video  Video2  video.example.com/2  ${EMPTY}  tag
+    Output Should Contain Video  Video1  video.example.com/1  False  ${EMPTY}  tag
 
 Add Tag For Blog Tip
     Add Blog Tip To Service  Name1  Author1  www.example.com/blog1
@@ -39,7 +39,7 @@ Add Tag For Blog Tip
     Run And Quit Application
     Run And Quit Application
 
-    Output Should Contain Blog  Name2  Author2  www.example.com/blog2  ${EMPTY}  tag
+    Output Should Contain Blog  Name1  Author1  www.example.com/blog1  False  ${EMPTY}  tag
 
 Add Multiple Tags
     Add Blog Tip To Service  Name1  Author1  www.example.com/blog1
@@ -57,7 +57,7 @@ Add Multiple Tags
     Run And Quit Application
     Run And Quit Application
 
-    Output Should Contain Blog  Name2  Author2  www.example.com/blog2  ${EMPTY}  tag1, tag2
+    Output Should Contain Blog  Name1  Author1  www.example.com/blog1  False  ${EMPTY}  tag1, tag2
 
 Remove Tag
     Add Blog Tip To Service  Name1  Author1  www.example.com/blog1
@@ -75,8 +75,8 @@ Remove Tag
     Run And Quit Application
     Run And Quit Application
 
-    Output Should Contain Blog  Name2  Author2  www.example.com/blog2  ${EMPTY}  tag1
-    Output Should Contain Blog  Name2  Author2  www.example.com/blog2  ${EMPTY}  ${EMPTY}
+    Output Should Contain Blog  Name1  Author1  www.example.com/blog1  False  ${EMPTY}  tag1
+    Output Should Contain Blog  Name1  Author1  www.example.com/blog1  False  ${EMPTY}  ${EMPTY}
 
 *** Keywords ***
 Setup Application

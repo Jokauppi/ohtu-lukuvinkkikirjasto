@@ -19,7 +19,7 @@ Modify Book Tip
     Input Command  p
     Run And Quit Application
 
-    Output Should Contain Book  book1_muokattu  writer1  11111-11111-11111  1000  ${EMPTY}  ${EMPTY}
+    Output Should Contain Book  book1_muokattu  writer1  11111-11111-11111  1000  False  ${EMPTY}  ${EMPTY}
 
 Modify Video Tip
     Add Video Tip To Service  Video1  video.example.com/1
@@ -37,7 +37,7 @@ Modify Video Tip
     Input Command  p
     Run And Quit Application
 
-    Output Should Contain Video  video1_muokattu  url_muokattu  ${EMPTY}  ${EMPTY}
+    Output Should Contain Video  video1_muokattu  url_muokattu  False  ${EMPTY}  ${EMPTY}
 
 Modify Blog Tip
     Add Blog Tip To Service  Name1  Author1  www.example.com/blog1
@@ -55,7 +55,7 @@ Modify Blog Tip
     Input Command  p
     Run And Quit Application
 
-    Output Should Contain Blog  Name1  author_muokattu  url_muokattu  ${EMPTY}  ${EMPTY}
+    Output Should Contain Blog  Name1  author_muokattu  url_muokattu  False  ${EMPTY}  ${EMPTY}
 
 
 *** Keywords ***
