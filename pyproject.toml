@@ -15,7 +15,6 @@ lukuvinkkikirjasto = "lukuvinkkikirjasto.index:main"
 [tool.poetry.dependencies]
 python = "^3.8"
 pysqlite3 = "^0.4.6"
-robotframework = "^4.1.2"
 python-dotenv = "^0.19.2"
 simple-term-menu = "^1.4.1"
 
@@ -24,6 +23,7 @@ pytest = "^6.2.5"
 coverage = "^6.1.2"
 pylint = "^2.12.1"
 autopep8 = "^1.6.0"
+robotframework = "^4.1.2"
 pytest-dotenv = "^0.5.2"
 
 [build-system]
