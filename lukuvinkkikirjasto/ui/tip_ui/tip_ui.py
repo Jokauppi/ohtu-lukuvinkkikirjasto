@@ -36,7 +36,7 @@ class TipUI:
             },
             {
                 "action": self.tag_ui.show,
-                "message": "Lisää tageja",
+                "message": "Lisää tai poista tageja",
                 "shortcut": "l"
             }
         ]

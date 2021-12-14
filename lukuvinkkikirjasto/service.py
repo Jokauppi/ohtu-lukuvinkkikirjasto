@@ -60,6 +60,10 @@ class Service:
     def update_tags(self, tip):
         if isinstance(tip, BlogTip):
             self._blogrepository.update_tags(tip)
+        if isinstance(tip, BookTip):
+            self._bookrepository.update_tags(tip)
+        if isinstance(tip, VideoTip):
+            self._videorepository.update_tags(tip)
 
 # Get All
 

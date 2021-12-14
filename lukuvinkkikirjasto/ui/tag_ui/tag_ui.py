@@ -19,7 +19,7 @@ class TagUI():
         ]
 
     def show(self, tip):
-        self.menu.show(self.actions, "Valitse toiminto")(tip)
+        self.menu.show(self.actions, title="Valitse toiminto")(tip)
 
     def add_tag(self, tip):
         tip.add_tag(self.textio.input("Tag: "))
