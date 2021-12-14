@@ -47,7 +47,7 @@ class TipUI:
         self.list_ui.list_tips(tips, indexes=True)
         while True:
             try:
-                index = self.textio.input("Valitse vinkin numero:")
+                index = self.textio.input("Valitse vinkin numero: ")
                 return tips[int(index)]
             except (KeyError, IndexError, ValueError):
                 self.textio.output("Virheellinen vinkin numero")
@@ -56,5 +56,5 @@ class TipUI:
         self.menu.show(self.actions, "Valitse toiminto")(tip)
 
     def comment_tip(self, tip):
-        comment = self.textio.input("Input comment:")
+        comment = self.textio.input("Input comment: ")
         self.service.comment(tip, comment)

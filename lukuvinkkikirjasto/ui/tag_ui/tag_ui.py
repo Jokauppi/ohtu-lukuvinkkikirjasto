@@ -26,5 +26,8 @@ class TagUI():
         self.service.update_tags(tip)
 
     def remove_tag(self, tip):
-        tip.remove_tag(self.textio.input("Tag: "))
-        self.service.update_tags(tip)
+        try:
+            tip.remove_tag(self.textio.input("Tag: "))
+            self.service.update_tags(tip)
+        except (ValueError, TypeError) as err:
+            self.textio.output(f"Tagin poistaminen ei onnistunut: {err}")

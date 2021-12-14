@@ -77,7 +77,7 @@ class FilterUI:
 
     def set_filter(self, attribute):
         while True:
-            new_filter = self.textio.input("Syötä uusi arvo:")
+            new_filter = self.textio.input("Syötä uusi arvo: ")
             try:
                 setattr(self.filter, attribute, new_filter)
                 break
