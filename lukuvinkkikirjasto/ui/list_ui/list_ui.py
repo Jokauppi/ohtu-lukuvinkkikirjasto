@@ -17,7 +17,8 @@ class ListUI():
         for index, item in enumerate(tips):
             self.textio.output("-"*15)
             if indexes:
-                self.textio.output(f"[{index}]")
-            self.textio.output(item)
+                self.textio.output(f"[{index}\n{item}]")
+            else:
+                self.textio.output(item)
         self.textio.output("="*15)
 

@@ -203,5 +203,5 @@ class VideoTipRepository:
 
 
     def to_list(self, rows):
-        return [VideoTip(row["title"], row["url"], row["comment"], row["id"], bool(row["read"]))
+        return [VideoTip(row["title"], row["url"], row["comment"], row["id"], bool(row["read"]), row["tags"])
                 for row in rows]

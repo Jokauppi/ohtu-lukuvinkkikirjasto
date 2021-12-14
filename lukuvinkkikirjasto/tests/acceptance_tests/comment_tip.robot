@@ -17,7 +17,7 @@ Comment Book Tip
     Input Command  p
     Run And Quit Application
 
-    Output Should Contain Book  book2  writer2  22222-22222-22222  2001  uusi kommentti
+    Output Should Contain Book  book2  writer2  22222-22222-22222  2001  False  uusi kommentti  ${EMPTY}
 
 Comment Video Tip
     Add Video Tip To Service  Video1  video.example.com/1
@@ -33,7 +33,7 @@ Comment Video Tip
     Input Command  p
     Run And Quit Application
 
-    Output Should Contain Video  Video2  video.example.com/2  toinen kommentti
+    Output Should Contain Video  Video2  video.example.com/2  False  toinen kommentti  ${EMPTY}
 
 Comment Blog Tip
     Add Blog Tip To Service  Name1  Author1  www.example.com/blog1
@@ -49,7 +49,7 @@ Comment Blog Tip
     Input Command  p
     Run And Quit Application
 
-    Output Should Contain Blog  Name2  Author2  www.example.com/blog2  kommentti2
+    Output Should Contain Blog  Name2  Author2  www.example.com/blog2  False  kommentti2  ${EMPTY}
 
 
 

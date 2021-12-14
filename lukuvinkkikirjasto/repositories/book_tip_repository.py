@@ -210,6 +210,6 @@ class BookTipRepository:
 
     def to_list(self, rows):
         return [BookTip(row["name"],row["author"], row["isbn"],
-                str(row["publication_year"]), row["comment"], row["id"], bool(row["read"]))
+                str(row["publication_year"]), row["comment"], row["id"], bool(row["read"]), row["tags"])
                  # olio vaatii stringia, tietokannassa integer
                 for row in rows]
