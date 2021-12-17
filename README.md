@@ -2,6 +2,9 @@
 [![GitHub Actions](https://github.com/Jokauppi/ohtu-lukuvinkkikirjasto/workflows/CI/badge.svg)](https://github.com/Jokauppi/ohtu-lukuvinkkikirjasto/actions)
 [![codecov](https://codecov.io/gh/Jokauppi/ohtu-lukuvinkkikirjasto/branch/main/graph/badge.svg?token=4EYTWGYKB4)](https://codecov.io/gh/Jokauppi/ohtu-lukuvinkkikirjasto)
 
+## Loppuraportti
+[Loppuraportti](https://docs.google.com/document/d/16KTcSnFrjN0c-OsDVLTBKsz4J8ry3wZw927VJghYaa0/edit?usp=sharing)
+
 ## Definition of done
 Scrumin mukaisesti projektissa toteutetaan backlogista löytyvät user storyt, 
 joille on jokaiselle määritelty hyväksymiskriteerit.
