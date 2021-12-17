@@ -3,7 +3,7 @@
 [![codecov](https://codecov.io/gh/Jokauppi/ohtu-lukuvinkkikirjasto/branch/main/graph/badge.svg?token=4EYTWGYKB4)](https://codecov.io/gh/Jokauppi/ohtu-lukuvinkkikirjasto)
 
 ## Loppuraportti
-[Loppuraportti](https://docs.google.com/document/d/16KTcSnFrjN0c-OsDVLTBKsz4J8ry3wZw927VJghYaa0/edit?usp=sharing)
+Projektin [loppuraportti](https://docs.google.com/document/d/16KTcSnFrjN0c-OsDVLTBKsz4J8ry3wZw927VJghYaa0/edit?usp=sharing) on luettavissa linkin takaa.
 
 ## Definition of done
 Scrumin mukaisesti projektissa toteutetaan backlogista löytyvät user storyt, 
