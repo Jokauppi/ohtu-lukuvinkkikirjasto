@@ -40,14 +40,17 @@ class TipUI:
 
     def view(self):
         tip = self.choose_tip()
-        self.choose_action(tip)
+        if tip:
+            self.choose_action(tip)
 
     def choose_tip(self):
         tips = self.service.filter_tips(self.list_ui.filter)
         self.list_ui.list_tips(tips, indexes=True)
         while True:
             try:
-                index = self.textio.input("Valitse vinkin numero: ")
+                index = self.textio.input("Valitse vinkin numero (tyhjä palaa takaisin): ")
+                if len(index) == 0:
+                    return None
                 return tips[int(index)]
             except (KeyError, IndexError, ValueError):
                 self.textio.output("Virheellinen vinkin numero")
