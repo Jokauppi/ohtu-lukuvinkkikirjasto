@@ -52,7 +52,7 @@ tähän mennessä valmiit ominaisuudet on listattu projektin backlogeissa.
 
 ## Ohjelman käyttöohje
 
-Ohjelma toimii komentoriviltä tekstikättöliittymällä.
+Ohjelma toimii komentoriviltä tekstikäyttöliittymällä.
 Kloonaa koneellesi tämä repositorio ja siirry sen juurihakemistoon.
 
 ### Asennus ja käynnistys
