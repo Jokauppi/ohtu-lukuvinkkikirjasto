@@ -52,7 +52,7 @@ tähän mennessä valmiit ominaisuudet on listattu projektin backlogeissa.
 
 ## Ohjelman käyttöohje
 
-Ohjelma toimii komentoriviltä tekstikättöliittymällä.
+Ohjelma toimii komentoriviltä tekstikäyttöliittymällä.
 Kloonaa koneellesi tämä repositorio ja siirry sen juurihakemistoon.
 
 ### Asennus ja käynnistys
@@ -89,5 +89,7 @@ Lisäksi voit lisätä vinkeille tageja tai merkata ne luetuiksi.
 ## Lisenssi
 
 This project is licensed under the terms of the MIT license.
+
+
 
 
